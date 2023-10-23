@@ -1,38 +1,266 @@
-/* Other styles remain unchanged */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
 
-/* Added styles for the project section */
-#projects {
-    width: 100%;
+body {
+    color: #d3d3d3;
+    height: 100vh;
+    font-family: 'Mohave', sans-serif;
+    background: #1E2127;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+main {
+    height: calc(100vh - 25vh);
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: 1.8rem;
 }
 
-.project {
-    width: 80%;
-    margin: 20px 0;
-    padding: 20px;
-    background-color: #333;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+main p {
+    -webkit-transition: all ease;
+    transition: all ease;
 }
 
-/* Updated social link styles to include LinkedIn */
-footer .social-links .fab.linkedin:hover {
-    color: #0077b5;
-    animation: blink 1s infinite alternate linear;
+main p:hover {
+    cursor: none;
+    background-image: -webkit-gradient(linear, left bottom, right top, from(#c471ed), color-stop(#d16ba5), color-stop(#c777b9), color-stop(#ba83ca), color-stop(#aa8fd8), color-stop(#9a9ae1), color-stop(#8aa7ec), color-stop(#79b3f4), color-stop(#69bff8), color-stop(#52cffe), color-stop(#41dfff), color-stop(#46eefa), to(#5ffbf1));
+    background-image: linear-gradient(to right top, #c471ed, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-size: 200%;
+    -webkit-animation: gradient 1.5s linear infinite alternate;
+    animation: gradient 1.5s linear infinite alternate;
 }
 
-/* Media query for smaller screens */
+main span {
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+    color: #d3d3d3;
+}
+
+footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    height: 15vh;
+    font-weight: 600;
+}
+
+footer>p {
+    font-size: 1.2rem;
+}
+
+footer>p:hover {
+    cursor: default;
+    background: -webkit-gradient(linear, left top, right top, from(#12c2e9), color-stop(#c471ed), to(#f64f59));
+    background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-size: 200%;
+    -webkit-animation: gradient 1.5s linear infinite alternate;
+    animation: gradient 1.5s linear infinite alternate;
+}
+
+footer .social-links {
+    width: 35vw;
+    margin-bottom: 0.3em;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+footer .social-links .fab,
+footer .social-links .fas {
+    font-size: 1.6rem;
+    -webkit-transition: color ease-in-out alternate 0.3s;
+    transition: color ease-in-out alternate 0.3s;
+}
+
+footer .social-links .gmail:hover {
+    color: #E06C75;
+    -webkit-animation: blink 3s infinite alternate linear;
+    animation: blink 3s infinite alternate linear;
+}
+
+footer .social-links .linkedin:hover {
+    color: #56B6C2;
+    -webkit-animation: blink 3s infinite alternate linear;
+    animation: blink 3s infinite alternate linear;
+}
+
+footer .social-links .github:hover {
+    color: #5C6370;
+    -webkit-animation: blink 3s infinite alternate linear;
+    animation: blink 3s infinite alternate linear;
+}
+
+header {
+    height: 10vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+header>a {
+    letter-spacing: 0.25em;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+header a:hover {
+    background: -webkit-gradient(linear, left top, right top, from(#12c2e9), color-stop(#c471ed), to(#f64f59));
+    background: linear-gradient(to right, #1E2127, #1E2127, #56B6C2, #1E2127);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-size: 200%;
+    -webkit-animation: gradient 3s linear infinite alternate;
+    animation: gradient 3s linear infinite alternate;
+}
+
 @media screen and (max-width: 750px) {
-    /* Other styles remain unchanged */
-
-    #projects {
-        flex-direction: column;
+    main {
+        padding: 0 1em;
+        text-align: center;
+        background-image: -webkit-gradient(linear, left bottom, right top, from(#c471ed), color-stop(#d16ba5), color-stop(#c777b9), color-stop(#ba83ca), color-stop(#aa8fd8), color-stop(#9a9ae1), color-stop(#8aa7ec), color-stop(#79b3f4), color-stop(#69bff8), color-stop(#52cffe), color-stop(#41dfff), color-stop(#46eefa), to(#5ffbf1));
+        background-image: linear-gradient(to right top, #c471ed, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        background-size: 200%;
+        -webkit-animation: gradient 1.5s linear infinite alternate;
+        animation: gradient 1.5s linear infinite alternate;
     }
 
-    .project {
-        width: 90%;
+    main span {
+        background: -webkit-gradient(linear, left top, right top, from(#12c2e9), color-stop(#c471ed), to(#f64f59));
+        background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        background-size: 200%;
+        -webkit-animation: gradient 1.5s linear infinite alternate;
+        animation: gradient 1.5s linear infinite alternate;
+    }
+
+    header>a {
+        background: -webkit-gradient(linear, left top, right top, from(#12c2e9), color-stop(#c471ed), to(#f64f59));
+        background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        background-size: 200%;
+        -webkit-animation: gradient 1.5s linear infinite alternate;
+        animation: gradient 1.5s linear infinite alternate;
+    }
+
+    footer>p {
+        background: -webkit-gradient(linear, left top, right top, from(#db4437), color-stop(#36d1dc), color-stop(#5b86e5), to(#e1306c));
+        background: linear-gradient(to right, #db4437, #36d1dc, #5b86e5, #e1306c);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        background-size: 200%;
+        -webkit-animation: gradient 1.5s infinite linear alternate;
+        animation: gradient 1.5s infinite linear alternate;
+    }
+
+    footer .social-links {
+        width: 65vw;
+    }
+
+    footer .social-links .fas.gmail,
+    footer .social-links .fab.gmail {
+        color: #db4437;
+        -webkit-animation: blink 2s infinite alternate linear;
+        animation: blink 2s infinite alternate linear;
+    }
+
+    footer .social-links .fas.github,
+    footer .social-links .fab.github {
+        color: #c0c0c0;
+        -webkit-animation: blink 2s infinite alternate linear;
+        animation: blink 2s infinite alternate linear;
+    }
+}
+
+@-webkit-keyframes gradient {
+    0% {
+        background-position: 0%;
+    }
+
+    100% {
+        background-position: 100%;
+    }
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0%;
+    }
+
+    100% {
+        background-position: 100%;
+    }
+}
+
+@-webkit-keyframes blink {
+    0% {
+        opacity: 0.4;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.3;
     }
 }
