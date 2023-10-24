@@ -56,9 +56,10 @@ a:hover {
     -webkit-text-fill-color: #5b86e5
 }
 
+/*Title name and source code gradients*/
 @supports((-webkit-background-clip: text) or (background-clip: text)) or (-webkit-background-clip: text) {
     .text-color-main {
-        background-image: linear-gradient(135deg, #36d1dc 0%, #5b86e5 100%);
+        background-image: linear-gradient(135deg, #c936dc 0%, #5b86e5 100%);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: rgba(0, 0, 0, 0);
@@ -97,6 +98,7 @@ a:hover {
     }
 }
 
+/*See Live animation gradient*/
 .cta-btn::after {
     content: "";
     display: block;
@@ -118,18 +120,20 @@ a:hover {
     }
 }
 
+/*Landing CTA Button Border gradients*/
 .cta-btn--hero {
     color: #5b86e5;
     -webkit-text-fill-color: #5b86e5;
     border: 2px solid rgba(0, 0, 0, 0);
     -o-border-image: linear-gradient(135deg, #36d1dc 0%, #5b86e5 100%);
-    border-image: linear-gradient(135deg, #36d1dc 0%, #5b86e5 100%);
+    border-image: linear-gradient(135deg, #00ff08 0%, #5b86e5 100%);
     border-image-slice: 1
 }
 
+/*Landing CTA Button and See Live Text gradient*/
 @supports((-webkit-background-clip: text) or (background-clip: text)) or (-webkit-background-clip: text) {
     .cta-btn--hero {
-        background-image: linear-gradient(135deg, #36d1dc 0%, #5b86e5 100%);
+        background-image: linear-gradient(135deg, #e5ff00 0%, #5b86e5 100%);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: rgba(0, 0, 0, 0);
@@ -233,8 +237,9 @@ screen and (-ms-high-contrast: none) {
     transform: translate(-12%, -30%) rotate(45deg)
 }
 
+/*Footer color*/
 .footer {
-    background-color: #333;
+    background-color: #1a1a1a;
     padding: 4.8rem 0
 }
 
@@ -287,6 +292,7 @@ screen and (-ms-high-contrast: none) {
     transform: scale(1.1) translateY(-2px)
 }
 
+/*Social media hover colors*/
 .social-links a:hover .fa-kaggle {
     color: #5fd2ff
 }
@@ -390,6 +396,7 @@ section .row span {
     }
 }
 
+/*About Me page background color*/
 #about {
     background-color: #36d1dc;
     background-image: linear-gradient(135deg, #36d1dc 0%, #5b86e5 100%);
@@ -458,8 +465,9 @@ section .row span {
     }
 }
 
+/*Get in touch CONTACT background gradient*/
 #contact {
-    background-image: linear-gradient(135deg, #36d1dc 0%, #5b86e5 100%);
+    background-image: linear-gradient(135deg, #ff0000 0%, #5b86e5 100%);
     -webkit-clip-path: polygon(0 15vh, 100% 0, 100% 100%, 0 100%);
     clip-path: polygon(0 15vh, 100% 0, 100% 100%, 0 100%);
     padding: 15rem 0 10rem 0;
@@ -502,12 +510,13 @@ section .row span {
     }
 }
 
+/*Landing page color*/
 #hero {
     min-height: 100vh;
     height: 100vh;
     display: flex;
     align-items: center;
-    background: #fff;
+    background: #1a1a1a;
     font-weight: 400;
     color: #272341;
     padding: 0rem 5.6rem;
@@ -532,11 +541,13 @@ section .row span {
     }
 }
 
+/*landing page text color*/
 #hero .hero-title {
     font-size: 5.6rem;
     font-weight: 700;
     margin-bottom: 3.2rem;
-    text-align: left
+    text-align: left;
+    color: #ffffff
 }
 
 #hero .hero-title span {
@@ -657,8 +668,9 @@ section .row span {
     }
 }
 
+/*Projects main background*/
 #projects {
-    background-color: #e5e5e5;
+    background-color: #1a1a1a;
     color: #272341;
     margin-top: -15rem;
     padding-top: 15rem
