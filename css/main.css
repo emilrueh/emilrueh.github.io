@@ -89,6 +89,7 @@ a:hover {
     }
 }
 
+/*See Live button*/
 .cta-btn {
     display: inline-block;
     position: relative;
@@ -101,22 +102,24 @@ a:hover {
     transition: all cubic-bezier(0.19, 1, 0.22, 1) .6s
 }
 
+/*unused*/
 .cta-btn:hover {
-    box-shadow: 1.5px 1.5px 3px rgba(174, 174, 192, .4), -1px -1px 3px #fff
+    box-shadow: 1.5px 1.5px 3px rgba(0, 0, 0, 0), -1px -1px 3px #00000000
 }
 
+/*unused*/
 @media(max-width: 37.5em) {
     .cta-btn:hover {
         box-shadow: none
     }
 }
 
-/*See Live animation gradient*/
+/*See Live button animation gradient*/
 .cta-btn::after {
     content: "";
     display: block;
     position: absolute;
-    background-image: linear-gradient(135deg, #36d1dc 0%, #5b86e5 100%);
+    background-image: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
     width: 0px;
     height: 100%;
     left: 0;
@@ -139,14 +142,14 @@ a:hover {
     -webkit-text-fill-color: #5b86e5;
     border: 2px solid rgba(0, 0, 0, 0);
     -o-border-image: linear-gradient(135deg, #36d1dc 0%, #5b86e5 100%);
-    border-image: linear-gradient(135deg, #00ff08 0%, #5b86e5 100%);
+    border-image: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
     border-image-slice: 1
 }
 
 /*Landing CTA Button and See Live Text gradient*/
 @supports((-webkit-background-clip: text) or (background-clip: text)) or (-webkit-background-clip: text) {
     .cta-btn--hero {
-        background-image: linear-gradient(135deg, #e5ff00 0%, #5b86e5 100%);
+        background-image: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: rgba(0, 0, 0, 0);
@@ -221,11 +224,14 @@ screen and (-ms-high-contrast: none) {
     width: 100%
 }
 
+/*See Live Button border and shadow*/
+/*unused*/
 .cta-btn--projects {
-    box-shadow: inset 1px 1px 2px 2px rgba(174, 174, 192, .15), inset -2px -2px 2px rgba(255, 255, 255, .7);
-    border: 2px solid rgba(0, 0, 0, 0)
+    box-shadow: inset 1px 1px 2px 2px #00000000, inset -2px -2px #00000000;
+    border: 2px solid rgba(255, 255, 255, 0)
 }
 
+/*unused*/
 @media(max-width: 37.5em) {
     .cta-btn--projects {
         border: none;
@@ -242,17 +248,21 @@ screen and (-ms-high-contrast: none) {
     transform: translate(-98%, -30%) rotate(45deg)
 }
 
+/*See Live Button border and shadow*/
+/*unused*/
 .cta-btn--projects:hover {
-    box-shadow: 1.5px 1.5px 3px rgba(174, 174, 192, .4), -1px -1px 3px #fff
+    box-shadow: none
 }
 
+/*See Live Button animation block thing*/
 .cta-btn--projects:hover::after {
     transform: translate(-12%, -30%) rotate(45deg)
 }
 
+/*FOOTER*/
 /*Footer color*/
 .footer {
-    background-color: #1a1a1a;
+    background-color: var(--bg-dark);
     padding: 4.8rem 0
 }
 
@@ -412,8 +422,8 @@ section .row span {
 /*About Me page background color*/
 #about {
     background-color: #36d1dc;
-    background-image: linear-gradient(135deg, #36d1dc 0%, #5b86e5 100%);
-    color: #fff;
+    background-image: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-grey) 100%);
+    color: #00000000;
     height: 100%;
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
     clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
@@ -429,6 +439,7 @@ section .row span {
 }
 
 #about .about-wrapper {
+    color: var(--text-white);
     grid-template-columns: 1fr 1fr
 }
 
@@ -480,7 +491,7 @@ section .row span {
 
 /*Get in touch CONTACT background gradient*/
 #contact {
-    background-image: linear-gradient(135deg, #ff0000 0%, #5b86e5 100%);
+    background-image: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
     -webkit-clip-path: polygon(0 15vh, 100% 0, 100% 100%, 0 100%);
     clip-path: polygon(0 15vh, 100% 0, 100% 100%, 0 100%);
     padding: 15rem 0 10rem 0;
@@ -529,7 +540,7 @@ section .row span {
     height: 100vh;
     display: flex;
     align-items: center;
-    background: #1a1a1a;
+    background: var(--bg-dark);
     font-weight: 400;
     color: #272341;
     padding: 0rem 5.6rem;
@@ -560,7 +571,7 @@ section .row span {
     font-weight: 700;
     margin-bottom: 3.2rem;
     text-align: left;
-    color: #ffffff
+    color: var(--text-white)
 }
 
 #hero .hero-title span {
@@ -683,8 +694,8 @@ section .row span {
 
 /*Projects main background*/
 #projects {
-    background-color: #1a1a1a;
-    color: #272341;
+    background-color: var(--bg-dark);
+    color: #00000000;
     margin-top: -15rem;
     padding-top: 15rem
 }
@@ -724,6 +735,7 @@ section .row span {
 }
 
 #projects .project-wrapper__text {
+    color: var(--text-white);
     width: 100%;
     text-align: left
 }
@@ -777,7 +789,7 @@ section .row span {
 
 #projects .project-wrapper__image .thumbnail {
     border: none;
-    box-shadow: 8px 8px 9px 7px rgba(174, 174, 192, .4), -5px -5px 15px 7px #fff
+    box-shadow: 8px 8px 9px 7px var(--accent-purple), -5px -5px 15px 7px var(--accent-blue)
 }
 
 #projects .project-wrapper__image .thumbnail .img-fluid {
