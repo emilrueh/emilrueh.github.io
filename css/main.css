@@ -1,5 +1,18 @@
 @import"https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap";
 
+:root {
+    --bg-dark: #121212;
+    --bg-moderate: #1c1c1c;
+    --bg-light: #242424;
+    --primary-green: #a8c4b5;
+    --primary-grey: #6c757d;
+    --primary-light-grey: #ced4da;
+    --accent-blue: #00faff;
+    --accent-purple: #b200f8;
+    --text-white: #ffffff;
+    --text-light-grey: #adb5bd;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -59,7 +72,7 @@ a:hover {
 /*Title name and source code gradients*/
 @supports((-webkit-background-clip: text) or (background-clip: text)) or (-webkit-background-clip: text) {
     .text-color-main {
-        background-image: linear-gradient(135deg, #c936dc 0%, #5b86e5 100%);
+        background-image: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-blue) 100%);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: rgba(0, 0, 0, 0);
