@@ -9,6 +9,7 @@
     --primary-light-grey: #ced4da;
     --accent-blue: #00faff;
     --accent-purple: #b200f8;
+    --accent-middle: #597dfb;
     --text-white: #ffffff;
     --text-light-grey: #adb5bd;
 }
@@ -139,12 +140,11 @@ a:hover {
 
 /*Landing CTA Button Border gradients*/
 .cta-btn--hero {
+    margin-top: -1.2rem;
+    border-radius: 10px;
     color: #5b86e5;
     -webkit-text-fill-color: #5b86e5;
-    border: 2px solid rgba(0, 0, 0, 0);
-    -o-border-image: linear-gradient(135deg, #36d1dc 0%, #5b86e5 100%);
-    border-image: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
-    border-image-slice: 1
+    border: 0px solid rgba(0, 0, 0, 0);
 }
 
 /*Landing CTA Button and See Live Text gradient*/
@@ -180,9 +180,10 @@ screen and (-ms-high-contrast: none) {
 
 /*get in touch animation*/
 .cta-btn--hero::after {
+    border-radius: 10px;
     height: 410%;
     width: 150%;
-    transform: translate(-98%, -25%) rotate(45deg)
+    transform: translate(-86%, -25%) rotate(45deg)
 }
 
 /*see live and landing get in touch color on hover animation*/
@@ -198,15 +199,15 @@ screen and (-ms-high-contrast: none) {
 }
 
 .cta-btn--hero:hover::after {
-    transform: translate(-9%, -25%) rotate(45deg)
+    transform: translate(-12%, -30%) rotate(45deg)
 }
 
 /*view resume and contact get in touch text color*/
 .cta-btn--resume {
-    border-radius: 0;
-    margin-top: 12px;
+    border-radius: 10px;
+    margin-top: 21px;
     color: #fff;
-    border: 2px solid #fff
+    border: 1px solid #fff
 }
 
 .cta-btn--resume::after {
@@ -214,7 +215,7 @@ screen and (-ms-high-contrast: none) {
 }
 
 .cta-btn--resume:hover {
-    color: #5b86e5;
+    color: var(--accent-middle);
     text-decoration: none;
     box-shadow: none
 }
@@ -245,8 +246,14 @@ screen and (-ms-high-contrast: none) {
 }
 
 .cta-btn--projects::after {
-    height: 250%;
-    width: 130%
+    border-radius: 10px;
+    /* added to match .cta-btn--hero */
+    height: 310%;
+    /* adjusted to match .cta-btn--hero */
+    width: 150%;
+    /* adjusted to match .cta-btn--hero */
+    transform: translate(-98%, -25%) rotate(45deg);
+    /* adjusted to match .cta-btn--hero */
 }
 
 .cta-btn--projects::after {
