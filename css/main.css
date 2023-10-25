@@ -91,6 +91,15 @@ a:hover {
     }
 }
 
+
+/* Media query for desktop */
+@media (min-width: 1024px) {
+    .about-wrapper__cta .cta-btn {
+        margin-right: 54px;
+        /* Adjust this value to shift the button to the left */
+    }
+}
+
 /*See Live button*/
 .cta-btn {
     display: inline-block;
@@ -206,6 +215,7 @@ screen and (-ms-high-contrast: none) {
 .cta-btn--resume {
     border-radius: 10px;
     margin-top: 21px;
+    align-self: center;
     color: #fff;
     border: 1px solid #fff
 }
