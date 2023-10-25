@@ -316,7 +316,8 @@ screen and (-ms-high-contrast: none) {
 
 .footer__text {
     font-size: 1.3rem;
-    color: #b3b3b3
+    color: var(--text-light-grey);
+    opacity: 42%;
 }
 
 .footer__text a {
@@ -334,8 +335,9 @@ screen and (-ms-high-contrast: none) {
 .footer hr {
     margin: 1rem auto;
     border: 0;
-    width: 50%;
-    border-top: 2px solid rgba(255, 255, 255, .1)
+    width: 42%;
+    border-top: 1px solid var(--text-light-grey);
+    opacity: 21%;
 }
 
 .social-links {
@@ -348,7 +350,11 @@ screen and (-ms-high-contrast: none) {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: #fff;
+    color: var(--bg-light);
+    background-image: linear-gradient(140deg, var(--text-white) 0%, var(--text-light-grey) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
     width: 5rem;
     height: 5rem;
     margin: 1.6rem 1.6rem;
@@ -365,30 +371,30 @@ screen and (-ms-high-contrast: none) {
 
 /*Social media hover colors*/
 .social-links a:hover .fa-kaggle {
-    color: var(--accent-purple)
+    color: var(--text-white)
 }
 
 .social-links a:hover .fa-github {
-    color: var(--accent-purple)
+    color: var(--text-white)
 }
 
 .social-links a:hover .fa-linkedin {
-    color: var(--accent-purple)
+    color: var(--text-white)
 }
 
 .social-links a:hover .fa-envelope {
-    color: var(--accent-purple)
+    color: var(--text-white)
 }
 
 .back-to-top i {
-    color: #fff;
+    color: var(--bg-light);
     margin: 1rem 0 1.6rem;
     transition: all 200ms ease
 }
 
 .back-to-top i:hover {
     transform: translateY(-2px);
-    color: var(--accent-blue)
+    color: var(--text-white)
 }
 
 section {
