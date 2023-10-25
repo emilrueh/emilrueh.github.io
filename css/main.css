@@ -691,6 +691,7 @@ section .row span {
 }
 
 .scroll-down {
+    color: var(--accent-purple);
     height: 50px;
     width: 30px;
     border-radius: 50px;
