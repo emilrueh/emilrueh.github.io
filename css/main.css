@@ -422,7 +422,7 @@ section .row span {
 /*About Me page background color*/
 #about {
     background-color: none;
-    background-image: linear-gradient(21deg, var(--bg-dark) 0%, var(--accent-blue) 100%, var(--accent-purple) 100%);
+    background-image: linear-gradient(21deg, var(--bg-dark) 0%, var(--bg-dark) 100%);
     color: #00000000;
     height: 100%;
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
@@ -803,16 +803,18 @@ section .row span {
     }
 }
 
+/*project photos*/
 #projects .project-wrapper__image .thumbnail {
     border: none;
-    box-shadow: 8px 8px 9px 7px var(--accent-purple), -5px -5px 15px 7px var(--accent-blue)
+    box-shadow: 0px 0px 18px 6px rgba(0, 250, 255, 0.1);
 }
 
 #projects .project-wrapper__image .thumbnail .img-fluid {
     width: 100%;
     height: auto;
     vertical-align: middle;
-    border-radius: 2px
+    /*rounded corners of photos*/
+    border-radius: 0px
 }
 
 @media(max-width: 37.5em) {
