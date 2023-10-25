@@ -67,8 +67,8 @@ a:hover {
 
 .text-color-main {
     margin-left: 1rem;
-    color: #5b86e5;
-    -webkit-text-fill-color: #5b86e5
+    color: var(--accent-middle);
+    -webkit-text-fill-color: var(--accent-middle)
 }
 
 /*Title name and source code gradients*/
@@ -86,19 +86,37 @@ a:hover {
     .text-color-main {
         margin: 0;
         background-image: none;
-        -webkit-text-fill-color: #5b86e5;
+        -webkit-text-fill-color: var(--accent-middle);
         box-shadow: none
     }
 }
 
+/*skill text highlights in about me*/
+.text-color-highlight {
+    color: var(--text-light-grey);
+    -webkit-text-fill-color: var(--text-light-grey)
+}
 
-/* Media query for desktop */
-@media (min-width: 1024px) {
-    .about-wrapper__cta .cta-btn {
-        margin-right: 54px;
-        /* Adjust this value to shift the button to the left */
+/*Title name and source code gradients*/
+@supports((-webkit-background-clip: text) or (background-clip: text)) or (-webkit-background-clip: text) {
+    .text-color-highlight {
+        background-image: linear-gradient(135deg, var(--text-white) 30%, var(--text-light-grey) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: rgba(0, 0, 0, 0);
+        color: rgba(0, 0, 0, 0)
     }
 }
+
+@media(max-width: 37.5em) {
+    .text-color-highlight {
+        margin: 0;
+        background-image: none;
+        -webkit-text-fill-color: var(--text-light-grey);
+        box-shadow: none
+    }
+}
+
 
 /*See Live button*/
 .cta-btn {
@@ -230,6 +248,14 @@ screen and (-ms-high-contrast: none) {
     box-shadow: none
 }
 
+/* resume button not mobile margin */
+@media (min-width: 1024px) {
+    .about-wrapper__cta .cta-btn {
+        margin-right: 42px;
+        /* Adjust this value to shift the button to the left */
+    }
+}
+
 @media(max-width: 37.5em) {
     .cta-btn--resume:hover {
         color: #fff
@@ -290,7 +316,8 @@ screen and (-ms-high-contrast: none) {
 
 .footer__text {
     font-size: 1.3rem;
-    color: #b3b3b3
+    color: var(--text-light-grey);
+    opacity: 42%;
 }
 
 .footer__text a {
@@ -308,8 +335,9 @@ screen and (-ms-high-contrast: none) {
 .footer hr {
     margin: 1rem auto;
     border: 0;
-    width: 50%;
-    border-top: 2px solid rgba(255, 255, 255, .1)
+    width: 42%;
+    border-top: 1px solid var(--text-light-grey);
+    opacity: 21%;
 }
 
 .social-links {
@@ -322,7 +350,11 @@ screen and (-ms-high-contrast: none) {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: #fff;
+    color: var(--bg-light);
+    background-image: linear-gradient(140deg, var(--text-white) 0%, var(--text-light-grey) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
     width: 5rem;
     height: 5rem;
     margin: 1.6rem 1.6rem;
@@ -339,30 +371,30 @@ screen and (-ms-high-contrast: none) {
 
 /*Social media hover colors*/
 .social-links a:hover .fa-kaggle {
-    color: var(--accent-purple)
+    color: var(--text-white)
 }
 
 .social-links a:hover .fa-github {
-    color: var(--accent-purple)
+    color: var(--text-white)
 }
 
 .social-links a:hover .fa-linkedin {
-    color: var(--accent-purple)
+    color: var(--text-white)
 }
 
 .social-links a:hover .fa-envelope {
-    color: var(--accent-purple)
+    color: var(--text-white)
 }
 
 .back-to-top i {
-    color: #fff;
+    color: var(--bg-light);
     margin: 1rem 0 1.6rem;
     transition: all 200ms ease
 }
 
 .back-to-top i:hover {
     transform: translateY(-2px);
-    color: var(--accent-blue)
+    color: var(--text-white)
 }
 
 section {
@@ -518,10 +550,17 @@ section .row span {
 
 #about .about-wrapper__info {
     display: flex;
-    height: 90%;
+    height: 97%;
     justify-content: center;
     flex-direction: column;
     text-align: left;
+}
+
+/*about me text size*/
+#about .about-wrapper__info p {
+    line-height: 2.6rem;
+    padding-bottom: 2rem;
+    font-size: 1.7rem;
 }
 
 @media(max-width: 48em) {
@@ -533,14 +572,40 @@ section .row span {
 
 /*Get in touch CONTACT background gradient*/
 #contact {
-    background-image: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+    position: relative;
     -webkit-clip-path: polygon(0 15vh, 100% 0, 100% 100%, 0 100%);
     clip-path: polygon(0 15vh, 100% 0, 100% 100%, 0 100%);
     padding: 15rem 0 10rem 0;
     margin-top: -15rem;
     margin-bottom: -1px;
-    color: #fff
+    color: #fff;
+    overflow: hidden;
+    /* Hide the overflow */
 }
+
+#contact::before {
+    content: "";
+    position: absolute;
+    top: -300%;
+    left: -50%;
+    right: -50%;
+    bottom: -300%;
+    background-image: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+    z-index: -1;
+    animation: gradientTilt 12s linear infinite;
+    /* Apply animation here */
+}
+
+@keyframes gradientTilt {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 
 @media(max-width: 75em) {
     #contact {
@@ -690,14 +755,17 @@ section .row span {
     transform: translateX(-50%)
 }
 
+/*need this as color backup for scroll scroll animation*/
 .scroll-down {
-    color: var(--accent-purple);
+    margin-bottom: 3rem;
+    color: var(--text-light-grey);
     height: 50px;
     width: 30px;
     border-radius: 50px;
     cursor: pointer
 }
 
+/*scroll scroll animation: second arrow*/
 .scroll-down::before,
 .scroll-down::after {
     height: 10px;
@@ -706,18 +774,19 @@ section .row span {
     position: absolute;
     top: 20%;
     left: 50%;
-    border: 0px solid var(--accent-blue);
+    border: 0px solid var(--text-light-grey);
     transform: translate(-50%, -100%) rotate(45deg);
     border-top: none;
     border-left: none;
     animation: scroll-down 3s ease-in-out infinite
 }
 
+/*first arrow*/
 .scroll-down::after {
     content: "Scroll";
     top: 30%;
     animation-delay: 1.6s;
-    border-color: var(--accent-purple);
+    border-color: var(--text-light-grey);
 }
 
 @keyframes hidden {
@@ -749,7 +818,7 @@ section .row span {
 
     100% {
         opacity: 0;
-        top: 90%
+        top: 70%
     }
 }
 
@@ -774,11 +843,7 @@ section .row span {
     }
 }
 
-/*about me text size*/
-#about .about-wrapper__info p {
-    padding-bottom: 2px;
-    font-size: 1.7rem;
-}
+
 
 #projects .project-wrapper {
     margin-bottom: 15rem
