@@ -118,14 +118,6 @@ a:hover {
 }
 
 
-/* Media query for desktop */
-@media (min-width: 1024px) {
-    .about-wrapper__cta .cta-btn {
-        margin-right: 54px;
-        /* Adjust this value to shift the button to the left */
-    }
-}
-
 /*See Live button*/
 .cta-btn {
     display: inline-block;
@@ -254,6 +246,14 @@ screen and (-ms-high-contrast: none) {
     color: var(--accent-middle);
     text-decoration: none;
     box-shadow: none
+}
+
+/* resume button not mobile margin */
+@media (min-width: 1024px) {
+    .about-wrapper__cta .cta-btn {
+        margin-right: 42px;
+        /* Adjust this value to shift the button to the left */
+    }
 }
 
 @media(max-width: 37.5em) {
@@ -550,6 +550,12 @@ section .row span {
     text-align: left;
 }
 
+/*about me text size*/
+#about .about-wrapper__info p {
+    padding-bottom: 4px;
+    font-size: 1.7rem;
+}
+
 @media(max-width: 48em) {
     #about .about-wrapper__info {
         align-items: center;
@@ -804,11 +810,7 @@ section .row span {
     }
 }
 
-/*about me text size*/
-#about .about-wrapper__info p {
-    padding-bottom: 2px;
-    font-size: 1.7rem;
-}
+
 
 #projects .project-wrapper {
     margin-bottom: 15rem
