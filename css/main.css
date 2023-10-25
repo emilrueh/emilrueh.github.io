@@ -232,7 +232,7 @@ screen and (-ms-high-contrast: none) {
 /*view resume and contact get in touch text color*/
 .cta-btn--resume {
     border-radius: 10px;
-    margin-top: 21px;
+    /*margin top can be added here for resume button*/
     align-self: center;
     color: #fff;
     border: 1px solid #fff
