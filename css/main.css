@@ -184,8 +184,9 @@ screen and (-ms-high-contrast: none) {
     transform: translate(-98%, -25%) rotate(45deg)
 }
 
+/*see live and landing get in touch color on hover animation*/
 .cta-btn--hero:hover {
-    -webkit-text-fill-color: #fff;
+    -webkit-text-fill-color: var(--bg-dark);
     text-decoration: none
 }
 
@@ -199,6 +200,7 @@ screen and (-ms-high-contrast: none) {
     transform: translate(-9%, -25%) rotate(45deg)
 }
 
+/*view resume and contact get in touch text color*/
 .cta-btn--resume {
     border-radius: 0;
     color: #fff;
