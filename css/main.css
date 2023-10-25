@@ -690,14 +690,17 @@ section .row span {
     transform: translateX(-50%)
 }
 
+/*need this as color backup for scroll scroll animation*/
 .scroll-down {
-    color: var(--accent-purple);
+    margin-bottom: 3rem;
+    color: var(--text-light-grey);
     height: 50px;
     width: 30px;
     border-radius: 50px;
     cursor: pointer
 }
 
+/*scroll scroll animation: second arrow*/
 .scroll-down::before,
 .scroll-down::after {
     height: 10px;
@@ -706,18 +709,19 @@ section .row span {
     position: absolute;
     top: 20%;
     left: 50%;
-    border: 0px solid var(--accent-blue);
+    border: 0px solid var(--text-light-grey);
     transform: translate(-50%, -100%) rotate(45deg);
     border-top: none;
     border-left: none;
     animation: scroll-down 3s ease-in-out infinite
 }
 
+/*first arrow*/
 .scroll-down::after {
     content: "Scroll";
     top: 30%;
     animation-delay: 1.6s;
-    border-color: var(--accent-purple);
+    border-color: var(--text-light-grey);
 }
 
 @keyframes hidden {
@@ -749,7 +753,7 @@ section .row span {
 
     100% {
         opacity: 0;
-        top: 90%
+        top: 70%
     }
 }
 
