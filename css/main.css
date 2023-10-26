@@ -913,7 +913,7 @@ section .row span {
 }
 
 #projects .project-wrapper__image {
-    width: 90%;
+    width: 80%;
     margin: 0 auto
 }
 
@@ -927,7 +927,8 @@ section .row span {
 /*project photos*/
 #projects .project-wrapper__image .thumbnail {
     border: none;
-    box-shadow: 0px 0px 42px -6px rgba(255, 255, 255, 0.132);
+    box-shadow: 12px 18px 42px -6px rgb(0, 0, 0);
+    border-radius: 54px
 }
 
 #projects .project-wrapper__image .thumbnail .img-fluid {
@@ -935,13 +936,12 @@ section .row span {
     height: auto;
     vertical-align: middle;
     /*rounded corners of photos*/
-    border-radius: 0px
+    border-radius: 54px
 }
 
 @media(max-width: 37.5em) {
     #projects .project-wrapper__image .thumbnail {
         box-shadow: none;
-        border: 1px solid #d2d2d2;
         margin-bottom: 3.2rem;
         transform: none
     }
