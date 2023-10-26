@@ -120,6 +120,7 @@ a:hover {
 
 /*See Live button*/
 .cta-btn {
+    margin-top: -1rem;
     display: inline-block;
     position: relative;
     padding: .8rem 1.6rem;
@@ -899,8 +900,9 @@ section .row span {
     }
 }
 
+/*project info text margin*/
 #projects .project-wrapper__text-info {
-    margin-bottom: 1.5rem
+    margin-bottom: 3rem
 }
 
 #projects .project-wrapper__text-btns {
