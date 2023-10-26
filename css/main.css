@@ -234,6 +234,7 @@ screen and (-ms-high-contrast: none) {
 .cta-btn--resume {
     border-radius: 10px;
     /*margin top can be added here for resume button*/
+    margin-top: 0.0rem;
     align-self: center;
     color: #fff;
     border: 1px solid #fff
@@ -252,7 +253,7 @@ screen and (-ms-high-contrast: none) {
 /* resume button not mobile margin */
 @media (min-width: 1024px) {
     .about-wrapper__cta .cta-btn {
-        margin-right: 42px;
+        margin-right: 30px;
         /* Adjust this value to shift the button to the left */
     }
 }
