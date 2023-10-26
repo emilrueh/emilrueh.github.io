@@ -577,7 +577,7 @@ section .row span {
     -webkit-clip-path: polygon(0 15vh, 100% 0, 100% 100%, 0 100%);
     clip-path: polygon(0 15vh, 100% 0, 100% 100%, 0 100%);
     padding: 15rem 0 10rem 0;
-    margin-top: -15rem;
+    margin-top: -6rem;
     margin-bottom: -1px;
     color: #fff;
     overflow: hidden;
@@ -828,7 +828,13 @@ section .row span {
     background-color: var(--bg-dark);
     color: #00000000;
     margin-top: -15rem;
-    padding-top: 15rem
+    padding-top: 15rem;
+}
+
+@media(min-width: 75em) {
+    #projects {
+        padding-left: 9rem;
+    }
 }
 
 @media(max-width: 75em) {
@@ -902,6 +908,7 @@ section .row span {
 
 /*project info text margin*/
 #projects .project-wrapper__text-info {
+    color: var(--text-light-grey);
     margin-bottom: 3rem
 }
 
@@ -913,7 +920,7 @@ section .row span {
 }
 
 #projects .project-wrapper__image {
-    width: 80%;
+    width: 81%;
     margin: 0 auto
 }
 
@@ -928,7 +935,8 @@ section .row span {
 #projects .project-wrapper__image .thumbnail {
     border: none;
     box-shadow: 12px 18px 42px -6px rgb(0, 0, 0);
-    border-radius: 54px
+    border-radius: 54px;
+
 }
 
 #projects .project-wrapper__image .thumbnail .img-fluid {
