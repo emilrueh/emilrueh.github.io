@@ -577,7 +577,7 @@ section .row span {
     -webkit-clip-path: polygon(0 15vh, 100% 0, 100% 100%, 0 100%);
     clip-path: polygon(0 15vh, 100% 0, 100% 100%, 0 100%);
     padding: 15rem 0 10rem 0;
-    margin-top: -15rem;
+    margin-top: -6rem;
     margin-bottom: -1px;
     color: #fff;
     overflow: hidden;
@@ -828,7 +828,13 @@ section .row span {
     background-color: var(--bg-dark);
     color: #00000000;
     margin-top: -15rem;
-    padding-top: 15rem
+    padding-top: 15rem;
+}
+
+@media(min-width: 75em) {
+    #projects {
+        padding-left: 9rem;
+    }
 }
 
 @media(max-width: 75em) {
@@ -902,6 +908,7 @@ section .row span {
 
 /*project info text margin*/
 #projects .project-wrapper__text-info {
+    color: var(--text-light-grey);
     margin-bottom: 3rem
 }
 
@@ -913,7 +920,7 @@ section .row span {
 }
 
 #projects .project-wrapper__image {
-    width: 90%;
+    width: 81%;
     margin: 0 auto
 }
 
@@ -927,7 +934,9 @@ section .row span {
 /*project photos*/
 #projects .project-wrapper__image .thumbnail {
     border: none;
-    box-shadow: 0px 0px 42px -6px rgba(255, 255, 255, 0.132);
+    box-shadow: 12px 18px 42px -6px rgb(0, 0, 0);
+    border-radius: 54px;
+
 }
 
 #projects .project-wrapper__image .thumbnail .img-fluid {
@@ -935,13 +944,12 @@ section .row span {
     height: auto;
     vertical-align: middle;
     /*rounded corners of photos*/
-    border-radius: 0px
+    border-radius: 54px
 }
 
 @media(max-width: 37.5em) {
     #projects .project-wrapper__image .thumbnail {
         box-shadow: none;
-        border: 1px solid #d2d2d2;
         margin-bottom: 3.2rem;
         transform: none
     }
