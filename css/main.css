@@ -97,7 +97,6 @@ a:hover {
     -webkit-text-fill-color: var(--text-light-grey)
 }
 
-/*Title name and source code gradients*/
 @supports((-webkit-background-clip: text) or (background-clip: text)) or (-webkit-background-clip: text) {
     .text-color-highlight {
         background-image: linear-gradient(135deg, var(--text-white) 30%, var(--text-light-grey) 100%);
