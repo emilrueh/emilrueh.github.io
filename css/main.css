@@ -478,7 +478,7 @@ section .row span {
 /*About Me page background color*/
 #about {
     margin-top: 10rem;
-    margin-right: 10rem;
+    margin-right: 9rem;
     background-color: var(--bg-dark);
     /*background-image: linear-gradient(174.5deg, var(--bg-dark) 75.5%, var(--accent-purple) 100%);*/
     color: #00000000;
