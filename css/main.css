@@ -518,11 +518,22 @@ section .row span {
     z-index: -1;
 }
 
+@media(max-width: 45em) {
+    #about::before {
+        background-image: linear-gradient(122deg, rgba(18, 18, 18, 0) 0%, var(--bg-dark) 30%), url('code_image.png');
+        opacity: 18%;
+        background-size: 130%;
+        background-position: top left;
+        margin-top: 5rem;
+    }
+}
+
 @media(max-width: 75em) {
     #about {
         height: 100%;
         -webkit-clip-path: none;
-        clip-path: none
+        clip-path: none;
+        z-index: -1;
     }
 }
 
@@ -699,6 +710,14 @@ section .row span {
     background-position: right top;
     background-repeat: no-repeat;
     z-index: -1;
+}
+
+@media(max-width: 45em) {
+    #hero::before {
+        background-position: center top;
+        background-size: 100%;
+        background-image: linear-gradient(180deg, rgba(18, 18, 18, 0) 0%, var(--bg-dark) 30%), url('data_image_sized.png');
+    }
 }
 
 
