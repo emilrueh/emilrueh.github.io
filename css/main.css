@@ -817,7 +817,7 @@ section .row span {
     content: "Scroll";
     position: absolute;
     top: 20%;
-    left: 50%;
+    left: 42%;
     border: 0px solid var(--text-light-grey);
     transform: translate(-50%, -100%) rotate(45deg);
     border-top: none;
