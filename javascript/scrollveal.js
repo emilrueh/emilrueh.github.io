@@ -41,12 +41,14 @@ ScrollReveal().reveal(".about-wrapper__image", {
   scale: 0.5,
 });
 
-ScrollReveal().reveal(".about-wrapper__info", {
-  ...defaultProps,
-  delay: 700,
-  distance: "100px",
-  origin: window.innerWidth > 768 ? "left" : "top",
-});
+if (!window.matchMedia("(max-width: 45em)").matches) {
+  ScrollReveal().reveal(".about-wrapper__info", {
+    ...defaultProps,
+    delay: 700,
+    distance: "100px",
+    origin: "left",
+  });
+}
 
 /* Projects Section */
 ScrollReveal().reveal(".project-wrapper__text", {
