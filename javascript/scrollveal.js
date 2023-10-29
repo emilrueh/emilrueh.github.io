@@ -6,6 +6,15 @@ const defaultProps = {
   desktop: true,
   mobile: true,
 };
+
+// custom delay time for mobile
+let delayTime;
+if (window.matchMedia("(max-width: 45em)").matches) {
+  delayTime = 0;
+} else {
+  delayTime = 600;
+}
+
 // Hero Section
 ScrollReveal().reveal(".hero-title", {
   ...defaultProps,
@@ -32,7 +41,7 @@ ScrollReveal().reveal(".scroll-down-link", {
 /* About Section */
 ScrollReveal().reveal(".section-title", {
   ...defaultProps,
-  delay: 400,
+  delay: delayTime,
   distance: "0px",
 });
 ScrollReveal().reveal(".about-wrapper__image", {
@@ -53,13 +62,13 @@ if (!window.matchMedia("(max-width: 45em)").matches) {
 /* Projects Section */
 ScrollReveal().reveal(".project-wrapper__text", {
   ...defaultProps,
-  delay: 600,
+  delay: delayTime,
   origin: window.innerWidth > 768 ? "left" : "bottom",
 });
 
 ScrollReveal().reveal(".project-wrapper__image", {
   ...defaultProps,
-  delay: 600,
+  delay: delayTime,
   scale: 0.9,
   origin: window.innerWidth > 768 ? "right" : "bottom",
 });
@@ -67,7 +76,7 @@ ScrollReveal().reveal(".project-wrapper__image", {
 /* Contact Section */
 ScrollReveal().reveal(".contact-wrapper", {
   ...defaultProps,
-  delay: 600,
+  delay: delayTime,
 });
 
 ScrollReveal().reveal(".fa", {
