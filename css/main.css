@@ -979,7 +979,7 @@ section .row span {
 @media(max-width: 45em) {
     #projects .project-wrapper__image {
         width: 100%;
-        margin-top: -3rem;
+        margin-top: -4rem;
         margin-bottom: 12rem;
     }
 }
