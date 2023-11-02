@@ -321,7 +321,7 @@ screen and (-ms-high-contrast: none) {
 .footer__text {
     font-size: 1.3rem;
     color: var(--text-light-grey);
-    opacity: 42%;
+    opacity: 69%
 }
 
 .footer__text a {
@@ -341,7 +341,7 @@ screen and (-ms-high-contrast: none) {
     border: 0;
     width: 42%;
     border-top: 1px solid var(--text-light-grey);
-    opacity: 21%;
+    opacity: 42%;
 }
 
 @media(max-width: 45em) {
