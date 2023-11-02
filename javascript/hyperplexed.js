@@ -1,28 +1,59 @@
-const letters = "ABCDEFGHIKLMNOPQRSTUVWXYZ0123456789!?§$%&/()=?'"
-const originalText = "Emil Rühmland";
-const originalLength = originalText.length;
+// const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIKLMNOPQRSTUVWXYZ0123456789!?§$%&/()=?'"
+// const originalText = "Emil Rühmland";
+// const originalLength = originalText.length;
 
-// https://www.youtube.com/watch?v=W5oawMJaXbU
+// // https://www.youtube.com/watch?v=W5oawMJaXbU
 
-//#hero .hero-title span
-// #projects .project-wrapper__text-title
+// //#hero .hero-title span
+// // #projects .project-wrapper__text-title
 
-document.querySelector("#hero .hero-title span").onmouseover = event => {
-    let iterations = 0;
+// document.querySelector("#hero .hero-title span, .text-color-highlight").onmouseover = event => {
+//     let iterations = 0;
 
-    const interval = setInterval(() => {
-        event.target.innerText = event.target.innerText.split("")
-            .map((letter, index) => {
-                if (index < iterations) {
-                    return originalText[index];
-                }
+//     const interval = setInterval(() => {
+//         event.target.innerText = event.target.innerText.split("")
+//             .map((letter, index) => {
+//                 if (index < iterations) {
+//                     return originalText[index];
+//                 }
 
-                return letters[Math.floor(Math.random() * originalLength)]
-            })
-            .join("");
+//                 return letters[Math.floor(Math.random() * letters.length)]
+//             })
+//             .join("");
 
-        if (iterations >= originalLength) clearInterval(interval);
-        iterations += 1 / 100;
+//         if (iterations >= originalLength) clearInterval(interval);
+//         iterations += 1 / 30;
 
-    }, 3);
-}
+//     }, 3);
+// }
+
+// const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIKLMNOPQRSTUVWXYZ0123456789!?$%&=?";
+// const letters = "å̴̱͉͚̹͚̾͛̆́͝ß̶̣̦͚̞̫͋͊̅̍̃¢̷̛͉̯͖̯̮̏̄̓̚Ð̴̡̮͎͓͑̈́̓͗̎͜ế̶̡̛̝͎̩̹̋͘͝£̵̲̤̪̯̘͌̅̑̀̒g̵͔͚̼͙̙̈́̈́̓́͂ḩ̴̛̲̯͇͕̄̐̂̂ï̷̮̳̭̹͐̐̿̿̂͜j̵̨͎̫͍̍̄͌͑͆͜k̵̡̺̦̩̰̾͂̈́̍̈́l̶̝͈̭̬̐̄̀̄̇͜m̴̛̖̹̼͚͕͋̌̄͋ñ̷̤͉̱̱̬̃͛̔͋̓ð̸̩͙̠̬͎̔̇̾͑̑þ̵̖̝͍̟̻̔̀̽̅͝q̴̡̞̻̺́͒̄̔̚ͅŕ̸̡͎͉̫̞͌̈́͘͘§̸̯̞̠͔̣͐̿̋̄͘†̵̨̦̳̪̘͑́͛̾͋µ̴̫̻̞̫͔͋͒͐̾͠v̴͚͍̦̖̥́́̈́͋͠ẅ̶̲̼͇̙͖̿̈́̐̕x̸̨̯̖̦̩͛̔̈̏̾¥̴͎͕͈̭̈͌̔̚͝ͅz̷̻̩̼̰̼̀̍̀͗͝Ä̸̰̙͙͚̿̏̉̕͜͝ß̸̪̟̰̉̎͛̆͜͜͝Ç̷̩̹̝͚͖̎̆̒̽̚Ð̶̗̜̹͔̆̓̄͘͝ͅẸ̷͖̝͚̣̀̓̑͋̉̂£̸͈̬̟͇̖̿̊̍͂͝G̷͚̪͈̙͔̈́̀̅̒̏Ḩ̸̜̠͎̯͂̂͌͌̓Ì̵̧̪͕̙̫͐̊̿͑̕Ķ̷̛͕͎͇̭̋̑̎̑L̶͇̘͓͙̙͗̌̃̌̚M̴̢̪̳̩͑̆͑̚̕ͅñ̴̛̼̬̝́̇̿̑͜͜Ö̷͉͓͈̰̭͑̋͒̈͝þ̴̘̝͙͕̥́̀́̒̊Q̸͕̠̝̣̉̾̄͒̄͜R̷̤͉̹̲̂̓͛̒̄͜§̷̬̞̰̪̺͛̐́̓̌†̷̤̰̟̪̅̌̎̾̊͜Ú̸̢̡͖͓̗̌̔̆̂̕V̸̳̮͉͇̘̀̈̈́̉͝W̵̧̛͇͈̰̤̐̿͘͠×̵̮̖̫̼͍̓͗́̅̃¥̸̧͕͎̮͓͆͊̌͊̃Z̶̨̨̛̥̣̅͒͐̐ͅ0̴̡̥͔̥̟͒̊́̚͠1̶̡͇̮̮̝̐̏͆̇̈́2̸̪͖̲͍̤̋̌́͋͝3̶͉̤̻̮̟͐̒̈̽͠4̴̛̬̹̤͈̣̿̇͌͝5̷̼͎͇͉̈́̃̈̓̋͜6̸̛̠̜̫̟̊̀̓̓ͅ7̸͈̰̰͍̦͊̽̀̈̚8̴̛̣̫̤̳́̍̒̔͜9̴̢̲̥͙̬̔̈̀̂͝!̸̦̘̠̥͉̄͆̀̅̕?̴̛͉̳̳̟͖̌̽̍̚§̶̬̗̝̭̼̆̆̒̈́̀$̷̲̥̼͖͙̓̆̆͆͠%̴̫̻͓͎̇͒̎̀͜͝&̴̳̮͇̫̠́͑̐̕͝/̵̛̘̯͓͛͋̀͋͜ͅ(̷̲̙̬̘̠̌͌́́͌)̵̡͇̼̙̦̇̂̅̽̏=̴͍͖̻͙̠͐̀̐͂̾?̴͎̖̭̤̝̌͑̄͝͝'̴̩̖̞̟̙͊͒̄͆͐";
+// const letters = "01▞▖▙ ⫷ ▟ █☰ █▀ 🄶 █▬█ █ ▟ █◀ ▙ ▐▮▌ █▀█ ⬤▛ ▜ █▘ ▄█▀ ▀█▀ █▄█ ▚▞ ▚▞▚▞ ⫸⫷ ▀▄▀ ▀█▄ ▞▖ ▙ ⫷ ▟ █☰ █▀ 🄶 █▬█ █ █◀ ▙ ▐▮▌ █▀█ ⬤ ▛ ▜ █▘ ▄█▀ ▀█▀ █▄█ ▚▞ ▚▞▚▞ ⫸⫷ ▀▄▀ ▀█▄";
+const titles = document.querySelectorAll(".project-wrapper__text-title");
+const letters = "1̸̧̨̺̪͕̓̈0̴͙̖̘̠̋ͅ1̶̔̋͠0̴̤̘̆̑͑̉͝1̸̢̨͈̻̣̙̀̄͠0̷̭̖̙̲̥̝̀̈̂͆̾͛̕͘1̷̟͎͈̎̓000000000000000111111111111111111";
+// #hero .hero-title span
+// .project-wrapper__text-title
+
+titles.forEach(title => {
+    const originalText = title.textContent;
+    const originalLength = originalText.length;
+
+    title.onmouseover = event => {
+        let iterations = 0;
+        const interval = setInterval(() => {
+            event.target.innerText = originalText
+                .split("")
+                .map((char, index) => {
+                    if (index < iterations) {
+                        return originalText[index];
+                    }
+                    return letters[Math.floor(Math.random() * letters.length)];
+                })
+                .join("");
+
+            if (iterations >= originalLength) clearInterval(interval);
+            iterations += 0.03;
+        }, 3);
+    };
+});
