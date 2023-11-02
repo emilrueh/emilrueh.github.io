@@ -990,8 +990,14 @@ section .row span {
     border: none;
     box-shadow: 12px 18px 42px -6px rgb(0, 0, 0);
     border-radius: 54px;
-
+    transition: box-shadow 0.1s ease;
 }
+
+/*animated shadow change on hover*/
+#projects .project-wrapper__image .thumbnail:hover {
+    box-shadow: 9px 16px 27px -6px rgba(0, 0, 0, 0.5);
+}
+
 
 #projects .project-wrapper__image .thumbnail .img-fluid {
     width: 100%;
