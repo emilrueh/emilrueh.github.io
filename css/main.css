@@ -944,10 +944,11 @@ section .row span {
     transition: color 0s, margin-bottom 0.3s;
 }
 
+/*
 #projects .project-wrapper__text-title:hover {
     margin-bottom: 3rem;
-    /* New state when hovering */
 }
+*/
 
 
 @media(max-width: 45em) {
