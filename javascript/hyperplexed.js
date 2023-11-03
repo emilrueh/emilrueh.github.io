@@ -33,7 +33,7 @@
 // const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIKLMNOPQRSTUVWXYZ0123456789";
 const letters = "011̵͒͂1̷̳̱̙̀01̶̠̂͊̈́0̴͂͘̚";
 // const letters = "011̷0"
-const titles = document.querySelectorAll(".project-wrapper__text-title");
+const titles = document.querySelectorAll(".project-wrapper__text-title, .hero-title a");
 
 titles.forEach(title => {
     const originalText = title.textContent;

@@ -731,13 +731,12 @@ section .row span {
     margin: 0;
     font-size: 5.6rem;
     display: inline-block;
-    transition: transform 0.6s;
+    /* transition: transform 0.6s; */
 }
 
-#hero .hero-title a:hover {
+/* #hero .hero-title a:hover {
     transform: translateY(-0.3rem);
-
-}
+} */
 
 @media(max-width: 75em) {
     #hero .hero-title {
