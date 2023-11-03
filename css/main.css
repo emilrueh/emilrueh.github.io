@@ -208,20 +208,6 @@ screen and (-ms-high-contrast: none) {
     }
 }
 
-/*get in touch animation*/
-.cta-btn--hero::after {
-    border-radius: 10px;
-    height: 410%;
-    width: 150%;
-    transform: translate(-86%, -25%) rotate(45deg)
-}
-
-/*see live and landing get in touch color on hover animation*/
-.cta-btn--hero:hover {
-    -webkit-text-fill-color: var(--bg-dark);
-    text-decoration: none
-}
-
 @media(max-width: 37.5em) {
     .cta-btn--hero:hover {
         -webkit-text-fill-color: #5b86e5
@@ -741,8 +727,9 @@ section .row span {
     color: var(--text-white)
 }
 
-#hero .hero-title span {
+#hero .hero-title a {
     margin: 0;
+    font-size: 5.6rem;
     display: inline-block
 }
 
