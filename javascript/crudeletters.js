@@ -42,7 +42,7 @@ titles.forEach(title => {
                 // if (nextInfoBlock1) nextInfoBlock1.style.marginBottom = '3rem';
                 // if (nextInfoBlock2) nextInfoBlock2.style.marginBottom = '3rem';
             }
-            iterations += 0.013;  // ITERATIONS - smaller value takes longer to 'find' the letter
+            iterations += 0.019;  // ITERATIONS - smaller value takes longer to 'find' the letter
         }, 1);  // TIME - makes it more 'laggy' / 'blocky' as the animation takes longer with the same iterations 'frames'
     };
 });
