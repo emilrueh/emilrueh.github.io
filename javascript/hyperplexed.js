@@ -43,7 +43,7 @@ titles.forEach(title => {
 
     title.onmouseover = event => {
         let iterations = 0;
-        event.target.style.marginBottom = '2.7rem'; // Increase margin bottom
+        event.target.style.marginBottom = '3.6rem'; // Increase margin bottom
 
         // Check if the info blocks exist and reduce their opacity
         if (nextInfoBlock1) nextInfoBlock1.style.marginBottom = '3.3rem';
