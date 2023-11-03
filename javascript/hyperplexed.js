@@ -32,7 +32,8 @@
 // const letters = "0̷̢̫̫̽͊͘1̶̞̟̋̿̿0̶͈̲̲̾̔̂1̷̳̱̙̀0̶͎̀̇̽1̷̫̬̈́͝0̵̳͈̽͗͌1̵̮͙͌͠0̷̭̯̰͂̾̕1̶̠̂͊̈́0̴̞̹̰͂͘̚1̶̪̲̈́̑̏0̴̋̀ͅ1̷̩̜̹̔̓͘0̴̚ͅ1̶͈͖̾͋0̶̗̞̇1̷̨̣͙͒0̷̱͉̞̐̀1̴͙̘͆̎̊0̸̯̓̈́1̸̻͓̑͘0̸̬́1̵̣͒͂0̵̼͊͠1̴̖͒̃̈́0̴͕͌̌0̵̡̫͐̿1̵̦̻̩͆͗̑0̷̲͝1̷̗͕̋0̷̤̥̿ͅ1̴͍͛̄̇000000000111111111111111111";
 // const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIKLMNOPQRSTUVWXYZ0123456789";
 const letters = "011̵͒͂1̷̳̱̙̀01̶̠̂͊̈́0̴͂͘̚";
-const titles = document.querySelectorAll(".project-wrapper__text-title");
+// const letters = "011̷0"
+const titles = document.querySelectorAll(".project-wrapper__text-title, .hero-title a");
 
 titles.forEach(title => {
     const originalText = title.textContent;
@@ -43,11 +44,11 @@ titles.forEach(title => {
 
     title.onmouseover = event => {
         let iterations = 0;
-        event.target.style.marginBottom = '3.6rem'; // Increase margin bottom
+        // event.target.style.marginBottom = '3.6rem'; // Increase margin bottom
 
-        // Check if the info blocks exist and reduce their opacity
-        if (nextInfoBlock1) nextInfoBlock1.style.marginBottom = '3.3rem';
-        if (nextInfoBlock2) nextInfoBlock2.style.opacity = '3.3rem';
+        // // Check if the info blocks exist and reduce their opacity
+        // if (nextInfoBlock1) nextInfoBlock1.style.marginBottom = '3.3rem';
+        // if (nextInfoBlock2) nextInfoBlock2.style.opacity = '3.3rem';
 
         const interval = setInterval(() => {
             const newText = originalText
@@ -56,7 +57,7 @@ titles.forEach(title => {
                     if (index < iterations) {
                         return char;
                     }
-                    return `<span style="color: #adb5bd;">${letters[Math.floor(Math.random() * letters.length)]}</span>`;
+                    return `<span style="opacity: 0.05;">${letters[Math.floor(Math.random() * letters.length)]}</span>`;
                 })
                 .join("");
 
@@ -64,13 +65,13 @@ titles.forEach(title => {
 
             if (iterations >= originalLength) {
                 clearInterval(interval);
-                event.target.style.marginBottom = '1.8rem'; // Reset margin bottom
+                // event.target.style.marginBottom = '1.8rem'; // Reset margin bottom
 
-                // Check if the info blocks exist and reset their opacity
-                if (nextInfoBlock1) nextInfoBlock1.style.marginBottom = '3rem';
-                if (nextInfoBlock2) nextInfoBlock2.style.marginBottom = '3rem';
+                // // Check if the info blocks exist and reset their opacity
+                // if (nextInfoBlock1) nextInfoBlock1.style.marginBottom = '3rem';
+                // if (nextInfoBlock2) nextInfoBlock2.style.marginBottom = '3rem';
             }
-            iterations += 0.06;
-        }, 3);
+            iterations += 0.1;
+        }, 30);
     };
 });
