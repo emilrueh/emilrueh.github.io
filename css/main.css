@@ -233,7 +233,7 @@ screen and (-ms-high-contrast: none) {
 }
 
 .cta-btn--resume:hover {
-    color: var(--accent-middle);
+    color: var(--bg-dark);
     text-decoration: none;
     box-shadow: none
 }
