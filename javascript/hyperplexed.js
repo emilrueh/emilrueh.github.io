@@ -53,7 +53,7 @@ titles.forEach(title => {
                 .join("");
 
             if (iterations >= originalLength) clearInterval(interval);
-            iterations += 0.03;
+            iterations += 0.06;
         }, 3);
     };
 });

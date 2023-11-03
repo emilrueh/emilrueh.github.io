@@ -724,13 +724,19 @@ section .row span {
     font-weight: 700;
     margin-bottom: 3.2rem;
     text-align: left;
-    color: var(--text-white)
+    color: var(--text-white);
 }
 
 #hero .hero-title a {
     margin: 0;
     font-size: 5.6rem;
-    display: inline-block
+    display: inline-block;
+    transition: color 1s;
+}
+
+#hero .hero-title a:hover {
+    color: var(--text-light-grey);
+
 }
 
 @media(max-width: 75em) {
@@ -928,14 +934,14 @@ section .row span {
     font-weight: bold;
     margin-bottom: 1.8rem;
     font-size: 2.5rem;
-    transition: color 0s, margin-bottom 0.3s;
+    transition: margin-bottom 0.3s;
 }
 
-/*
+
 #projects .project-wrapper__text-title:hover {
     margin-bottom: 3rem;
 }
-*/
+
 
 
 @media(max-width: 45em) {
