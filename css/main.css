@@ -218,7 +218,7 @@ screen and (-ms-high-contrast: none) {
     transform: translate(-12%, -30%) rotate(45deg)
 }
 
-/*view resume and contact get in touch text color*/
+/*view resume and contact get in touch reach out text color*/
 .cta-btn--resume {
     border-radius: 10px;
     /*margin top can be added here for resume button*/
@@ -238,6 +238,26 @@ screen and (-ms-high-contrast: none) {
     box-shadow: none
 }
 
+/*view resume and contact get in touch reach out text color*/
+.cta-btn--contact {
+    border-radius: 10px;
+    /*margin top can be added here for resume button*/
+    margin-top: 0.0rem;
+    align-self: center;
+    color: #fff;
+    border: 1px solid #fff
+}
+
+.cta-btn--contact::after {
+    background: #fff
+}
+
+.cta-btn--contact:hover {
+    color: var(--accent-middle);
+    text-decoration: none;
+    box-shadow: none
+}
+
 /* resume button not mobile margin */
 @media (min-width: 1024px) {
     .about-wrapper__cta .cta-btn {
@@ -253,6 +273,16 @@ screen and (-ms-high-contrast: none) {
 }
 
 .cta-btn--resume:hover::after {
+    width: 100%
+}
+
+@media(max-width: 37.5em) {
+    .cta-btn--contact:hover {
+        color: #fff
+    }
+}
+
+.cta-btn--contact:hover::after {
     width: 100%
 }
 
