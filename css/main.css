@@ -938,9 +938,9 @@ section .row span {
 }
 
 
-#projects .project-wrapper__text-title:hover {
+/* #projects .project-wrapper__text-title:hover {
     margin-bottom: 3rem;
-}
+} */
 
 
 
@@ -962,7 +962,7 @@ section .row span {
 /*project info text margin*/
 #projects .project-wrapper__text-info {
     color: var(--text-light-grey);
-    margin-bottom: 3rem
+    margin-bottom: 3rem;
 }
 
 #projects .project-wrapper__text-btns {
