@@ -627,7 +627,7 @@ section .row span {
     position: relative;
     -webkit-clip-path: polygon(0 15vh, 100% 0, 100% 100%, 0 100%);
     clip-path: polygon(0 15vh, 100% 0, 100% 100%, 0 100%);
-    padding: 15rem 0 10rem 0;
+    padding: 15rem 0 9rem 0;
     margin-top: -6rem;
     margin-bottom: -1px;
     color: #fff;
