@@ -337,7 +337,7 @@ screen and (-ms-high-contrast: none) {
 .footer__text {
     font-size: 1.3rem;
     color: var(--text-light-grey);
-    opacity: 69%
+    opacity: 30%
 }
 
 .footer__text a {
@@ -357,7 +357,7 @@ screen and (-ms-high-contrast: none) {
     border: 0;
     width: 42%;
     border-top: 1px solid var(--text-light-grey);
-    opacity: 42%;
+    opacity: 21%;
 }
 
 @media(max-width: 45em) {
@@ -413,14 +413,16 @@ screen and (-ms-high-contrast: none) {
 }
 
 .back-to-top i {
-    color: var(--bg-light);
+    color: var(--text-light-grey);
     margin: 1rem 0 1.6rem;
-    transition: all 200ms ease
+    transition: all 200ms ease;
+    opacity: 21%;
 }
 
 .back-to-top i:hover {
     transform: translateY(-2px);
-    color: var(--text-white)
+    color: var(--text-white);
+    opacity: 100%
 }
 
 @media(max-width: 45em) {
