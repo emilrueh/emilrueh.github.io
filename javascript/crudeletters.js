@@ -2,7 +2,7 @@
 // const letters = "▞▖▙ █▀ ▟ ◀ ⬤ ▛ ▜  ▀▄▀ ▀█▄ ▞▖";
 // const letters = "0̷̢̫̫̽͊͘1̶̞̟̋̿̿0̶͈̲̲̾̔̂1̷̳̱̙̀0̶͎̀̇̽1̷̫̬̈́͝0̵̳͈̽͗͌1̵̮͙͌͠0̷̭̯̰͂̾̕1̶̠̂͊̈́0̴̞̹̰͂͘̚1̶̪̲̈́̑̏0̴̋̀ͅ1̷̩̜̹̔̓͘0̴̚ͅ1̶͈͖̾͋0̶̗̞̇1̷̨̣͙͒0̷̱͉̞̐̀1̴͙̘͆̎̊0̸̯̓̈́1̸̻͓̑͘0̸̬́1̵̣͒͂0̵̼͊͠1̴̖͒̃̈́0̴͕͌̌0̵̡̫͐̿1̵̦̻̩͆͗̑0̷̲͝1̷̗͕̋0̷̤̥̿ͅ1̴͍͛̄̇000000000111111111111111111";
 // const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIKLMNOPQRSTUVWXYZ0123456789";
-const letters = "01̵͒͂1̷̳̱̙̀01̶̠̂͊̈́0̴͂͘̚";
+const crudeLetters = "01̵͒͂1̷̳̱̙̀01̶̠̂͊̈́0̴͂͘̚";
 // const letters = "011̷0"
 const titles = document.querySelectorAll(".hero-title a");
 
@@ -28,7 +28,7 @@ titles.forEach(title => {
                     if (index < iterations) {
                         return char;
                     }
-                    return `<span style="opacity: 1;">${letters[Math.floor(Math.random() * letters.length)]}</span>`;
+                    return `<span style="opacity: 1;">${crudeLetters[Math.floor(Math.random() * crudeLetters.length)]}</span>`;
                 })
                 .join("");
 
