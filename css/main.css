@@ -521,8 +521,9 @@ section .row span {
 }
 
 .drama-js-background {
-    color: var(--text-white);
-    opacity: 30%;
+    color: rgb(255, 255, 255, 0.3);
+    /* color: var(--text-white); */
+    /* opacity: 30%; */
     position: absolute;
     /* Changed to relative */
     top: 0;
