@@ -55,7 +55,7 @@ ScrollReveal().reveal('.drama-js-background', {
   distance: '0px',  // Prevents movement, only fades in
   opacity: 0,       // Starts with 0 opacity
   easing: 'ease-in',
-  duration: 3000,   // Duration of the fade-in effect, adjust as needed
+  duration: 10000,   // Duration of the fade-in effect, adjust as needed
   afterReveal: function (el) {
     el.style.opacity = 1; // Ensures the element stays visible after animation
   }
