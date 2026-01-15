@@ -50,17 +50,16 @@ ScrollReveal().reveal(".about-wrapper__image", {
   scale: 0.5,
 });
 
-ScrollReveal().reveal('.drama-js-background', {
-  ...defaultProps,
-  distance: '0px',  // Prevents movement, only fades in
-  opacity: 0,       // Starts with 0 opacity
-  easing: 'ease-in',
-  duration: 10000,   // Duration of the fade-in effect, adjust as needed
-  afterReveal: function (el) {
-    el.style.opacity = 1; // Ensures the element stays visible after animation
-  }
-});
-
+// ScrollReveal().reveal('.drama-js-background', {
+//   ...defaultProps,
+//   distance: '0px',  // Prevents movement, only fades in
+//   opacity: 0,       // Starts with 0 opacity
+//   easing: 'ease-in',
+//   duration: 10000,   // Duration of the fade-in effect, adjust as needed
+//   afterReveal: function (el) {
+//     el.style.opacity = 1; // Ensures the element stays visible after animation
+//   }
+// });
 
 // mobile about
 if (!window.matchMedia("(max-width: 45em)").matches) {

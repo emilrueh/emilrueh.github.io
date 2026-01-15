@@ -1,20 +1,20 @@
 if (window.innerWidth > 768) {
-    const aboutSection = document.querySelector('.drama-js-background');
+    const aboutSection = document.querySelector('.binary-js-background');
     let moveCounter = 0;
     const movesToUpdate = 3; // Change text every X mouse moves, adjust as needed
 
-    const dramaBinary = "01";
-    const dramaNumbers = "0123456789";
-    const dramaLetters = "ABCDEFGHIKLMNOPQRSTUVWXYZ";
+    const bBinary = "01";
+    const bNumbers = "0123456789";
+    const bLetters = "ABCDEFGHIKLMNOPQRSTUVWXYZ";
 
-    const dramaLettersLength = dramaLetters.length;
-    const dramaNumbersLength = dramaNumbers.length;
-    const dramaBinaryLength = dramaBinary.length;
+    const bLettersLength = bLetters.length;
+    const bNumbersLength = bNumbers.length;
+    const bBinaryLength = bBinary.length;
 
     function randomChar() {
-        const char = dramaLetters[Math.floor(Math.random() * dramaLettersLength)];
-        const num = dramaNumbers[Math.floor(Math.random() * dramaNumbersLength)];
-        const bin = dramaBinary[Math.floor(Math.random() * dramaBinaryLength)];
+        const char = bLetters[Math.floor(Math.random() * bLettersLength)];
+        const num = bNumbers[Math.floor(Math.random() * bNumbersLength)];
+        const bin = bBinary[Math.floor(Math.random() * bBinaryLength)];
         // 50% char or num on 0.1%
         const charOrNum = Math.random() < 0.5 ? char : num
 

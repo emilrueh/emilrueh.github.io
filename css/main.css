@@ -7,8 +7,8 @@
     --primary-green: #a8c4b5;
     --primary-grey: #6c757d;
     --primary-light-grey: #ced4da;
-    --accent-blue: #00faff;
-    --accent-purple: #b200f8;
+    --accent-light-blue: #54b0ff;
+    --accent-dark-blue: #002239;
     --accent-middle: #597dfb;
     --text-white: #ffffff;
     --text-light-grey: #adb5bd;
@@ -78,7 +78,7 @@ a:hover {
 /*Title name and source code gradients*/
 @supports((-webkit-background-clip: text) or (background-clip: text)) or (-webkit-background-clip: text) {
     .text-color-main {
-        background-image: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-blue) 100%);
+        background-image: linear-gradient(0deg, var(--accent-light-blue) 0%, var(--accent-light-blue) 100%);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: rgba(0, 0, 0, 0);
@@ -89,7 +89,7 @@ a:hover {
 @media(max-width: 37.5em) {
     .text-color-main {
         margin: 0;
-        background-image: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-blue) 100%);
+        background-image: linear-gradient(135deg, var(--accent-dark-blue) 0%, var(--accent-light-blue) 100%);
         box-shadow: none
     }
 }
@@ -151,7 +151,7 @@ a:hover {
     content: "";
     display: block;
     position: absolute;
-    background-image: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+    background-image: linear-gradient(135deg, var(--accent-light-blue) 0%, var(--accent-dark-blue) 100%);
     width: 0px;
     height: 100%;
     left: 0;
@@ -511,21 +511,18 @@ section .row span {
 /*About Me page background color*/
 #about {
     background-color: var(--bg-dark);
-    /*background-image: linear-gradient(174.5deg, var(--bg-dark) 75.5%, var(--accent-purple) 100%);*/
+    /*background-image: linear-gradient(174.5deg, var(--bg-dark) 75.5%, var(--accent-dark-blue) 100%);*/
     color: #00000000;
     height: 100%;
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
     clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
-    padding-bottom: 8%;
+    padding-bottom: 20%;
     position: relative;
 }
 
-.drama-js-background {
+.binary-js-background {
     color: rgb(255, 255, 255, 0.3);
-    /* color: var(--text-white); */
-    /* opacity: 30%; */
     position: absolute;
-    /* Changed to relative */
     top: 0;
     left: 0;
     width: 100%;
@@ -536,19 +533,27 @@ section .row span {
     font-size: 18px;
     line-height: 18px;
     z-index: -1;
+    opacity: 0;
+    animation: binaryFadeIn 3s ease-out forwards;
 }
 
-.drama-js-background::after {
+@keyframes binaryFadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.binary-js-background::after {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0) 21%, var(--bg-dark) 39%),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0) 72%, var(--bg-dark) 92%),
-        linear-gradient(to top, rgba(255, 255, 255, 0) 72%, var(--bg-dark) 84%),
-        linear-gradient(to left, rgba(255, 255, 255, 0) 42%, var(--bg-dark) 100%);
+    background: linear-gradient(to left, rgba(255, 255, 255, 0) 21%, var(--bg-dark) 69%),
+        linear-gradient(to top, rgba(255, 255, 255, 0) 72%, var(--bg-dark) 90%),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0) 72%, var(--bg-dark) 90%),
+        linear-gradient(to right, rgba(255, 255, 255, 0) 54%, var(--bg-dark) 90%);
     z-index: 1;
     pointer-events: none;
 }
@@ -591,7 +596,7 @@ section .row span {
 }
 
 #about .about-wrapper__image img {
-    max-width: 400px;
+    max-width: 350px;
     width: 100%;
     height: auto
 }
@@ -620,9 +625,10 @@ section .row span {
 
 /*about me text size*/
 #about .about-wrapper__info p {
-    line-height: 2.6rem;
+    line-height: 2.9rem;
     padding-bottom: 2rem;
-    font-size: 1.7rem;
+    font-size: 1.9rem;
+    letter-spacing: 0.03em;
 }
 
 @media(max-width: 48em) {
@@ -637,7 +643,7 @@ section .row span {
     position: relative;
     -webkit-clip-path: polygon(0 15vh, 100% 0, 100% 100%, 0 100%);
     clip-path: polygon(0 15vh, 100% 0, 100% 100%, 0 100%);
-    padding: 15rem 0 9rem 0;
+    padding: 30rem 0 20rem 0;
     margin-top: -6rem;
     margin-bottom: -1px;
     color: #fff;
@@ -648,14 +654,16 @@ section .row span {
 #contact::before {
     content: "";
     position: absolute;
-    top: -300%;
-    left: -50%;
-    right: -50%;
-    bottom: -300%;
-    background-image: linear-gradient(0deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+    width: 200vmax;
+    height: 200vmax;
+    left: 50%;
+    top: 50%;
+    margin-left: -100vmax;
+    margin-top: -100vmax;
+    border-radius: 50%;
+    background-image: linear-gradient(0deg, var(--accent-light-blue) 0%, var(--accent-dark-blue) 80%);
     z-index: -1;
     animation: gradientTilt 12s linear infinite;
-    /* Apply animation here */
 }
 
 @keyframes gradientTilt {
@@ -801,7 +809,31 @@ section .row span {
     }
 }
 
+/*COMPANY NAME SOFTWARE RESOLUTION */
+
+.company-name {
+    display: block;
+    font-size: 4.25rem;
+    font-weight: 700;
+    margin-left: 0rem;
+    color: var(--text-white);
+}
+
+@media(max-width: 56.25em) {
+    .company-name {
+        font-size: 2.6rem;
+        margin-left: 0;
+    }
+}
+
+@media(max-width: 37.5em) {
+    .company-name {
+        font-size: 2.5rem;
+    }
+}
+
 .scroll-down-link {
+    display: none;
     position: absolute;
     left: 50%;
     bottom: 20px;

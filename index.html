@@ -18,7 +18,7 @@
   <meta name="description" content="[Your name here] | Developer" />
 
   <!-- Add a your png Logo to the assets folder and change the href attr accordingly  -->
-  <link rel="icon" type="image/png" href="./assets/active/devfolio-logo.webp" />
+  <link rel="icon" type="image/png" href="./assets/active/favicon.webp" />
 
   <!-- Add your primary-theme color for the value of content -->
   <meta name="theme-color" content="#36d1dc" />
@@ -52,12 +52,12 @@
 <body>
   <!-- Hero Section -->
   <div id="hero">
+    <div class="binary-js-background"></div>
     <section class="container">
       <h1 class="hero-title">
-        <!-- Wrap the name with an anchor tag -->
         <a class="text-color-main name">Emil Rühmland</a>
         <br />
-        Backend Dev.
+        <span class="company-name">Software Resolution</span>
       </h1>
     </section>
     <a href="#contact" class="scroll-down-link" aria-label="scroll-down">
@@ -69,29 +69,23 @@
 
 <!-- About Section -->
 <section id="about">
-  <div class="drama-js-background"></div>
   <div class="container">
     <h2 class="section-title">Easter Egg</h2>
     <div class="row about-wrapper">
       <div class="about-wrapper__image">
-        <img class="img-fluid" src="./assets/active/profile.webp" alt="Profile Image" width="450" height="350" />
+        <img class="img-fluid" src="./assets/active/logo.webp" alt="Profile Image" width="450" height="350" />
       </div>
       <div class="about-wrapper__info">
         <p class="about-wrapper__info-text">
-          Specializing in <span class="text-color-highlight skill">scalable backend architecture</span>, seamless AI
-          integration, and rapid application development (RAD).
+          Backend developer. I use <span class="text-color-highlight skill">AI as my dev team</span>.
         </p>
         <p class="about-wrapper__info-text">
-          Expert in working with various generative AI provider APIs via Python, and backed
-          by a design-focused mindset.
+          You get <span class="text-color-highlight skill">team-level output</span> at freelancer cost. Production-ready
+          Python/FastAPI systems and LLM integration. Prototypes in days, production in weeks.
         </p>
         <p class="about-wrapper__info-text">
-          Based in and around <span class="text-color-highlight skill">Berlin, Germany</span> and always available.
+          Tell me what you need. I build, we iterate.
         </p>
-        <span class="about-wrapper__cta" style="text-align: center;">
-          <a href="./assets/active/software_dev-data_engineer_resume-er.pdf" class="cta-btn cta-btn--resume"
-            target="_blank">View Resume</a>
-        </span>
       </div>
     </div>
   </div>
@@ -99,7 +93,7 @@
 <!-- /END About Section -->
 
 <!--Projects Section-->
-<section id="projects">
+<section id="projects" style="display: none;">
   <div class="container">
     <div class="project-wrapper">
       <h2 class="section-title dark-blue-text">Projects</h2>
@@ -172,10 +166,10 @@
 <!-- Contact Section -->
 <section id="contact">
   <div class="container">
-    <h2 class="section-title">Ready for more?</h2>
+    <h2 class="section-title">Let's Talk</h2>
     <div class="contact-wrapper">
-      <p class="contact-wrapper__text">Integrate AI and scale your business!</p>
-      <a href="https://www.linkedin.com/in/emilrueh/" class="cta-btn cta-btn--contact" target="_blank">Reach Out</a>
+      <p class="contact-wrapper__text">Have a project in mind? Book a free consultation.</p>
+      <a href="#" class="cta-btn cta-btn--contact">Schedule a Call</a>
     </div>
   </div>
 </section>
@@ -220,7 +214,7 @@
 <script type="text/javascript" src="./javascript/valtilt.js"></script>
 <script src="javascript/crudeletters.js"></script>
 <script src="javascript/readability.js"></script>
-<script src="javascript/drama.js"></script>
+<script src="javascript/binary.js"></script>
 </body>
 
 </html>
