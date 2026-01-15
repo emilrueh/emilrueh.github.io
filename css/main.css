@@ -9,7 +9,7 @@
     --primary-light-grey: #ced4da;
     --accent-light-blue: #54b0ff;
     --accent-dark-blue: #002239;
-    --accent-middle: #597dfb;
+    --accent-middle: #002239;
     --text-white: #ffffff;
     --text-light-grey: #adb5bd;
 }
@@ -249,13 +249,18 @@ screen and (-ms-high-contrast: none) {
 }
 
 .cta-btn--contact::after {
-    background: #fff
+    background: #fff;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .cta-btn--contact:hover {
-    color: var(--accent-middle);
+    color: #000;
     text-decoration: none;
-    box-shadow: none
+    box-shadow: none;
+    mix-blend-mode: screen;
+    transition: color 0.3s;
 }
 
 /* resume button not mobile margin */
@@ -283,7 +288,7 @@ screen and (-ms-high-contrast: none) {
 }
 
 .cta-btn--contact:hover::after {
-    width: 100%
+    opacity: 1
 }
 
 /*See Live Button border and shadow*/
@@ -621,6 +626,7 @@ section .row span {
     justify-content: center;
     flex-direction: column;
     text-align: left;
+    padding-top: 3rem;
 }
 
 /*about me text size*/
@@ -638,12 +644,20 @@ section .row span {
     }
 }
 
+#about .about-wrapper__separator {
+    border: none;
+    height: 2px;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 42%);
+    margin: 1.2rem 0 3.2rem 0rem;
+    width: 100%;
+}
+
 /*Get in touch CONTACT background gradient*/
 #contact {
     position: relative;
     -webkit-clip-path: polygon(0 15vh, 100% 0, 100% 100%, 0 100%);
     clip-path: polygon(0 15vh, 100% 0, 100% 100%, 0 100%);
-    padding: 30rem 0 20rem 0;
+    padding: 25rem 0 15rem 0;
     margin-top: -6rem;
     margin-bottom: -1px;
     color: #fff;
