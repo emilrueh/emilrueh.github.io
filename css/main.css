@@ -84,10 +84,12 @@ a:hover {
     }
 }
 
-@media(max-width: 37.5em) {
+@media(max-width: 48em) {
     .text-color-main {
         margin: 0;
-        background-image: linear-gradient(135deg, var(--accent-dark-blue) 0%, var(--accent-light-blue) 100%);
+        background-image: none;
+        -webkit-text-fill-color: var(--accent-light-blue);
+        color: var(--accent-light-blue);
         box-shadow: none
     }
 }
@@ -107,14 +109,6 @@ a:hover {
     }
 }
 
-@media(max-width: 37.5em) {
-    .text-color-highlight {
-        margin: 0;
-        background-image: none;
-        -webkit-text-fill-color: var(--text-light-grey);
-        box-shadow: none
-    }
-}
 
 /* ==========================================================================
    4. LAYOUT
@@ -360,7 +354,26 @@ section .row span {
 
 @media(max-width: 37.5em) {
     .company-name {
-        font-size: 2.5rem;
+        font-size: 2.64rem;
+    }
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+@media(max-width: 48em) {
+    .hero-content {
+        align-items: center;
+        position: relative;
+        transform: translateY(-2rem);
+        /* Adjust this value */
+    }
+
+    #hero .hero-title {
+        margin-bottom: 0;
     }
 }
 
@@ -415,6 +428,15 @@ section .row span {
     pointer-events: none;
 }
 
+@media (max-width: 48em) {
+    .binary-js-background::after {
+        background: linear-gradient(to left, rgba(255, 255, 255, 0) 54%, var(--bg-dark) 100%),
+            linear-gradient(to top, rgba(255, 255, 255, 0) 90%, var(--bg-dark) 100%),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, var(--bg-dark) 42%),
+            linear-gradient(to right, rgba(255, 255, 255, 0) 54%, var(--bg-dark) 100%);
+    }
+}
+
 @media(max-width: 75em) {
     #about {
         height: 100%;
@@ -460,15 +482,7 @@ section .row span {
 
 @media (max-width: 48em) {
     #about .about-wrapper__image {
-        margin: auto;
-        text-align: center;
-        padding-bottom: 4rem;
-        width: 69%;
-    }
-
-    #about .about-wrapper__image img {
-        display: block;
-        margin: auto;
+        display: none;
     }
 }
 
@@ -499,8 +513,25 @@ section .row span {
     border: none;
     height: 2px;
     background: radial-gradient(ellipse at center, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 42%);
-    margin: 1.2rem 0 3.2rem 0rem;
+    margin: 1.2rem 0 3.2rem 0;
     width: 100%;
+}
+
+#about .about-wrapper__logo-inline {
+    display: none;
+}
+
+@media(max-width: 48em) {
+    #about .about-wrapper__separator {
+        display: none;
+    }
+
+    #about .about-wrapper__logo-inline {
+        display: block;
+        width: 90px;
+        height: auto;
+        margin: 3rem 0 5rem 0;
+    }
 }
 
 /* ==========================================================================
@@ -545,10 +576,10 @@ section .row span {
 
 @media(max-width: 45em) {
     #contact {
-        padding: 9rem 0;
-        margin-top: 0;
-        -webkit-clip-path: none;
-        clip-path: none
+        padding: 18rem 0 12rem 0;
+        margin-top: 6rem;
+        -webkit-clip-path: polygon(0 8vh, 100% 0, 100% 100%, 0 100%);
+        clip-path: polygon(0 8vh, 100% 0, 100% 100%, 0 100%)
     }
 }
 
@@ -614,7 +645,12 @@ section .row span {
 
 @media(max-width: 45em) {
     .footer__text {
+        margin-top: 2rem;
         margin-bottom: -3rem;
+    }
+
+    .footer hr {
+        display: none;
     }
 }
 
