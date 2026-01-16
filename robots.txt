@@ -1,2 +1,6 @@
+# robots.txt for ruehmland.de
 User-agent: *
-Disallow: 
+Allow: /
+
+# Sitemap location
+Sitemap: https://ruehmland.de/sitemap.xml
