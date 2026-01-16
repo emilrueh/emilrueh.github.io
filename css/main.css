@@ -377,22 +377,20 @@ screen and (-ms-high-contrast: none) {
 }
 
 .social-links a {
-    font-size: 3rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: var(--bg-light);
-    background-image: linear-gradient(140deg, var(--text-white) 0%, var(--text-light-grey) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    align-items: center;
     width: 5rem;
     height: 5rem;
     margin: 1.6rem 1.6rem;
     transition: all ease .2s
 }
 
-.social-links a i {
+.social-links a .icon {
+    width: 3rem;
+    height: 3rem;
+    fill: url(#icon-gradient);
     transition: all ease-in-out .2s
 }
 
@@ -400,38 +398,27 @@ screen and (-ms-high-contrast: none) {
     transform: scale(1.1) translateY(-2px)
 }
 
-/*Social media hover colors*/
-.social-links a:hover .fa-kaggle {
-    color: var(--text-white)
+.social-links a:hover .icon {
+    fill: var(--text-white)
 }
 
-.social-links a:hover .fa-github {
-    color: var(--text-white)
-}
-
-.social-links a:hover .fa-linkedin {
-    color: var(--text-white)
-}
-
-.social-links a:hover .fa-envelope {
-    color: var(--text-white)
-}
-
-.back-to-top i {
-    color: var(--text-light-grey);
+.back-to-top .icon-angle-up {
+    width: 2.4rem;
+    height: 2.4rem;
+    fill: url(#icon-gradient);
     margin: 1rem 0 1.6rem;
     transition: all 200ms ease;
     opacity: 21%;
 }
 
-.back-to-top i:hover {
+.back-to-top:hover .icon-angle-up {
     transform: translateY(-2px);
-    color: var(--text-white);
+    fill: var(--text-white);
     opacity: 100%
 }
 
 @media(max-width: 45em) {
-    .back-to-top i {
+    .back-to-top .icon-angle-up {
         margin-top: -1rem;
     }
 }
@@ -526,17 +513,12 @@ section .row span {
 }
 
 .binary-js-background {
-    color: rgb(255, 255, 255, 0.3);
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    font-size: 18px;
-    line-height: 18px;
     z-index: -1;
     opacity: 0;
     animation: binaryFadeIn 3s ease-out forwards;
@@ -546,6 +528,10 @@ section .row span {
     to {
         opacity: 1;
     }
+}
+
+.binary-js-background canvas {
+    display: block;
 }
 
 .binary-js-background::after {
