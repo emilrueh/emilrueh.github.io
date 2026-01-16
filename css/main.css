@@ -1,4 +1,4 @@
-@import"https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap";
+/* Montserrat loaded in HTML to avoid render-blocking @import */
 
 /* ==========================================================================
    1. CSS VARIABLES
@@ -620,7 +620,7 @@ section .row span {
 .footer__text {
     font-size: 1.3rem;
     color: var(--text-light-grey);
-    opacity: 30%
+    opacity: 70%
 }
 
 .footer__text a {
