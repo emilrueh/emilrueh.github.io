@@ -39,14 +39,11 @@ ScrollReveal().reveal(".about-wrapper__image", {
   scale: 0.5,
 });
 
-if (!window.matchMedia("(max-width: 45em)").matches) {
-  ScrollReveal().reveal(".about-wrapper__info", {
-    ...defaultProps,
-    delay: 700,
-    distance: "100px",
-    origin: "left",
-  });
-}
+ScrollReveal().reveal(".about-wrapper__info", {
+  ...defaultProps,
+  delay: 500,
+  distance: "0px",
+});
 
 // Projects Section (disabled)
 ScrollReveal().reveal(".project-wrapper__text", {
