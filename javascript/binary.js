@@ -1,53 +1,85 @@
 if (window.innerWidth > 768) {
-    const aboutSection = document.querySelector('.binary-js-background');
-    let moveCounter = 0;
-    const movesToUpdate = 3; // Change text every X mouse moves, adjust as needed
+    const container = document.querySelector('.binary-js-background');
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    container.appendChild(canvas);
 
-    const bBinary = "01";
-    const bNumbers = "0123456789";
-    const bLetters = "ABCDEFGHIKLMNOPQRSTUVWXYZ";
+    const binary = "01";
+    const letters = "ABCDEFGHIKLMNPQRSTUVWXYZ";
+    const numbers = "23456789";
 
-    const bLettersLength = bLetters.length;
-    const bNumbersLength = bNumbers.length;
-    const bBinaryLength = bBinary.length;
+    const fontSize = 14;
+    const lineHeight = 14;
+    const charWidth = 10;
 
-    function randomChar() {
-        const char = bLetters[Math.floor(Math.random() * bLettersLength)];
-        const num = bNumbers[Math.floor(Math.random() * bNumbersLength)];
-        const bin = bBinary[Math.floor(Math.random() * bBinaryLength)];
-        // 50% char or num on 0.1%
-        const charOrNum = Math.random() < 0.5 ? char : num
+    const colorNormal = 'rgba(255, 255, 255, 0.3)';
+    const colorHighlight = 'rgba(255, 255, 255, 0.5)';
 
-        const randomMath = Math.random();
+    let lastUpdate = 0;
+    const updateInterval = 72;
+    let dpr = window.devicePixelRatio || 1;
 
-        // Randomly decide whether to style this character differently
-        if (randomMath < 0.001) { // 0.1% chance for each character
-            // const color = Math.random() < 0.5 ? 'rgba(255, 255, 255, 0.2)' : 'rgba(255, 255, 255, 0.4)';
-            const color = 'rgba(255, 255, 255, 0.4)'
-            return `<span style="color: ${color};">${charOrNum}</span>`; // Replace 'yourAccentColor' with the actual color value
-        }
-        return bin;
+    function resize() {
+        const rect = container.getBoundingClientRect();
+        dpr = window.devicePixelRatio || 1;
+
+        // Set actual canvas size in memory (scaled for high-DPI)
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+
+        // Set display size via CSS
+        canvas.style.width = rect.width + 'px';
+        canvas.style.height = rect.height + 'px';
+
+        // Reset and scale context to match DPI
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.font = `300 ${fontSize}px "Chivo Mono", monospace`;
     }
 
-    function randomString(elementWidth, elementHeight, fontSize, lineHeight) {
-        let string = "";
-        const charWidth = fontSize * 0.6;
-        const charsPerLine = Math.floor(elementWidth / charWidth);
-        const lines = Math.ceil(elementHeight / lineHeight);
-        const targetLength = charsPerLine * lines;
+    function draw() {
+        // Use CSS dimensions, not canvas buffer dimensions
+        const width = canvas.width / dpr;
+        const height = canvas.height / dpr;
+        const cols = Math.floor(width / charWidth);
+        const rows = Math.floor(height / lineHeight);
 
-        for (let i = 0; i < targetLength; i++) {
-            string += randomChar();
+        ctx.clearRect(0, 0, width, height);
+
+        for (let row = 0; row < rows; row++) {
+            for (let col = 0; col < cols; col++) {
+                const isHighlight = Math.random() < 0.001;
+                let char;
+
+                if (isHighlight) {
+                    const alphanumeric = Math.random() < 0.5 ? letters : numbers;
+                    char = alphanumeric[Math.floor(Math.random() * alphanumeric.length)];
+                    ctx.fillStyle = colorHighlight;
+                } else {
+                    char = binary[Math.floor(Math.random() * 2)];
+                    ctx.fillStyle = colorNormal;
+                }
+
+                ctx.fillText(char, col * charWidth, row * lineHeight + fontSize);
+            }
         }
-        return string;
     }
 
-    document.addEventListener('mousemove', e => {
-        moveCounter++;
-        if (moveCounter >= movesToUpdate) {
-            const rect = aboutSection.getBoundingClientRect();
-            aboutSection.innerHTML = randomString(rect.width, rect.height, 10, 14);
-            moveCounter = 0;
+    // Initial render
+    resize();
+    draw();
+
+    // Throttled mouse move updates
+    document.addEventListener('mousemove', () => {
+        const now = Date.now();
+        if (now - lastUpdate >= updateInterval) {
+            lastUpdate = now;
+            draw();
         }
+    });
+
+    // Handle resize
+    window.addEventListener('resize', () => {
+        resize();
+        draw();
     });
 }

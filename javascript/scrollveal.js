@@ -90,9 +90,3 @@ ScrollReveal().reveal(".contact-wrapper", {
   ...defaultProps,
   delay: delayTime,
 });
-
-ScrollReveal().reveal(".fa", {
-  ...defaultProps,
-  delay: 500,
-  interval: 100,
-});
