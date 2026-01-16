@@ -5,18 +5,18 @@ if (window.innerWidth > 768) {
     container.appendChild(canvas);
 
     const binary = "01";
-    const letters = "ABCDEFGHIKLMNPQRSTUVWXYZ";
+    const letters = "ABCDEFGHIKLMN PQRSTUVWXYZ";
     const numbers = "23456789";
 
-    const fontSize = 14;
+    const fontSize = 16;
     const lineHeight = 14;
-    const charWidth = 10;
+    const charWidth = 9;
 
     const colorNormal = 'rgba(255, 255, 255, 0.3)';
-    const colorHighlight = 'rgba(255, 255, 255, 0.5)';
+    const colorHighlight = 'rgba(255, 255, 255, 0.6)';
 
     let lastUpdate = 0;
-    const updateInterval = 72;
+    const updateInterval = 42;
     let dpr = window.devicePixelRatio || 1;
 
     function resize() {
@@ -64,9 +64,11 @@ if (window.innerWidth > 768) {
         }
     }
 
-    // Initial render
-    resize();
-    draw();
+    // Initial render (wait for font to load)
+    document.fonts.load(`300 ${fontSize}px "Chivo Mono"`).then(() => {
+        resize();
+        draw();
+    });
 
     // Throttled mouse move updates
     document.addEventListener('mousemove', () => {

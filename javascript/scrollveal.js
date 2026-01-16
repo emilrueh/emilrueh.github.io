@@ -7,7 +7,6 @@ const defaultProps = {
   mobile: true,
 };
 
-// custom delay time for mobile
 let delayTime;
 if (window.matchMedia("(max-width: 45em)").matches) {
   delayTime = 0;
@@ -27,18 +26,8 @@ ScrollReveal().reveal(".name", {
   delay: 700,
   scale: 0,
 });
-ScrollReveal().reveal(".hero-cta", {
-  ...defaultProps,
-  delay: 1200,
-  origin: window.innerWidth > 768 ? "left" : "bottom",
-});
-ScrollReveal().reveal(".scroll-down-link", {
-  ...defaultProps,
-  delay: 2000,
-  origin: "top",
-});
 
-/* About Section */
+// About Section
 ScrollReveal().reveal(".section-title", {
   ...defaultProps,
   delay: delayTime,
@@ -50,18 +39,6 @@ ScrollReveal().reveal(".about-wrapper__image", {
   scale: 0.5,
 });
 
-// ScrollReveal().reveal('.drama-js-background', {
-//   ...defaultProps,
-//   distance: '0px',  // Prevents movement, only fades in
-//   opacity: 0,       // Starts with 0 opacity
-//   easing: 'ease-in',
-//   duration: 10000,   // Duration of the fade-in effect, adjust as needed
-//   afterReveal: function (el) {
-//     el.style.opacity = 1; // Ensures the element stays visible after animation
-//   }
-// });
-
-// mobile about
 if (!window.matchMedia("(max-width: 45em)").matches) {
   ScrollReveal().reveal(".about-wrapper__info", {
     ...defaultProps,
@@ -71,7 +48,7 @@ if (!window.matchMedia("(max-width: 45em)").matches) {
   });
 }
 
-/* Projects Section */
+// Projects Section (disabled)
 ScrollReveal().reveal(".project-wrapper__text", {
   ...defaultProps,
   delay: delayTime,
@@ -85,7 +62,7 @@ ScrollReveal().reveal(".project-wrapper__image", {
   origin: window.innerWidth > 768 ? "right" : "bottom",
 });
 
-/* Contact Section */
+// Contact Section
 ScrollReveal().reveal(".contact-wrapper", {
   ...defaultProps,
   delay: delayTime,
