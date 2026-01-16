@@ -502,10 +502,17 @@ section .row span {
     letter-spacing: 0.03em;
 }
 
+@media(max-width: 37.5em) {
+    #about .about-wrapper__info p {
+        font-size: 1.6rem;
+        line-height: 2.4rem;
+    }
+}
+
 @media(max-width: 48em) {
     #about .about-wrapper__info {
         align-items: center;
-        text-align: center
+        text-align: center;
     }
 }
 
@@ -576,7 +583,7 @@ section .row span {
 
 @media(max-width: 45em) {
     #contact {
-        padding: 18rem 0 12rem 0;
+        padding: 15rem 0 10rem 0;
         margin-top: 6rem;
         -webkit-clip-path: polygon(0 8vh, 100% 0, 100% 100%, 0 100%);
         clip-path: polygon(0 8vh, 100% 0, 100% 100%, 0 100%)
