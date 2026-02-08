@@ -9,7 +9,7 @@
 @property --highlight-fade {
     syntax: '<color>';
     inherits: false;
-    initial-value: #bfbfbf;
+    initial-value: #adb5bd;
 }
 
 /* ==========================================================================
@@ -70,8 +70,7 @@ a:hover {
 
 .section-title {
     margin-bottom: 4.5rem;
-    font-size: 4rem;
-    text-transform: uppercase
+    font-size: 4rem
 }
 
 @media(max-width: 37.5em) {
@@ -113,7 +112,7 @@ a:hover {
 
 @supports((-webkit-background-clip: text) or (background-clip: text)) or (-webkit-background-clip: text) {
     .text-color-highlight {
-        --highlight-fade: #bfbfbf;
+        --highlight-fade: #adb5bd;
         background-image: linear-gradient(135deg, var(--text-white) 30%, var(--highlight-fade) 100%);
         -webkit-background-clip: text;
         background-clip: text;
@@ -629,12 +628,6 @@ section .row span {
             linear-gradient(to right, rgba(255, 255, 255, 0) 54%, var(--bg-dark) 100%);
     }
 
-    .binary-js-background::after {
-        background: linear-gradient(to left, rgba(255, 255, 255, 0) 54%, var(--bg-dark) 100%),
-            linear-gradient(to top, rgba(255, 255, 255, 0) 90%, var(--bg-dark) 100%),
-            linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, var(--bg-dark) 42%),
-            linear-gradient(to right, rgba(255, 255, 255, 0) 54%, var(--bg-dark) 100%);
-    }
 }
 
 @media(max-width: 75em) {
@@ -807,17 +800,14 @@ section .row span {
 }
 
 #contact .contact-wrapper__text {
-    margin-bottom: 2.8rem
-}
-
-#contact .contact-wrapper__text {
     margin-top: -0.6rem;
+    margin-bottom: 2.8rem;
     font-size: 3.2rem
 }
 
 #contact .contact-wrapper a {
     margin-top: 0.1rem;
-    font-size: 4rem
+    font-size: 3.6rem
 }
 
 
@@ -827,9 +817,18 @@ section .row span {
         font-size: 2rem;
     }
 
+    #contact .contact-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     #contact .contact-wrapper a {
-        font-size: 2.8rem;
+        font-size: 2.2rem;
         margin-top: -0.6rem;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 

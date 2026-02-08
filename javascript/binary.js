@@ -97,8 +97,12 @@ if (window.innerWidth > 768) {
     });
 }
 
-// Handle resize
+// Handle resize (debounced)
+let resizeTimer;
 window.addEventListener('resize', () => {
-    resize();
-    draw();
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+        resize();
+        draw();
+    }, 150);
 });
