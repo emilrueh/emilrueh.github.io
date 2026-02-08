@@ -376,9 +376,11 @@ section .row span {
 @media(max-width: 48em) {
     .hero-content {
         align-items: center;
+        text-align: center;
         position: relative;
         transform: translateY(-2rem);
-        /* Adjust this value */
+        padding-left: 0;
+        padding-right: 0;
     }
 
     #hero .hero-title {
@@ -415,6 +417,16 @@ section .row span {
 @keyframes binaryFadeIn {
     to {
         opacity: 1;
+    }
+}
+
+@keyframes widgetFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 0.47;
     }
 }
 
@@ -633,9 +645,10 @@ section .row span {
     top: 0;
     left: 0;
     width: 100%;
+    animation: widgetFadeIn 3s ease-out 1s forwards;
     height: 100%;
     z-index: 0;
-    opacity: 0.47;
+    opacity: 0;
     -webkit-mask-image:
         radial-gradient(ellipse at -5% 105%, transparent 12%, black 54%),
         /* bottom-left */
@@ -672,9 +685,9 @@ section .row span {
 }
 
 @media(max-width: 48em) {
+    #hero .tradingview-widget-container,
     .binary-mouse-zone {
-        top: 10%;
-        height: 90%;
+        display: none;
     }
 }
 
