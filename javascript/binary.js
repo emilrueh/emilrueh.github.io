@@ -14,8 +14,8 @@ const lineHeight = 14;
 const charWidth = 9;
 const font = `${fontWeight} ${fontSize}px "Chivo Mono"`;
 
-const colorNormal = 'rgba(255, 255, 255, 0.4)';
-const colorHighlight = 'rgba(255, 255, 255, 0.8)';
+const colorNormal = 'rgba(255, 255, 255, 0.6)';
+const colorHighlight = 'rgba(255, 255, 255, 0.7)';
 
 let lastUpdate = 0;
 const updateInterval = 42;
