@@ -497,13 +497,13 @@ section .row span {
 }
 
 .hero-icons a[aria-label="email"] .icon {
-    width: 2.8rem;
-    height: 2.8rem;
+    width: 3.6rem;
+    height: 3.6rem;
 }
 
 .hero-icons a[aria-label="schedule a call"] .icon {
-    width: 2.4rem;
-    height: 2.4rem;
+    width: 3.2rem;
+    height: 3.2rem;
 }
 
 .hero-icons a:hover {
@@ -701,6 +701,11 @@ section .row span {
     padding-bottom: 2rem;
     font-size: 1.9rem;
     letter-spacing: 0.03em;
+}
+
+#about .about-wrapper__info .section-title {
+    margin-bottom: 1.2rem;
+    line-height: 1.2;
 }
 
 #about .about-wrapper__info p:last-child {
