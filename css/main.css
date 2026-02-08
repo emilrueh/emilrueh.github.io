@@ -426,7 +426,7 @@ section .row span {
     }
 
     to {
-        opacity: 0.47;
+        opacity: 0.54;
     }
 }
 
@@ -657,7 +657,7 @@ section .row span {
         radial-gradient(ellipse at 105% 105%, transparent 21%, black 54%),
         /* bottom-right */
         /* right edge */
-        linear-gradient(to right, transparent 1%, black 12%),
+        linear-gradient(to right, transparent 1%, black 6%),
         /* left edge */
         linear-gradient(to left, transparent 1%, black 21%);
     mask-image:
@@ -668,7 +668,7 @@ section .row span {
         radial-gradient(ellipse at 105% 105%, transparent 21%, black 54%),
         /* bottom-right */
         /* left edge */
-        linear-gradient(to right, transparent 1%, black 12%),
+        linear-gradient(to right, transparent 1%, black 6%),
         /* right edge */
         linear-gradient(to left, transparent 1%, black 21%);
     -webkit-mask-composite: source-in;
@@ -685,6 +685,7 @@ section .row span {
 }
 
 @media(max-width: 48em) {
+
     #hero .tradingview-widget-container,
     .binary-mouse-zone {
         display: none;
