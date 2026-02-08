@@ -15,17 +15,21 @@ if (window.matchMedia("(max-width: 45em)").matches) {
 }
 
 // Hero Section
-ScrollReveal().reveal(".hero-title", {
-  ...defaultProps,
-  delay: 500,
-  origin: window.innerWidth > 768 ? "left" : "bottom",
-});
 ScrollReveal().reveal(".name", {
   ...defaultProps,
-  distance: "0px",
-  delay: 700,
-  scale: 0,
+  distance: "10px",
+  delay: 300,
+  origin: "bottom",
+  duration: 1800,
+  opacity: 0,
 });
+// ScrollReveal().reveal(".company-name", {
+//   ...defaultProps,
+//   distance: "0px",
+//   delay: 0,
+//   scale: 0,
+//   duration: 1200,
+// });
 
 // About Section
 ScrollReveal().reveal(".section-title", {
@@ -36,7 +40,11 @@ ScrollReveal().reveal(".section-title", {
 ScrollReveal().reveal(".about-wrapper__image", {
   ...defaultProps,
   delay: 300,
-  scale: 0.5,
+  origin: "bottom",
+  distance: "100px",
+  scale: 0.85,
+  duration: 1800,
+  easing: "cubic-bezier(0.22, 1.15, 0.36, 1)",
 });
 
 ScrollReveal().reveal(".about-wrapper__info", {
@@ -54,13 +62,19 @@ ScrollReveal().reveal(".project-wrapper__text", {
 
 ScrollReveal().reveal(".project-wrapper__image", {
   ...defaultProps,
-  delay: delayTime,
+  delay: 0,
   scale: 0.9,
   origin: window.innerWidth > 768 ? "right" : "bottom",
 });
 
 // Contact Section
-ScrollReveal().reveal(".contact-wrapper", {
+ScrollReveal().reveal(".contact-wrapper__text", {
   ...defaultProps,
-  delay: delayTime,
+  delay: delayTime + 300,
+  distance: "0px",
+});
+
+ScrollReveal().reveal(".cta-btn--contact", {
+  ...defaultProps,
+  delay: delayTime + 300,
 });
