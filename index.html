@@ -110,6 +110,10 @@
       <path
         d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z" />
     </symbol>
+    <symbol id="icon-phone" viewBox="0 0 512 512">
+      <path
+        d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z" />
+    </symbol>
     <symbol id="icon-angle-up" viewBox="0 0 448 512">
       <path
         d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z" />
@@ -218,13 +222,30 @@
         </script>
     </div>
     <!-- TradingView Widget END -->
-    <div class="binary-mouse-zone"></div>
+    <div class="binary-js-background" id="binary-hero"></div>
+    <div class="hero-overlay"></div>
+
     <section class="container hero-content">
-      <h1 class="hero-title">
-        <a href="#hero" class="text-color-main name">Emil Rühmland</a>
-        <br />
-        <span class="company-name">Software Resolution</span>
-      </h1>
+      <div class="hero-title-group">
+        <h1 class="hero-title">
+          <a href="#hero" class="text-color-main name">Emil Rühmland</a>
+          <br />
+          <span class="company-name">Software Resolution</span>
+        </h1>
+        <div class="hero-icons">
+          <a href="mailto:emil@ruehmland.de" target="_blank" rel="noopener noreferrer" aria-label="email">
+            <svg class="icon">
+              <use href="#icon-envelope"></use>
+            </svg>
+          </a>
+          <a href="https://app.cal.eu/emilrueh/call" target="_blank" rel="noopener noreferrer"
+            aria-label="schedule a call">
+            <svg class="icon">
+              <use href="#icon-phone"></use>
+            </svg>
+          </a>
+        </div>
+      </div>
     </section>
     <a href="#contact" class="scroll-down-link" aria-label="scroll-down">
       <div class="scroll-down"></div>
@@ -234,7 +255,7 @@
 
   <!-- About Section -->
   <section id="about">
-    <div class="binary-js-background"></div>
+    <div class="binary-js-background" id="binary-about"></div>
     <div class="container">
       <div class="row about-wrapper">
         <div class="about-wrapper__image">
@@ -266,10 +287,11 @@
   <!-- Contact Section -->
   <section id="contact">
     <div class="container">
-      <h2 class="section-title">Get in touch</h2>
+      <h2 class="section-title">Tell me about<br class="mobile-break"> your project</h2>
       <div class="contact-wrapper">
-        <p class="contact-wrapper__text">Tell me what you need and we iterate together.</p>
-        <a href="https://app.cal.eu/emilrueh/call" class="cta-btn cta-btn--contact">Schedule a call</a>
+        <p class="contact-wrapper__text">Email me or schedule a quick<br class="mobile-break"> call and <br
+            class="desktop-break">let's start building<br class="mobile-break"> something amazing!</p>
+        <a href="https://app.cal.eu/emilrueh/call" class="cta-btn cta-btn--contact">Get in touch</a>
       </div>
     </div>
   </section>
@@ -318,7 +340,7 @@
 
   <script defer src="./javascript/vanilla-tilt.min.js"></script>
   <script defer src="./javascript/valtilt.js"></script>
-  <script defer src="./javascript/crudeletters.js"></script>
+  <!-- <script defer src="./javascript/crudeletters.js"></script> -->
   <script defer src="./javascript/readability.js"></script>
   <script defer src="./javascript/binary.js"></script>
 </body>
