@@ -1,4 +1,5 @@
-const container = document.querySelector('.binary-js-background');
+const isMobile = window.innerWidth <= 768;
+const container = document.querySelector(isMobile ? '#binary-hero' : '#binary-about');
 const canvas = document.createElement('canvas');
 const ctx = canvas.getContext('2d');
 container.appendChild(canvas);
@@ -73,7 +74,21 @@ document.fonts.load(font).then(() => {
 
 // Throttled mouse move updates (desktop only)
 if (window.innerWidth > 768) {
-    document.addEventListener('mousemove', () => {
+    const logoImg = document.querySelector('.about-wrapper__image img');
+
+    function isOverLogo(e) {
+        if (!logoImg) return false;
+        const rect = logoImg.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const radius = Math.min(rect.width, rect.height) * 0.47;
+        const dx = e.clientX - centerX;
+        const dy = e.clientY - centerY;
+        return (dx * dx + dy * dy) <= (radius * radius);
+    }
+
+    document.addEventListener('mousemove', (e) => {
+        if (isOverLogo(e)) return;
         const now = Date.now();
         if (now - lastUpdate >= updateInterval) {
             lastUpdate = now;
