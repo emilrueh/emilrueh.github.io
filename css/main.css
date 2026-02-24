@@ -856,23 +856,15 @@ section .row span {
         /* bottom-left */
         radial-gradient(ellipse at 105% -5%, transparent 12%, black 54%),
         /* top-right */
-        radial-gradient(ellipse at 105% 105%, transparent 21%, black 54%),
-        /* bottom-right */
-        /* right edge */
-        linear-gradient(to right, transparent 1%, black 6%),
-        /* left edge */
-        linear-gradient(to left, transparent 1%, black 21%);
+        radial-gradient(ellipse at 105% 105%, transparent 21%, black 54%);
+    /* bottom-right */
     mask-image:
         radial-gradient(ellipse at -5% 105%, transparent 12%, black 54%),
         /* bottom-left */
         radial-gradient(ellipse at 105% -5%, transparent 12%, black 54%),
         /* top-right */
-        radial-gradient(ellipse at 105% 105%, transparent 21%, black 54%),
-        /* bottom-right */
-        /* left edge */
-        linear-gradient(to right, transparent 1%, black 6%),
-        /* right edge */
-        linear-gradient(to left, transparent 1%, black 21%);
+        radial-gradient(ellipse at 105% 105%, transparent 21%, black 54%);
+    /* bottom-right */
     -webkit-mask-composite: source-in;
     mask-composite: intersect;
 }
