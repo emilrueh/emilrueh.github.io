@@ -339,7 +339,7 @@ section .row span {
     color: var(--text-white);
 }
 
-#hero .hero-title a {
+#hero .hero-title .name {
     margin: 0;
     font-size: 5.6rem;
     display: inline-block;
@@ -893,7 +893,8 @@ section .row span {
 .footer__text {
     font-size: 1.3rem;
     color: var(--text-light-grey);
-    opacity: 70%
+    opacity: 70%;
+    margin-top: 2rem;
 }
 
 .footer__text a {
@@ -908,22 +909,10 @@ section .row span {
     color: #36d1dc
 }
 
-.footer hr {
-    margin: 1rem auto;
-    border: 0;
-    width: 42%;
-    border-top: 1px solid var(--text-light-grey);
-    opacity: 21%;
-}
-
 @media(max-width: 45em) {
     .footer__text {
         margin-top: 3rem;
         margin-bottom: -3rem;
-    }
-
-    .footer hr {
-        display: none;
     }
 }
 
