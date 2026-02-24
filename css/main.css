@@ -23,6 +23,7 @@
     --accent-middle: #002239;
     --text-white: #ffffff;
     --text-light-grey: #adb5bd;
+    --chart-opacity: 0.15;
 }
 
 /* ==========================================================================
@@ -589,7 +590,7 @@ section .row span {
     }
 
     to {
-        opacity: 0.3;
+        opacity: var(--chart-opacity);
     }
 }
 
@@ -849,7 +850,7 @@ section .row span {
     animation: widgetFadeIn 3s ease-out 1s backwards;
     height: 100%;
     z-index: 0;
-    opacity: 0.3;
+    opacity: var(--chart-opacity);
     transition: opacity 1s ease;
     -webkit-mask-image:
         radial-gradient(ellipse at -5% 105%, transparent 12%, black 54%),
