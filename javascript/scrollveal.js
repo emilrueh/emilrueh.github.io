@@ -53,6 +53,18 @@ ScrollReveal().reveal(".about-wrapper__info", {
   distance: "0px",
 });
 
+// Services Section
+ScrollReveal().reveal('#services .section-title', {
+  ...defaultProps,
+  delay: delayTime,
+  distance: '0px',
+});
+ScrollReveal().reveal('.service-card', {
+  ...defaultProps,
+  delay: delayTime,
+  interval: 150,
+});
+
 // Projects Section (disabled)
 ScrollReveal().reveal(".project-wrapper__text", {
   ...defaultProps,

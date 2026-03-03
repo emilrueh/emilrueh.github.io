@@ -27,6 +27,35 @@ if (window.innerWidth > 768) {
         var lineHeightInDelay = 1000;
         var lineHeightOutDelay = 0;
 
+        // Select all service card images
+        var serviceImages = document.querySelectorAll('.service-card__image');
+
+        serviceImages.forEach(function (serviceImage) {
+            serviceImage.addEventListener('mouseover', function () {
+                var title = serviceImage.parentElement.querySelector('.service-card__title');
+                var descs = serviceImage.parentElement.querySelectorAll('.service-card__desc');
+
+                if (title) {
+                    animateOpacity(title, 0.1, opacityInDuration, opacityInDelay);
+                }
+                descs.forEach(function (desc) {
+                    animateStyle(desc, 'white', '', '1.9', colorInDuration, colorInDelay, marginTopInDuration, marginTopInDelay, lineHeightInDuration, lineHeightInDelay);
+                });
+            });
+
+            serviceImage.addEventListener('mouseout', function () {
+                var title = serviceImage.parentElement.querySelector('.service-card__title');
+                var descs = serviceImage.parentElement.querySelectorAll('.service-card__desc');
+
+                if (title) {
+                    animateOpacity(title, 1, opacityOutDuration, opacityOutDelay);
+                }
+                descs.forEach(function (desc) {
+                    animateStyle(desc, '', '', '1.7', colorOutDuration, colorOutDelay, marginTopOutDuration, marginTopOutDelay, lineHeightOutDuration, lineHeightOutDelay);
+                });
+            });
+        });
+
         // Select all project images
         var projectImages = document.querySelectorAll('.project-wrapper__image');
 
@@ -65,9 +94,10 @@ if (window.innerWidth > 768) {
     }
 
     function animateStyle(element, color, marginTop, lineHeight, colorDuration, colorDelay, marginTopDuration, marginTopDelay, lineHeightDuration, lineHeightDelay) {
-        element.style.transition = `color ${colorDuration}ms ${colorDelay}ms, margin-top ${marginTopDuration}ms ${marginTopDelay}ms, line-height ${lineHeightDuration}ms ${lineHeightDelay}ms`;
+        // element.style.transition = `color ${colorDuration}ms ${colorDelay}ms, margin-top ${marginTopDuration}ms ${marginTopDelay}ms, line-height ${lineHeightDuration}ms ${lineHeightDelay}ms`;
+        element.style.transition = `color ${colorDuration}ms ${colorDelay}ms, margin-top ${marginTopDuration}ms ${marginTopDelay}ms`;
         element.style.color = color;
         element.style.marginTop = marginTop;
-        element.style.lineHeight = lineHeight;
+        // element.style.lineHeight = lineHeight;
     }
 }
