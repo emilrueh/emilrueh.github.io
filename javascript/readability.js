@@ -30,30 +30,33 @@ if (window.innerWidth > 768) {
         // Select all service card images
         var serviceImages = document.querySelectorAll('.service-card__image');
 
-        serviceImages.forEach(function (serviceImage) {
-            serviceImage.addEventListener('mouseover', function () {
-                var title = serviceImage.parentElement.querySelector('.service-card__title');
-                var descs = serviceImage.parentElement.querySelectorAll('.service-card__desc');
-
-                if (title) {
-                    animateOpacity(title, 0.1, opacityInDuration, opacityInDelay);
-                }
-                descs.forEach(function (desc) {
-                    animateStyle(desc, 'white', '', '1.9', colorInDuration, colorInDelay, marginTopInDuration, marginTopInDelay, lineHeightInDuration, lineHeightInDelay);
-                });
+        function serviceIn(card) {
+            var title = card.querySelector('.service-card__title');
+            var descs = card.querySelectorAll('.service-card__desc');
+            if (title) {
+                animateOpacity(title, 0.1, opacityInDuration, opacityInDelay);
+            }
+            descs.forEach(function (desc) {
+                animateStyle(desc, 'white', '', '1.9', colorInDuration, colorInDelay, marginTopInDuration, marginTopInDelay, lineHeightInDuration, lineHeightInDelay);
             });
+        }
 
-            serviceImage.addEventListener('mouseout', function () {
-                var title = serviceImage.parentElement.querySelector('.service-card__title');
-                var descs = serviceImage.parentElement.querySelectorAll('.service-card__desc');
-
-                if (title) {
-                    animateOpacity(title, 1, opacityOutDuration, opacityOutDelay);
-                }
-                descs.forEach(function (desc) {
-                    animateStyle(desc, '', '', '1.7', colorOutDuration, colorOutDelay, marginTopOutDuration, marginTopOutDelay, lineHeightOutDuration, lineHeightOutDelay);
-                });
+        function serviceOut(card) {
+            var title = card.querySelector('.service-card__title');
+            var descs = card.querySelectorAll('.service-card__desc');
+            if (title) {
+                animateOpacity(title, 1, opacityOutDuration, opacityOutDelay);
+            }
+            descs.forEach(function (desc) {
+                animateStyle(desc, '', '', '1.7', colorOutDuration, colorOutDelay, marginTopOutDuration, marginTopOutDelay, lineHeightOutDuration, lineHeightOutDelay);
             });
+        }
+
+        var serviceDescs = document.querySelectorAll('.service-card__desc');
+        serviceDescs.forEach(function (desc) {
+            var card = desc.closest('.service-card');
+            desc.addEventListener('mouseover', function () { serviceIn(card); });
+            desc.addEventListener('mouseout', function () { serviceOut(card); });
         });
 
         // Select all project images
