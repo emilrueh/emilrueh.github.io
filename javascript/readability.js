@@ -27,6 +27,38 @@ if (window.innerWidth > 768) {
         var lineHeightInDelay = 1000;
         var lineHeightOutDelay = 0;
 
+        // Select all service card images
+        var serviceImages = document.querySelectorAll('.service-card__image');
+
+        function serviceIn(card) {
+            var title = card.querySelector('.service-card__title');
+            var descs = card.querySelectorAll('.service-card__desc');
+            if (title) {
+                animateOpacity(title, 0.1, opacityInDuration, opacityInDelay);
+            }
+            descs.forEach(function (desc) {
+                animateStyle(desc, 'white', '', '1.9', colorInDuration, colorInDelay, marginTopInDuration, marginTopInDelay, lineHeightInDuration, lineHeightInDelay);
+            });
+        }
+
+        function serviceOut(card) {
+            var title = card.querySelector('.service-card__title');
+            var descs = card.querySelectorAll('.service-card__desc');
+            if (title) {
+                animateOpacity(title, 1, opacityOutDuration, opacityOutDelay);
+            }
+            descs.forEach(function (desc) {
+                animateStyle(desc, '', '', '1.7', colorOutDuration, colorOutDelay, marginTopOutDuration, marginTopOutDelay, lineHeightOutDuration, lineHeightOutDelay);
+            });
+        }
+
+        var serviceDescs = document.querySelectorAll('.service-card__desc');
+        serviceDescs.forEach(function (desc) {
+            var card = desc.closest('.service-card');
+            desc.addEventListener('mouseover', function () { serviceIn(card); });
+            desc.addEventListener('mouseout', function () { serviceOut(card); });
+        });
+
         // Select all project images
         var projectImages = document.querySelectorAll('.project-wrapper__image');
 
@@ -65,9 +97,10 @@ if (window.innerWidth > 768) {
     }
 
     function animateStyle(element, color, marginTop, lineHeight, colorDuration, colorDelay, marginTopDuration, marginTopDelay, lineHeightDuration, lineHeightDelay) {
-        element.style.transition = `color ${colorDuration}ms ${colorDelay}ms, margin-top ${marginTopDuration}ms ${marginTopDelay}ms, line-height ${lineHeightDuration}ms ${lineHeightDelay}ms`;
+        // element.style.transition = `color ${colorDuration}ms ${colorDelay}ms, margin-top ${marginTopDuration}ms ${marginTopDelay}ms, line-height ${lineHeightDuration}ms ${lineHeightDelay}ms`;
+        element.style.transition = `color ${colorDuration}ms ${colorDelay}ms, margin-top ${marginTopDuration}ms ${marginTopDelay}ms`;
         element.style.color = color;
         element.style.marginTop = marginTop;
-        element.style.lineHeight = lineHeight;
+        // element.style.lineHeight = lineHeight;
     }
 }
