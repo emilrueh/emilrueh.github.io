@@ -2,31 +2,41 @@ if (window.innerWidth <= 768) throw new Error('Mobile: binary effect disabled')
 
 // --- Config ---
 const gradientChars = 13 // aka size
-const fontSize = 13
-const lineHeight = 17
-const falloffExponent = 1.2
+const fontSize = 12
+const lineHeight = 14
+const falloffExponent = 1.1
+const sectionFadeChars = 30
 const maxOpacity = 0.6
-
 const maxWeight = 1000
 const minWeight = 100
 const weightBuckets = 10
-const useWeightGradient = true
-const useOpacityGradient = true
 
-const hexPadding = 40
-const hexFalloffChars = 25
-const sectionFadeChars = 50
-const hexTiltDeg = 5
-const hexGrowDelay = 500
-const hexGrowDuration = 2000
+// Per-zone config
+const svcMouseThreshold = 0.5
+const svcScrollThreshold = 0.5
+const svcInvertRandomize = true
+const svcUseWeight = true
+const svcUseOpacity = true
+
+const stripMouseThreshold = 0.3
+const stripScrollThreshold = 0.3
+const stripInvertRandomize = false
+const stripUseWeight = false
+const stripUseOpacity = true
+
+const stripSolidLeft = 0
+const stripSolidRight = 0
+const stripSolidTop = 0
+const stripSolidBottom = 0
+
+const stripFalloffLeft = 40
+const stripFalloffRight = 30
+const stripFalloffTop = 50
+const stripFalloffBottom = 80
 
 const rippleSpeed = 100
 const rippleWidth = 100
 const rippleDuration = 3000
-
-const S3 = Math.sqrt(3)
-const hexCos = Math.cos(hexTiltDeg * Math.PI / 180)
-const hexSin = Math.sin(hexTiltDeg * Math.PI / 180)
 
 // --- Canvas setup ---
 const canvas = document.createElement('canvas')
@@ -36,6 +46,7 @@ document.body.prepend(canvas)
 
 let dpr = window.devicePixelRatio || 1
 let viewW, viewH, charW, cols, rows, gradientPx, sectionFadePx
+let sSolidL, sSolidR, sSolidT, sSolidB, sFallL, sFallR, sFallT, sFallB
 
 // --- Grid storage ---
 let rowChars = []
@@ -45,25 +56,13 @@ let mouseX = -9999, mouseY = -9999
 let lastScrollY = -1
 let dirty = true
 let dirtySource = 'init'
-let dirtyInvert = true
-let hexGrowStart = -1
-let hexGrowProgress = 0
 let ripples = []
 
 // --- Element references ---
-let logoEl, servicesEl, contactEl, iconEls
+let aboutEl, servicesEl, contactEl
 
 function fontString(weight) {
     return `${weight} ${fontSize}px "Chivo Mono"`
-}
-
-// --- Hexagonal distance (pointy-top, normalized: 0 at center, 1 at boundary) ---
-function hexNormDist(px, py, cx, cy, R) {
-    const rawDx = px - cx
-    const rawDy = py - cy
-    const dx = Math.abs(rawDx * hexCos + rawDy * hexSin)
-    const dy = Math.abs(-rawDx * hexSin + rawDy * hexCos)
-    return Math.max(dx * 2 / S3, dx / S3 + dy) / R
 }
 
 // --- Initialize fixed grid ---
@@ -85,6 +84,14 @@ function initGrid() {
     rows = Math.floor(viewH / lineHeight)
     gradientPx = gradientChars * charW
     sectionFadePx = sectionFadeChars * charW
+    sSolidL = stripSolidLeft * charW
+    sSolidR = stripSolidRight * charW
+    sSolidT = stripSolidTop * charW
+    sSolidB = stripSolidBottom * charW
+    sFallL = stripFalloffLeft * charW
+    sFallR = stripFalloffRight * charW
+    sFallT = stripFalloffTop * charW
+    sFallB = stripFalloffBottom * charW
 
     rowChars = []
     for (let r = 0; r < rows; r++) {
@@ -95,10 +102,9 @@ function initGrid() {
         rowChars.push(chars)
     }
 
-    logoEl = document.querySelector('#about .about-wrapper__image img')
+    aboutEl = document.getElementById('about')
     servicesEl = document.getElementById('services')
     contactEl = document.getElementById('contact')
-    iconEls = document.querySelectorAll('.service-card__image')
 
     dirty = true
 }
@@ -107,19 +113,13 @@ function initGrid() {
 function render() {
     ctx.clearRect(0, 0, viewW, viewH)
 
-    if (!logoEl || !servicesEl || !contactEl) return
+    if (!aboutEl || !servicesEl || !contactEl) return
 
-    const logoRect = logoEl.getBoundingClientRect()
+    const aboutRect = aboutEl.getBoundingClientRect()
     const servicesRect = servicesEl.getBoundingClientRect()
     const contactTop = contactEl.getBoundingClientRect().top
     const vh15 = viewH * 0.15
-
-    // Hex params (pointy-top, centered on logo, grows in after delay)
-    const hexCX = logoRect.left + logoRect.width / 2
-    const hexCY = logoRect.top + logoRect.height / 2
-    const hexRFull = Math.min(logoRect.width, logoRect.height) / 2 + hexPadding
-    const hexR = hexRFull * hexGrowProgress
-    const hexFalloffNorm = hexR > 0 ? hexFalloffChars * charW / hexR : 0
+    const stripTotalPx = sFallL + sSolidL + sSolidR + sFallR
 
     const buckets = new Map()
     const draws = []
@@ -131,27 +131,47 @@ function render() {
         const rowBottom = rowTop + lineHeight
         const charY = rowTop + lineHeight / 2
 
-        const inHexRange = charY >= hexCY - hexR && charY <= hexCY + hexR
+        const inStrip = charY >= aboutRect.top && charY <= aboutRect.bottom
         const inServices = rowBottom > servicesRect.top && rowTop < servicesBottom
 
-        if (!inHexRange && !inServices) continue
+        if (!inStrip && !inServices) continue
 
         const cursorNearRow = mouseX > -9000 &&
             Math.max(rowTop - mouseY, 0, mouseY - rowBottom) < gradientPx
 
-        if (!inHexRange && !cursorNearRow) continue
+        if (!inStrip && !cursorNearRow) continue
 
         for (let c = 0; c < cols; c++) {
             const charCenterX = c * charW + charW / 2
 
             let visibility = 0
+            let zone = 0 // 0 = none, 1 = strip, 2 = services
 
-            if (inHexRange) {
-                const hd = hexNormDist(charCenterX, charY, hexCX, hexCY, hexR)
-                if (hd <= 1 - hexFalloffNorm) {
+            if (inStrip && charCenterX < stripTotalPx) {
+                // Horizontal visibility
+                const solidR = sFallL + sSolidL + sSolidR
+                if (charCenterX < sFallL) {
+                    visibility = sFallL > 0 ? charCenterX / sFallL : 1
+                } else if (charCenterX <= solidR) {
                     visibility = 1
-                } else if (hd <= 1) {
-                    visibility = (1 - hd) / hexFalloffNorm
+                } else {
+                    visibility = sFallR > 0 ? 1 - (charCenterX - solidR) / sFallR : 0
+                }
+
+                // Vertical fades relative to about section bounds
+                const distFromTop = charY - aboutRect.top
+                const distFromBottom = aboutRect.bottom - charY
+                const solidTopEdge = sFallT + sSolidT
+                const solidBottomEdge = sFallB + sSolidB
+                if (distFromTop < sFallT) {
+                    visibility *= sFallT > 0 ? Math.max(0, distFromTop / sFallT) : 0
+                } else if (distFromTop < solidTopEdge) {
+                    visibility *= 1
+                }
+                if (distFromBottom < sFallB) {
+                    visibility *= sFallB > 0 ? Math.max(0, distFromBottom / sFallB) : 0
+                } else if (distFromBottom < solidBottomEdge) {
+                    visibility *= 1
                 }
 
                 // Cursor hole
@@ -161,10 +181,12 @@ function render() {
                         visibility *= cursorDist / gradientPx
                     }
                 }
+
+                if (visibility > 0.01) zone = 1
             }
 
-            // Fall through to services if hex didn't contribute
-            if (visibility <= 0.01 && inServices && cursorNearRow) {
+            // Fall through to services if strip didn't contribute
+            if (zone === 0 && inServices && cursorNearRow) {
                 const cursorDist = Math.hypot(charCenterX - mouseX, charY - mouseY)
                 if (cursorDist < gradientPx) {
                     visibility = 1 - cursorDist / gradientPx
@@ -186,6 +208,8 @@ function render() {
                 } else if (distAbove < sectionFadePx) {
                     visibility *= distAbove / sectionFadePx
                 }
+
+                if (visibility > 0.01) zone = 2
             }
 
             // Ripple suppression
@@ -199,17 +223,25 @@ function render() {
                 }
             }
 
-            if (visibility <= 0.01) continue
+            if (zone === 0) continue
 
-            const centerActive = (dirtySource === 'mouse') !== dirtyInvert
-            const randomize = centerActive ? visibility > 0.3 : visibility < 0.3
+            const isStrip = zone === 1
+            const invertRand = isStrip ? stripInvertRandomize : svcInvertRandomize
+            const mouseThresh = isStrip ? stripMouseThreshold : svcMouseThreshold
+            const scrollThresh = isStrip ? stripScrollThreshold : svcScrollThreshold
+            const isMouse = dirtySource === 'mouse'
+            const thresh = isMouse ? mouseThresh : scrollThresh
+            const centerActive = isMouse !== invertRand
+            const randomize = centerActive ? visibility > thresh : visibility < thresh
             if (randomize) rowChars[r][c] = Math.random() < 0.5 ? '0' : '1'
             const ch = rowChars[r][c]
 
+            const useWeight = isStrip ? stripUseWeight : svcUseWeight
+            const useOpacity = isStrip ? stripUseOpacity : svcUseOpacity
             const curved = Math.pow(visibility, falloffExponent)
-            const alpha = useOpacityGradient ? curved * maxOpacity : maxOpacity
+            const alpha = useOpacity ? curved * maxOpacity : maxOpacity
 
-            if (useWeightGradient) {
+            if (useWeight) {
                 const wStep = Math.min(Math.floor(curved * weightBuckets), weightBuckets - 1)
                 if (!buckets.has(wStep)) {
                     const weight = Math.round(minWeight + (maxWeight - minWeight) * (wStep / (weightBuckets - 1)))
@@ -223,15 +255,14 @@ function render() {
     }
 
     ctx.fillStyle = 'rgb(255, 255, 255)'
-    if (useWeightGradient) {
-        for (const [, bucket] of buckets) {
-            ctx.font = fontString(bucket.weight)
-            for (const d of bucket.draws) {
-                ctx.globalAlpha = d.alpha
-                ctx.fillText(d.ch, d.x, d.y)
-            }
+    for (const [, bucket] of buckets) {
+        ctx.font = fontString(bucket.weight)
+        for (const d of bucket.draws) {
+            ctx.globalAlpha = d.alpha
+            ctx.fillText(d.ch, d.x, d.y)
         }
-    } else {
+    }
+    if (draws.length > 0) {
         ctx.font = fontString(maxWeight)
         for (const d of draws) {
             ctx.globalAlpha = d.alpha
@@ -243,13 +274,6 @@ function render() {
 
 // --- Animation loop ---
 function loop(now) {
-    // Hex grow animation
-    if (hexGrowStart >= 0 && hexGrowProgress < 1) {
-        const t = Math.min((now - hexGrowStart) / hexGrowDuration, 1)
-        hexGrowProgress = t * t * (3 - 2 * t) // smoothstep easing
-        dirty = true
-    }
-
     // Ripple animation
     if (ripples.length > 0) {
         for (const rip of ripples) {
@@ -305,8 +329,4 @@ window.addEventListener('resize', () => {
 document.fonts.load(fontString(maxWeight)).then(() => {
     initGrid()
     requestAnimationFrame(loop)
-    setTimeout(() => {
-        hexGrowStart = performance.now()
-        dirty = true
-    }, hexGrowDelay)
 })
