@@ -9,8 +9,8 @@ const weightBuckets = 10
 
 // About zone
 const aboutColor = '#ffffff'
-const aboutGradientChars = 21
-const aboutMaxOpacity = 0.6
+const aboutGradientChars = 30
+const aboutMaxOpacity = 0.4
 const aboutFalloffExponent = 2
 const aboutFadeTopChars = 0
 const aboutFadeBottomChars = 0
