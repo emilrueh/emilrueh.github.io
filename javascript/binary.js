@@ -9,20 +9,16 @@ const weightBuckets = 10
 
 // About zone
 const aboutColor = '#ffffff'
-const aboutGradientChars = 30
+const aboutGradientChars = 42
 const aboutMaxOpacity = 0.6
 const aboutFalloffExponent = 2
-const aboutFadeTopChars = 0
-const aboutFadeBottomChars = 0
-const aboutMouseThreshold = 0.4
+const aboutMouseThreshold = 0.3
 const aboutScrollThreshold = 0.6
 const aboutInvertRandomize = false
 const aboutUseWeight = false
 const aboutUseOpacity = true
 const aboutSolidLeft = 0
 const aboutSolidRight = 0
-const aboutSolidTop = 0
-const aboutSolidBottom = 0
 const aboutFalloffLeft = 40
 const aboutFalloffRight = 30
 const aboutFalloffTop = 50
@@ -101,15 +97,17 @@ const aboutCtx = aboutCanvas.getContext('2d')
 let dpr = window.devicePixelRatio || 1
 let viewW, viewH, charW, cols, rows
 let aboutGradientPx, svcGradientPx, ctaGradientPx, footerGradientPx
-let aboutFadeTopPx, aboutFadeBottomPx, svcFadeTopPx, svcFadeBottomPx
+let svcFadeTopPx, svcFadeBottomPx
 let ctaFadeTopPx, ctaFadeBottomPx, footerFadeTopPx, footerFadeBottomPx
-let aSolidL, aSolidR, aSolidT, aSolidB, aFallL, aFallR, aFallT, aFallB
+let aSolidL, aSolidR, aFallL, aFallR, aFallT, aFallB
 let ctaShapeRXPx, ctaShapeRYPx, footerShapeRadiusPx, svcCardPaddingPx, svcIconRadiusPx
 
 // --- Grid storage ---
 let rowChars = []
 let aboutRowChars = []
 let aboutRows = 0
+let aboutH = 0
+let aboutColBound = 0
 
 // --- State ---
 let mouseX = -9999, mouseY = -9999
@@ -167,8 +165,6 @@ function initGrid() {
     svcGradientPx = svcGradientChars * charW
     ctaGradientPx = ctaGradientChars * charW
     footerGradientPx = footerGradientChars * charW
-    aboutFadeTopPx = aboutFadeTopChars * charW
-    aboutFadeBottomPx = aboutFadeBottomChars * charW
     svcFadeTopPx = svcFadeTopChars * charW
     svcFadeBottomPx = svcFadeBottomChars * charW
     ctaFadeTopPx = ctaFadeTopChars * charW
@@ -177,12 +173,11 @@ function initGrid() {
     footerFadeBottomPx = footerFadeBottomChars * charW
     aSolidL = aboutSolidLeft * charW
     aSolidR = aboutSolidRight * charW
-    aSolidT = aboutSolidTop * charW
-    aSolidB = aboutSolidBottom * charW
     aFallL = aboutFalloffLeft * charW
     aFallR = aboutFalloffRight * charW
     aFallT = aboutFalloffTop * charW
     aFallB = aboutFalloffBottom * charW
+    aboutColBound = Math.ceil((aFallL + aSolidL + aSolidR + aFallR) / charW)
     ctaShapeRXPx = ctaShapeRX * charW
     ctaShapeRYPx = ctaShapeRY * charW
     footerShapeRadiusPx = footerShapeRadius * charW
@@ -216,7 +211,7 @@ function initGrid() {
     ctaCtx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
     if (aboutEl) {
-        const aboutH = aboutEl.offsetHeight
+        aboutH = aboutEl.offsetHeight
         aboutRows = Math.ceil(aboutH / lineHeight)
         aboutCanvas.width = viewW * dpr
         aboutCanvas.height = aboutH * dpr
@@ -265,8 +260,7 @@ function render() {
     const footerCY = footerRect ? footerRect.bottom : viewH
 
     // --- About zone (section-local canvas, scrolls with DOM) ---
-    const aboutH = aboutEl.offsetHeight
-    aboutCtx.clearRect(0, 0, viewW, aboutH)
+    aboutCtx.clearRect(0, 0, aboutTotalPx, aboutH)
     const visibleTop = Math.max(0, -aboutRect.top)
     const visibleBottom = Math.min(aboutH, viewH - aboutRect.top)
     if (visibleBottom > visibleTop) {
@@ -283,9 +277,8 @@ function render() {
             const cursorNearRow = mouseX > -9000 &&
                 Math.abs(charY - localMouseY) < aboutGradientPx
 
-            for (let c = 0; c < cols; c++) {
+            for (let c = 0; c < aboutColBound; c++) {
                 const charCenterX = c * charW + charW / 2
-                if (charCenterX >= aboutTotalPx) continue
 
                 let visibility = 0
                 const solidR = aFallL + aSolidL + aSolidR
@@ -438,7 +431,7 @@ function render() {
                     for (const cr of svcCardRects) {
                         const dx = (charCenterX - cr.cx) / cr.hw
                         const dy = (charY - cr.cy) / cr.hh
-                        const nd = Math.sqrt(dx * dx + dy * dy)
+                        const nd = Math.hypot(dx, dy)
                         if (nd < 1) {
                             const inner = 1 - svcCardFalloff
                             if (nd < inner) { visibility = 0; break }
@@ -478,7 +471,7 @@ function render() {
 
                     const dx = (charCenterX - ctaCX) / ctaShapeRXPx
                     const dy = (charY - ctaCY) / ctaShapeRYPx
-                    const nd = Math.sqrt(dx * dx + dy * dy)
+                    const nd = Math.hypot(dx, dy)
                     if (nd < 1) {
                         const inner = 1 - ctaShapeFalloff
                         if (nd < inner) visibility = 0
