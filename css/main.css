@@ -833,7 +833,7 @@ section .row span {
     }
 }
 
-#contact > .container {
+#contact>.container {
     position: relative;
     z-index: 1;
 }
