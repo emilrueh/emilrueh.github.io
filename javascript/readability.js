@@ -52,11 +52,10 @@ if (window.innerWidth > 768) {
             });
         }
 
-        var serviceDescs = document.querySelectorAll('.service-card__desc');
-        serviceDescs.forEach(function (desc) {
-            var card = desc.closest('.service-card');
-            desc.addEventListener('mouseover', function () { serviceIn(card); });
-            desc.addEventListener('mouseout', function () { serviceOut(card); });
+        serviceImages.forEach(function (image) {
+            var card = image.closest('.service-card');
+            image.addEventListener('mouseover', function () { serviceIn(card); });
+            image.addEventListener('mouseout', function () { serviceOut(card); });
         });
 
         // Select all project images
