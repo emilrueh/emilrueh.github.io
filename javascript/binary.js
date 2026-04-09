@@ -1,40 +1,42 @@
 if (window.innerWidth <= 768) throw new Error('Mobile: binary effect disabled')
 
 // --- Config ---
-const fontSize = 12
-const lineHeight = 14
+const fontSize = 16
+const lineHeight = 13
 const maxWeight = 1000
 const minWeight = 100
 const weightBuckets = 10
 
 // About zone
 const aboutColor = '#ffffff'
-const aboutGradientChars = 42
-const aboutMaxOpacity = 0.6
+const aboutGradientChars = 20
+const aboutMaxOpacity = 1
 const aboutFalloffExponent = 2
-const aboutMouseThreshold = 0.3
-const aboutScrollThreshold = 0.6
+const aboutMouseThreshold = 0.4
+const aboutScrollThreshold = 0.5
 const aboutInvertRandomize = false
-const aboutUseWeight = false
+const aboutUseWeight = true
+const aboutFlatWeight = 100
 const aboutUseOpacity = true
 const aboutSolidLeft = 0
 const aboutSolidRight = 0
 const aboutFalloffLeft = 40
-const aboutFalloffRight = 30
-const aboutFalloffTop = 50
-const aboutFalloffBottom = 80
+const aboutFalloffRight = 20
+const aboutFalloffTop = 40
+const aboutFalloffBottom = 70
 
 // Services zone
 const svcColor = '#ffffff'
-const svcGradientChars = 13
-const svcMaxOpacity = 0.5
-const svcFalloffExponent = 1.1
+const svcGradientChars = 12
+const svcMaxOpacity = 0.6
+const svcFalloffExponent = 1.2
 const svcFadeTopChars = 30
 const svcFadeBottomChars = 30
-const svcMouseThreshold = 0.5
+const svcMouseThreshold = 0.3
 const svcScrollThreshold = 0.5
 const svcInvertRandomize = true
 const svcUseWeight = true
+const svcFlatWeight = 100
 const svcUseOpacity = true
 const svcCardPadding = 12
 const svcCardFalloff = 0.9
@@ -45,13 +47,14 @@ const svcIconFalloff = 1
 const ctaColor = '#003a5c'
 const ctaGradientChars = 50
 const ctaMaxOpacity = 0.6
-const ctaFalloffExponent = 2
+const ctaFalloffExponent = 1.5
 const ctaFadeTopChars = 6
 const ctaFadeBottomChars = 9
-const ctaMouseThreshold = 0.6
+const ctaMouseThreshold = 0.7
 const ctaScrollThreshold = 0.5
 const ctaInvertRandomize = true
-const ctaUseWeight = false
+const ctaUseWeight = true
+const ctaFlatWeight = 300
 const ctaUseOpacity = true
 const ctaShapeRX = 50
 const ctaShapeRY = 20
@@ -59,15 +62,16 @@ const ctaShapeFalloff = 0.9
 
 // Footer zone
 const footerColor = '#ffffff'
-const footerGradientChars = 40
+const footerGradientChars = 30
 const footerMaxOpacity = 1
-const footerFalloffExponent = 1.1
-const footerFadeTopChars = 30
-const footerFadeBottomChars = 30
-const footerMouseThreshold = 0.2
+const footerFalloffExponent = 1
+const footerFadeTopChars = 20
+const footerFadeBottomChars = 20
+const footerMouseThreshold = 0.3
 const footerScrollThreshold = 0.2
 const footerInvertRandomize = true
-const footerUseWeight = false
+const footerUseWeight = true
+const footerFlatWeight = maxWeight
 const footerUseOpacity = true
 const footerShapeRadius = 50
 const footerShapeFalloff = 0.6
@@ -126,7 +130,7 @@ function fontString(weight) {
 }
 
 // --- Draw helper ---
-function drawZone(targetCtx, color, buckets, flatDraws) {
+function drawZone(targetCtx, color, buckets, flatDraws, flatWeight = maxWeight) {
     targetCtx.fillStyle = color
     for (const [, bucket] of buckets) {
         targetCtx.font = fontString(bucket.weight)
@@ -136,7 +140,7 @@ function drawZone(targetCtx, color, buckets, flatDraws) {
         }
     }
     if (flatDraws.length > 0) {
-        targetCtx.font = fontString(maxWeight)
+        targetCtx.font = fontString(flatWeight)
         for (const d of flatDraws) {
             targetCtx.globalAlpha = d.alpha
             targetCtx.fillText(d.ch, d.x, d.y)
@@ -348,7 +352,7 @@ function render() {
             }
         }
 
-        drawZone(aboutCtx, aboutColor, aboutBuckets, aboutDraws)
+        drawZone(aboutCtx, aboutColor, aboutBuckets, aboutDraws, aboutFlatWeight)
         aboutCtx.globalAlpha = 1
     }
 
@@ -566,9 +570,9 @@ function render() {
         }
     }
 
-    drawZone(ctx, svcColor, svcBuckets, svcDraws)
-    drawZone(ctaCtx, ctaColor, ctaBuckets, ctaDraws)
-    drawZone(ctx, footerColor, footerBuckets, footerDraws)
+    drawZone(ctx, svcColor, svcBuckets, svcDraws, svcFlatWeight)
+    drawZone(ctaCtx, ctaColor, ctaBuckets, ctaDraws, ctaFlatWeight)
+    drawZone(ctx, footerColor, footerBuckets, footerDraws, footerFlatWeight)
     ctx.globalAlpha = 1
     ctaCtx.globalAlpha = 1
 }
