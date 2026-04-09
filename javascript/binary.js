@@ -160,7 +160,7 @@ function initGrid() {
     canvas.style.height = viewH + 'px'
 
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-    ctx.font = fontString(maxWeight)
+    ctx.font = fontString(minWeight)
 
     charW = ctx.measureText('0').width
     cols = Math.floor(viewW / charW)
