@@ -790,7 +790,6 @@ section .row span {
 
 #contact {
     position: relative;
-    isolation: isolate;
     -webkit-clip-path: polygon(0 15vh, 100% 0, 100% 100%, 0 100%);
     clip-path: polygon(0 15vh, 100% 0, 100% 100%, 0 100%);
     padding: 25rem 0 15rem 0;
