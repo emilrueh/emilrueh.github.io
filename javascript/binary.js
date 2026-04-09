@@ -10,7 +10,7 @@ const weightBuckets = 10
 // About zone
 const aboutColor = '#ffffff'
 const aboutGradientChars = 30
-const aboutMaxOpacity = 0.4
+const aboutMaxOpacity = 0.6
 const aboutFalloffExponent = 2
 const aboutFadeTopChars = 0
 const aboutFadeBottomChars = 0
@@ -31,7 +31,7 @@ const aboutFalloffBottom = 80
 // Services zone
 const svcColor = '#ffffff'
 const svcGradientChars = 13
-const svcMaxOpacity = 0.3
+const svcMaxOpacity = 0.5
 const svcFalloffExponent = 1.1
 const svcFadeTopChars = 30
 const svcFadeBottomChars = 30
@@ -57,9 +57,9 @@ const ctaScrollThreshold = 0.5
 const ctaInvertRandomize = true
 const ctaUseWeight = false
 const ctaUseOpacity = true
-const ctaShapeRX = 42
-const ctaShapeRY = 18
-const ctaShapeFalloff = 0.3
+const ctaShapeRX = 50
+const ctaShapeRY = 20
+const ctaShapeFalloff = 0.9
 
 // Footer zone
 const footerColor = '#ffffff'
