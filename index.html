@@ -7,9 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Chivo+Mono:wght@100;300;400&display=swap"
-    rel="stylesheet" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Chivo+Mono:wght@100;300;400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Chivo+Mono:wght@100;300;400&display=swap" /></noscript>
 
   <title>Emil Rühmland Software Resolution | Backend AI Integration</title>
 
@@ -48,7 +47,7 @@
 
   <!-- Preload critical resources -->
   <link rel="preload" as="style" href="./css/main.css" />
-  <link rel="preload" as="image" href="./assets/active/logo.webp" type="image/webp" />
+  <link rel="preload" as="image" href="./assets/active/logo.webp" type="image/webp" media="(min-width: 769px)" />
   <link rel="stylesheet" href="./css/main.css" />
   <script defer src="./javascript/scrollreveal.min.js"></script>
   <script defer type="text/javascript" src="./javascript/scrollveal.js"></script>
@@ -142,115 +141,6 @@
 
   <!-- Hero Section -->
   <div id="hero">
-    <!-- TradingView Widget BEGIN -->
-    <div class="tradingview-widget-container">
-      <div class="tradingview-widget-container__widget"></div>
-      <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/markets/" rel="noopener nofollow"
-          target="_blank"><span class="blue-text">World markets</span></a> by TradingView</div>
-      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js"
-        async>
-          {
-            "lineWidth": 12,
-              "lineType": 2,
-                "chartType": "candlesticks",
-                  "showVolume": false,
-                    "fontColor": "rgb(106, 109, 120)",
-                      "gridLineColor": "rgba(242, 242, 242, 0.0)",
-                        "volumeUpColor": "rgba(34, 171, 148, 0.0)",
-                          "volumeDownColor": "rgba(247, 82, 95, 0.0)",
-                            "backgroundColor": "#0F0F0F",
-                              "widgetFontColor": "#DBDBDB",
-                                "upColor": "#54b0ff",
-                                  "downColor": "#54b0ff",
-                                    "borderUpColor": "#54b0ff",
-                                      "borderDownColor": "#54b0ff",
-                                        "wickUpColor": "#54b0ff",
-                                          "wickDownColor": "#54b0ff",
-                                            "colorTheme": "dark",
-                                              "isTransparent": true,
-                                                "locale": "en",
-                                                  "chartOnly": true,
-                                                    "scalePosition": "no",
-                                                      "scaleMode": "Logarithmic",
-                                                        "fontFamily": "Trattatello, fantasy",
-                                                          "valuesTracking": "0",
-                                                            "changeMode": "price-and-percent",
-                                                              "symbols": [
-                                                                [
-                                                                  "COINBASE:BTCUSD|1Y|USD"
-                                                                ],
-                                                                [
-                                                                  "COINBASE:SOLUSD|1Y|USD"
-                                                                ],
-                                                                [
-                                                                  "COINBASE:ADAUSD|1Y|USD"
-                                                                ],
-                                                                [
-                                                                  "BITSTAMP:ETHUSD|1Y|USD"
-                                                                ],
-                                                                [
-                                                                  "OANDA:XAGUSD|1Y|USD"
-                                                                ],
-                                                                [
-                                                                  "OANDA:XAUUSD|1Y|USD"
-                                                                ],
-                                                                [
-                                                                  "NASDAQ:ACWI|1Y|USD"
-                                                                ],
-                                                                [
-                                                                  "NASDAQ:TSLA|1Y|USD"
-                                                                ],
-                                                                [
-                                                                  "NASDAQ:MSFT|1Y|USD"
-                                                                ],
-                                                                [
-                                                                  "NASDAQ:GOOGL|1Y|USD"
-                                                                ],
-                                                                [
-                                                                  "NASDAQ:NFLX|1Y|USD"
-                                                                ],
-                                                                [
-                                                                  "NASDAQ:AMZN|1Y|USD"
-                                                                ],
-                                                                [
-                                                                  "NASDAQ:AAPL|1Y|USD"
-                                                                ],
-                                                                [
-                                                                  "NASDAQ:NVDA|1Y|USD"
-                                                                ],
-                                                                [
-                                                                  "NASDAQ:AMD|1Y|USD"
-                                                                ],
-                                                                [
-                                                                  "NASDAQ:META|1Y|USD"
-                                                                ]
-                                                              ],
-                                                                "dateRanges": [
-                                                                  "1d|1",
-                                                                  "1m|30",
-                                                                  "3m|60",
-                                                                  "12m|1D",
-                                                                  "60m|1W",
-                                                                  "all|1M"
-                                                                ],
-                                                                  "fontSize": "12",
-                                                                    "headerFontSize": "small",
-                                                                      "autosize": true,
-                                                                        "dateFormat": "MMM dd, yyyy",
-                                                                          "width": "101%",
-                                                                            "height": "99%",
-                                                                              "noTimeScale": true,
-                                                                                "hideDateRanges": false,
-                                                                                  "showMA": false,
-                                                                                    "maLength": "5",
-                                                                                      "maLineColor": "rgba(84, 176, 255, 1.0)",
-                                                                                        "maLineWidth": 3,
-                                                                                          "hideMarketStatus": false,
-                                                                                            "hideSymbolLogo": false
-          }
-        </script>
-    </div>
-    <!-- TradingView Widget END -->
     <div class="hero-overlay"></div>
 
     <section class="container hero-content">
@@ -303,8 +193,8 @@
             become a functional app within days, and from there we iterate
             together with direct communication until it's exactly what you need.
           </p>
-          <img class="about-wrapper__logo-inline" src="./assets/active/logo.webp"
-            alt="Emil Rühmland Software Resolution logo" />
+          <img class="about-wrapper__logo-inline" src="./assets/active/logo-90.webp"
+            alt="Emil Rühmland Software Resolution logo" width="90" height="90" loading="lazy" />
         </div>
       </div>
     </div>
@@ -438,6 +328,7 @@
   <!-- <script defer src="./javascript/crudeletters.js"></script> -->
   <script defer src="./javascript/readability.js"></script>
   <script defer src="./javascript/binary.js"></script>
+  <script defer src="./javascript/tradingview.js"></script>
 </body>
 
 </html>
