@@ -303,13 +303,6 @@ if (window.innerWidth > 768) {
                         visibility *= aFallB > 0 ? Math.max(0, distFromBottom / aFallB) : 0
                     }
 
-                    // Cursor hole
-                    if (visibility > 0 && cursorNearRow) {
-                        const cursorDist = Math.hypot(charCenterX - mouseX, charY - localMouseY)
-                        if (cursorDist < aboutGradientPx) {
-                            visibility *= cursorDist / aboutGradientPx
-                        }
-                    }
 
                     // Ripple suppression (convert to section-local)
                     for (const rip of ripples) {
