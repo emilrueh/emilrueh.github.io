@@ -934,21 +934,24 @@ section .row span {
 
 .footer__text {
     font-size: 1.3rem;
-    color: var(--text-light-grey);
-    opacity: 70%;
+    color: color-mix(in srgb, var(--text-light-grey) 70%, transparent);
     margin-top: 2rem;
+}
+
+.footer__text + .footer__text {
+    margin-top: .6rem;
 }
 
 .footer__text a {
     font-size: 1.3rem;
-    color: #bfbfbf;
+    color: inherit;
     transition: all .2s ease-in-out;
     display: inline-block
 }
 
 .footer__text a:hover,
 .footer__text a:active {
-    color: #36d1dc
+    color: #fff
 }
 
 @media(max-width: 45em) {
