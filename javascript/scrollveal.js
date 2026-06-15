@@ -15,14 +15,7 @@ if (window.matchMedia("(max-width: 45em)").matches) {
 }
 
 // Hero Section
-ScrollReveal().reveal(".name", {
-  ...defaultProps,
-  distance: "10px",
-  delay: 300,
-  origin: "bottom",
-  duration: 1800,
-  opacity: 0,
-});
+// .name intentionally NOT revealed: it is the LCP element, must paint immediately.
 // ScrollReveal().reveal(".company-name", {
 //   ...defaultProps,
 //   distance: "0px",

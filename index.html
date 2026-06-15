@@ -5,7 +5,47 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./css/fonts.css" />
+  <style>
+    @font-face {
+      font-family: 'Montserrat';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('./assets/fonts/montserrat-400.ttf') format('truetype')
+    }
+
+    @font-face {
+      font-family: 'Montserrat';
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url('./assets/fonts/montserrat-700.ttf') format('truetype')
+    }
+
+    @font-face {
+      font-family: 'Chivo Mono';
+      font-style: normal;
+      font-weight: 100;
+      font-display: swap;
+      src: url('./assets/fonts/chivomono-100.ttf') format('truetype')
+    }
+
+    @font-face {
+      font-family: 'Chivo Mono';
+      font-style: normal;
+      font-weight: 300;
+      font-display: swap;
+      src: url('./assets/fonts/chivomono-300.ttf') format('truetype')
+    }
+
+    @font-face {
+      font-family: 'Chivo Mono';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('./assets/fonts/chivomono-400.ttf') format('truetype')
+    }
+  </style>
 
   <title>Emil Rühmland Software Resolution | KI Backend Entwicklung</title>
 
@@ -44,7 +84,6 @@
 
   <!-- Preload critical resources -->
   <link rel="preload" as="style" href="./css/main.css" />
-  <link rel="preload" as="image" href="./assets/active/logo.webp" type="image/webp" media="(min-width: 769px)" />
   <link rel="stylesheet" href="./css/main.css" />
   <script defer src="./javascript/scrollreveal.min.js"></script>
   <script defer type="text/javascript" src="./javascript/scrollveal.js"></script>
@@ -174,21 +213,18 @@
       <div class="row about-wrapper">
         <div class="about-wrapper__image">
           <img class="img-fluid" src="./assets/active/logo.webp" alt="Emil Rühmland Software Resolution logo"
-            width="800" height="800" />
+            width="700" height="700" loading="lazy" />
         </div>
         <div class="about-wrapper__info">
           <h2 class="section-title">
-            <span class="text-color-highlight">KI-Integrationen
+            <span class="text-color-highlight">KI-Automatisierung
           </h2>
           <p class="about-wrapper__info-text">
-            Ich baue Backend-Systeme, die LLMs in echte
-            Geschäftsprozesse einbinden. Keine Spielerei, sondern Software,
-            die im Alltag funktioniert.
+            Ich binde Ihre Tools in eine KI ein und diese KI in Ihre Abläufe,
+            bis Ihr gesamtes Unternehmen KI-nativ läuft.
           </p>
           <p class="about-wrapper__info-text">
-            Sie bekommen Team-Ergebnisse zum Freelancer-Preis. Ihre Idee
-            läuft in Tagen als App, danach arbeiten wir direkt zusammen,
-            bis alles stimmt.
+            LLMs, Workflow-Automatisierung, APIs: <br> sauber integriert.
           </p>
           <img class="about-wrapper__logo-inline" src="./assets/active/logo-90.webp"
             alt="Emil Rühmland Software Resolution logo" width="90" height="90" loading="lazy" />
@@ -270,9 +306,9 @@
     <div class="container">
       <h2 class="section-title">Erzählen Sie mir<br class="mobile-break"> von Ihrem Projekt</h2>
       <div class="contact-wrapper">
-        <p class="contact-wrapper__text">Egal was Sie brauchen.<br class="desktop-break">Keine
+        <p class="contact-wrapper__text">Jeder Umfang ist umsetzbar.<br class="desktop-break">Keine
           Idee ist
-          zu ambitioniert.</p>
+          zu klein oder zu ambitioniert.</p>
         <a href="https://app.cal.eu/emilrueh/call" class="cta-btn cta-btn--contact">Kostenloses<br class="mobile-break">
           Erstgespräch</a>
       </div>
