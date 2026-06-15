@@ -1,5 +1,7 @@
 if (window.innerWidth > 768) {
-    document.addEventListener('DOMContentLoaded', function () {
+    // Defer heavy 3rd-party widget until the browser is idle after load,
+    // so it never competes with hero paint (LCP).
+    var injectWidget = function () {
         var container = document.createElement('div')
         container.className = 'tradingview-widget-container'
 
@@ -81,5 +83,19 @@ if (window.innerWidth > 768) {
 
         var hero = document.getElementById('hero')
         hero.insertBefore(container, hero.firstChild)
-    })
+    }
+
+    var schedule = function () {
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(injectWidget, { timeout: 3000 })
+        } else {
+            setTimeout(injectWidget, 200)
+        }
+    }
+
+    if (document.readyState === 'complete') {
+        schedule()
+    } else {
+        window.addEventListener('load', schedule)
+    }
 }
