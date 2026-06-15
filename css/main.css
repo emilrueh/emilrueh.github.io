@@ -328,7 +328,6 @@ section .row span {
     bottom: 0;
     right: 0;
     line-height: 1.2;
-    animation: hidden 1000ms linear forwards;
 }
 
 @media(max-width: 56.25em) {
@@ -1189,16 +1188,3 @@ section .row span {
    11. ANIMATIONS
    ========================================================================== */
 
-@keyframes hidden {
-    0% {
-        opacity: 0
-    }
-
-    50% {
-        opacity: 0
-    }
-
-    100% {
-        opacity: 1
-    }
-}
