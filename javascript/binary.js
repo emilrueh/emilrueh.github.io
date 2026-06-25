@@ -187,7 +187,7 @@ if (window.innerWidth > 768) {
         footerShapeRadiusPx = footerShapeRadius * charW
         svcCardPaddingPx = svcCardPadding * charW
         svcIconRadiusPx = svcIconRadius * charW
-        svcCardInfoEls = document.querySelectorAll('.service-card__info')
+        svcCardInfoEls = document.querySelectorAll('.project-wrapper__text')
         svcCardImageEls = document.querySelectorAll('.service-card__image')
 
         rowChars = []
@@ -200,7 +200,7 @@ if (window.innerWidth > 768) {
         }
 
         aboutEl = document.getElementById('about')
-        servicesEl = document.getElementById('services')
+        servicesEl = document.getElementById('projects')
         contactEl = document.getElementById('contact')
         footerEl = document.querySelector('.footer')
         ctaContentEl = contactEl ? contactEl.querySelector('.container') : null

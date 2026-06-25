@@ -16,4 +16,13 @@ if (window.innerWidth > 768) {
     glare: false,
     "max-glare": 6,
   });
+
+  let projectTilt = document.querySelectorAll(".rounded");
+  VanillaTilt.init(projectTilt, {
+    max: 3,
+    speed: 2000,
+    scale: 1.05,
+    glare: true,
+    "max-glare": 0.1,
+  });
 }
