@@ -78,8 +78,3 @@ ScrollReveal().reveal(".contact-wrapper__text", {
   delay: delayTime + 300,
   distance: "0px",
 });
-
-ScrollReveal().reveal(".cta-btn--contact", {
-  ...defaultProps,
-  delay: delayTime + 300,
-});

@@ -56,9 +56,12 @@ if (window.innerWidth > 768) {
     const ctaUseWeight = true
     const ctaFlatWeight = 300
     const ctaUseOpacity = true
-    const ctaShapeRX = 50
-    const ctaShapeRY = 20
-    const ctaShapeFalloff = 0.9
+    const ctaCardPadding = 1
+    const ctaCardFalloff = 1
+    const ctaHeadingPadX = 0.7
+    const ctaHeadingPadY = 0.4
+    const ctaHeadingRadius = 2
+    const ctaHeadingFade = 4
 
     // Footer zone
     const footerColor = '#ffffff'
@@ -104,7 +107,7 @@ if (window.innerWidth > 768) {
     let svcFadeTopPx, svcFadeBottomPx
     let ctaFadeTopPx, ctaFadeBottomPx, footerFadeTopPx, footerFadeBottomPx
     let aSolidL, aSolidR, aFallL, aFallR, aFallT, aFallB
-    let ctaShapeRXPx, ctaShapeRYPx, footerShapeRadiusPx, svcCardPaddingPx, svcIconRadiusPx
+    let ctaCardPaddingPx, ctaHeadingPadXPx, ctaHeadingPadYPx, ctaHeadingRadiusPx, ctaHeadingFadePx, footerShapeRadiusPx, svcCardPaddingPx, svcIconRadiusPx
 
     // --- Grid storage ---
     let rowChars = []
@@ -121,7 +124,8 @@ if (window.innerWidth > 768) {
     let ripples = []
 
     // --- Element references ---
-    let aboutEl, servicesEl, contactEl, footerEl, ctaContentEl
+    let aboutEl, servicesEl, contactEl, footerEl, ctaHeadingEl, ctaHeadingRange
+    let ctaCardEls = []
     let svcCardInfoEls = []
     let svcCardImageEls = []
 
@@ -182,8 +186,11 @@ if (window.innerWidth > 768) {
         aFallT = aboutFalloffTop * charW
         aFallB = aboutFalloffBottom * charW
         aboutColBound = Math.ceil((aFallL + aSolidL + aSolidR + aFallR) / charW)
-        ctaShapeRXPx = ctaShapeRX * charW
-        ctaShapeRYPx = ctaShapeRY * charW
+        ctaCardPaddingPx = ctaCardPadding * charW
+        ctaHeadingPadXPx = ctaHeadingPadX * charW
+        ctaHeadingPadYPx = ctaHeadingPadY * charW
+        ctaHeadingRadiusPx = ctaHeadingRadius * charW
+        ctaHeadingFadePx = ctaHeadingFade * charW
         footerShapeRadiusPx = footerShapeRadius * charW
         svcCardPaddingPx = svcCardPadding * charW
         svcIconRadiusPx = svcIconRadius * charW
@@ -203,7 +210,13 @@ if (window.innerWidth > 768) {
         servicesEl = document.getElementById('projects')
         contactEl = document.getElementById('contact')
         footerEl = document.querySelector('.footer')
-        ctaContentEl = contactEl ? contactEl.querySelector('.container') : null
+        ctaCardEls = contactEl ? contactEl.querySelectorAll('.pricing-card') : []
+        ctaHeadingEl = contactEl ? contactEl.querySelector('.section-title') : null
+        ctaHeadingRange = null
+        if (ctaHeadingEl) {
+            ctaHeadingRange = document.createRange()
+            ctaHeadingRange.selectNodeContents(ctaHeadingEl)
+        }
 
         if (contactEl && !ctaCanvas.parentElement) {
             contactEl.appendChild(ctaCanvas)
@@ -248,16 +261,33 @@ if (window.innerWidth > 768) {
         const contactRect = contactEl.getBoundingClientRect()
         const contactTop = contactRect.top
         const footerRect = footerEl ? footerEl.getBoundingClientRect() : null
-        const ctaContentRect = ctaContentEl ? ctaContentEl.getBoundingClientRect() : null
         const vh15 = viewH * 0.15
         const aboutTotalPx = aFallL + aSolidL + aSolidR + aFallR
 
         // Reposition CTA canvas to align with viewport
         ctaCanvas.style.top = (-contactTop) + 'px'
 
-        // CTA oval center
-        const ctaCX = ctaContentRect ? ctaContentRect.left + ctaContentRect.width / 2 : viewW / 2
-        const ctaCY = ctaContentRect ? ctaContentRect.top + ctaContentRect.height / 2 : contactTop + contactRect.height / 2
+        // CTA exclusion shapes: per-card ovals + heading flat oval
+        const ctaCardRects = []
+        for (const el of ctaCardEls) {
+            const r = el.getBoundingClientRect()
+            ctaCardRects.push({
+                cx: (r.left + r.right) / 2,
+                cy: (r.top + r.bottom) / 2,
+                hw: (r.right - r.left) / 2 + ctaCardPaddingPx,
+                hh: (r.bottom - r.top) / 2 + ctaCardPaddingPx
+            })
+        }
+        let ctaHeadingBox = null
+        if (ctaHeadingRange) {
+            const r = ctaHeadingRange.getBoundingClientRect()
+            ctaHeadingBox = {
+                cx: (r.left + r.right) / 2,
+                cy: (r.top + r.bottom) / 2,
+                hw: (r.right - r.left) / 2 + ctaHeadingPadXPx,
+                hh: (r.bottom - r.top) / 2 + ctaHeadingPadYPx
+            }
+        }
 
         // Footer half-circle center (bottom center)
         const footerCX = viewW / 2
@@ -466,13 +496,27 @@ if (window.innerWidth > 768) {
                         if (distFromBottom <= 0) visibility = 0
                         else if (distFromBottom < ctaFadeBottomPx) visibility *= distFromBottom / ctaFadeBottomPx
 
-                        const dx = (charCenterX - ctaCX) / ctaShapeRXPx
-                        const dy = (charY - ctaCY) / ctaShapeRYPx
-                        const nd = Math.hypot(dx, dy)
-                        if (nd < 1) {
-                            const inner = 1 - ctaShapeFalloff
-                            if (nd < inner) visibility = 0
-                            else visibility *= (nd - inner) / ctaShapeFalloff
+                        // Pricing card exclusions (strong fade)
+                        for (const cr of ctaCardRects) {
+                            const cdx = (charCenterX - cr.cx) / cr.hw
+                            const cdy = (charY - cr.cy) / cr.hh
+                            const cnd = Math.hypot(cdx, cdy)
+                            if (cnd < 1) {
+                                const inner = 1 - ctaCardFalloff
+                                if (cnd < inner) { visibility = 0; break }
+                                else visibility *= (cnd - inner) / ctaCardFalloff
+                            }
+                        }
+
+                        // Heading rounded-rect exclusion (follows text box)
+                        if (visibility > 0.01 && ctaHeadingBox) {
+                            const qx = Math.abs(charCenterX - ctaHeadingBox.cx) - (ctaHeadingBox.hw - ctaHeadingRadiusPx)
+                            const qy = Math.abs(charY - ctaHeadingBox.cy) - (ctaHeadingBox.hh - ctaHeadingRadiusPx)
+                            const outside = Math.hypot(Math.max(qx, 0), Math.max(qy, 0)) - ctaHeadingRadiusPx
+                            const sdf = outside + Math.min(Math.max(qx, qy), 0)
+                            if (sdf < 0) {
+                                visibility *= Math.max(0, (sdf + ctaHeadingFadePx) / ctaHeadingFadePx)
+                            }
                         }
 
                         if (visibility > 0.01) zone = 3

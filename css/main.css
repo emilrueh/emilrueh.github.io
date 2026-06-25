@@ -792,7 +792,7 @@ section .row span {
     position: relative;
     -webkit-clip-path: polygon(0 15vh, 100% 0, 100% 100%, 0 100%);
     clip-path: polygon(0 15vh, 100% 0, 100% 100%, 0 100%);
-    padding: 25rem 0 15rem 0;
+    padding: 16rem 0 10rem 0;
     margin-top: -6rem;
     margin-bottom: -1px;
     color: #fff;
@@ -898,17 +898,15 @@ section .row span {
     flex-direction: column;
     text-align: left;
     padding: 3.5rem 3rem;
-    border-radius: 14px;
-    background: rgba(18, 18, 18, 0.45);
+    border-radius: 28px;
+    background: rgba(18, 18, 18, 0.72);
     border: 1px solid rgba(255, 255, 255, 0.14);
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
-    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1), border-color 0.4s ease;
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    will-change: transform;
 }
 
 .pricing-card:hover {
-    transform: translateY(-6px);
-    border-color: var(--accent-light-blue);
+    transform: scale(1.04);
 }
 
 .pricing-card__label {
@@ -921,35 +919,26 @@ section .row span {
 }
 
 .pricing-card__title {
-    font-size: 2.3rem;
+    font-size: 2.2rem;
     line-height: 1.25;
     color: var(--text-white);
     font-weight: 700;
     margin-bottom: 2.4rem;
 }
 
-.pricing-card__features {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 3rem 0;
-}
-
-.pricing-card__features li {
-    position: relative;
-    padding-left: 2.6rem;
-    margin-bottom: 1.4rem;
-    font-size: 1.55rem;
-    line-height: 1.5;
+.pricing-card__lead,
+.pricing-card__desc {
+    font-size: 1.6rem;
+    line-height: 1.6;
     color: var(--text-light-grey);
 }
 
-.pricing-card__features li::before {
-    content: "\2713";
-    position: absolute;
-    left: 0;
-    top: 0;
-    color: var(--accent-light-blue);
-    font-weight: 700;
+.pricing-card__lead {
+    margin: 0 0 1.5rem 0;
+}
+
+.pricing-card__desc {
+    margin: 0 0 2.4rem 0;
 }
 
 .pricing-card__cta {
@@ -957,7 +946,7 @@ section .row span {
     width: 100%;
     margin-top: auto;
     text-align: center;
-    font-size: 1.7rem;
+    font-size: 1.8rem;
     padding: 1.2rem 1.6rem;
 }
 
@@ -1156,6 +1145,10 @@ section .row span {
     #projects {
         padding-left: 9rem;
     }
+
+    #projects .section-title {
+        margin-left: -9rem;
+    }
 }
 
 @media(max-width: 45em) {
@@ -1232,7 +1225,7 @@ section .row span {
 
 #projects .project-wrapper__text-info {
     color: var(--text-light-grey);
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
 }
 
 #projects .project-wrapper__text-btns {
@@ -1258,7 +1251,7 @@ section .row span {
 #projects .project-wrapper__image .thumbnail {
     border: none;
     box-shadow: 12px 18px 42px -6px rgb(0, 0, 0);
-    border-radius: 54px;
+    border-radius: 28px;
     transition: box-shadow 0.6s ease;
 }
 
@@ -1270,7 +1263,7 @@ section .row span {
     width: 100%;
     height: auto;
     vertical-align: middle;
-    border-radius: 54px
+    border-radius: 28px
 }
 
 @media(max-width: 37.5em) {
