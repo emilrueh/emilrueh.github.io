@@ -423,7 +423,8 @@ section .row span {
 
 @media(max-width: 37.5em) {
     .company-name {
-        font-size: 2.64rem;
+        font-size: 2rem;
+        white-space: nowrap;
     }
 }
 
@@ -826,10 +827,20 @@ section .row span {
 
 @media(max-width: 45em) {
     #contact {
-        padding: 15rem 0 10rem 0;
-        margin-top: 6rem;
+        padding: 15rem 0 4rem 0;
+        margin-top: 0;
         -webkit-clip-path: polygon(0 8vh, 100% 0, 100% 100%, 0 100%);
         clip-path: polygon(0 8vh, 100% 0, 100% 100%, 0 100%)
+    }
+
+    #contact::before {
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        margin: 0;
+        border-radius: 0;
+        animation: none;
     }
 }
 
@@ -1036,7 +1047,6 @@ section .row span {
 @media(max-width: 45em) {
     .footer__text {
         margin-top: 3rem;
-        margin-bottom: -3rem;
     }
 }
 
@@ -1154,7 +1164,8 @@ section .row span {
 @media(max-width: 45em) {
     #projects {
         margin-top: -6rem;
-        padding-top: 5rem
+        padding-top: 5rem;
+        margin-bottom: 0;
     }
 }
 
@@ -1244,7 +1255,7 @@ section .row span {
     #projects .project-wrapper__image {
         width: 100%;
         margin-top: -4rem;
-        margin-bottom: 12rem;
+        margin-bottom: 7rem;
     }
 }
 
