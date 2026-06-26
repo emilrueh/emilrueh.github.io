@@ -514,7 +514,7 @@ section .row span {
     height: 3.6rem;
 }
 
-.hero-icons a[aria-label="Gespräch vereinbaren"] .icon {
+.hero-icons a[aria-label="schedule a call"] .icon {
     width: 3.2rem;
     height: 3.2rem;
 }
@@ -1192,7 +1192,7 @@ section .row span {
 
 @media(max-width: 37.5em) {
     #projects .project-wrapper .row {
-        margin-bottom: 4rem
+        margin-bottom: 0
     }
 }
 
@@ -1255,7 +1255,7 @@ section .row span {
     #projects .project-wrapper__image {
         width: 100%;
         margin-top: -4rem;
-        margin-bottom: 7rem;
+        margin-bottom: 6rem;
     }
 }
 
