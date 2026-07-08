@@ -23,7 +23,6 @@
     --accent-middle: #002239;
     --text-white: #ffffff;
     --text-light-grey: #adb5bd;
-    --chart-opacity: 0.15;
 }
 
 /* ==========================================================================
@@ -385,10 +384,11 @@ section .row span {
 
 .company-name {
     display: block;
-    font-size: 4.27rem;
+    font-size: 3.14rem;
     font-weight: 700;
     margin-top: 0.1rem;
     margin-left: 0rem;
+    text-align: center;
     --company-fade: rgba(255, 255, 255, 0.6);
     background: linear-gradient(to bottom, #ffffffcf 21%, var(--company-fade) 96%);
     -webkit-background-clip: text;
@@ -422,7 +422,8 @@ section .row span {
 
 @media(max-width: 37.5em) {
     .company-name {
-        font-size: 2.64rem;
+        font-size: 2rem;
+        white-space: nowrap;
     }
 }
 
@@ -512,7 +513,7 @@ section .row span {
     height: 3.6rem;
 }
 
-.hero-icons a[aria-label="Gespräch vereinbaren"] .icon {
+.hero-icons a[aria-label="schedule a call"] .icon {
     width: 3.2rem;
     height: 3.2rem;
 }
@@ -571,17 +572,6 @@ section .row span {
         scale: 1.03;
     }
 }
-
-@keyframes widgetFadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: var(--chart-opacity);
-    }
-}
-
 
 @media(max-width: 75em) {
     #about {
@@ -791,7 +781,7 @@ section .row span {
     position: relative;
     -webkit-clip-path: polygon(0 15vh, 100% 0, 100% 100%, 0 100%);
     clip-path: polygon(0 15vh, 100% 0, 100% 100%, 0 100%);
-    padding: 25rem 0 15rem 0;
+    padding: 16rem 0 10rem 0;
     margin-top: -6rem;
     margin-bottom: -1px;
     color: #fff;
@@ -825,10 +815,20 @@ section .row span {
 
 @media(max-width: 45em) {
     #contact {
-        padding: 15rem 0 10rem 0;
-        margin-top: 6rem;
+        padding: 15rem 0 4rem 0;
+        margin-top: 0;
         -webkit-clip-path: polygon(0 8vh, 100% 0, 100% 100%, 0 100%);
         clip-path: polygon(0 8vh, 100% 0, 100% 100%, 0 100%)
+    }
+
+    #contact::before {
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        margin: 0;
+        border-radius: 0;
+        animation: none;
     }
 }
 
@@ -880,44 +880,85 @@ section .row span {
 }
 
 /* ==========================================================================
-   8b. TRADINGVIEW WIDGET & MOUSE ZONES
+   8a. PRICING TIERS
    ========================================================================== */
 
-#hero .tradingview-widget-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    animation: widgetFadeIn 3s ease-out 1s backwards;
-    height: 100%;
-    z-index: 0;
-    opacity: var(--chart-opacity);
-    transition: opacity 1s ease;
-    -webkit-mask-image:
-        radial-gradient(ellipse at -5% 105%, transparent 12%, black 54%),
-        /* bottom-left */
-        radial-gradient(ellipse at 105% -5%, transparent 12%, black 54%),
-        /* top-right */
-        radial-gradient(ellipse at 105% 105%, transparent 21%, black 54%);
-    /* bottom-right */
-    mask-image:
-        radial-gradient(ellipse at -5% 105%, transparent 12%, black 54%),
-        /* bottom-left */
-        radial-gradient(ellipse at 105% -5%, transparent 12%, black 54%),
-        /* top-right */
-        radial-gradient(ellipse at 105% 105%, transparent 21%, black 54%);
-    /* bottom-right */
-    -webkit-mask-composite: source-in;
-    mask-composite: intersect;
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items: stretch;
 }
 
-#hero .tradingview-widget-container:hover {
-    opacity: 0.6;
+.pricing-card {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding: 3.5rem 3rem;
+    border-radius: 28px;
+    background: rgba(18, 18, 18, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    will-change: transform;
+}
+
+.pricing-card:hover {
+    transform: scale(1.04);
+}
+
+.pricing-card__label {
+    font-size: 1.3rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-light-blue);
+    margin-bottom: 1.6rem;
+    font-weight: 700;
+}
+
+.pricing-card__title {
+    font-size: 2.2rem;
+    line-height: 1.25;
+    color: var(--text-white);
+    font-weight: 700;
+    margin-bottom: 2.4rem;
+}
+
+.pricing-card__lead,
+.pricing-card__desc {
+    font-size: 1.6rem;
+    line-height: 1.6;
+    color: var(--text-light-grey);
+}
+
+.pricing-card__lead {
+    margin: 0 0 1.5rem 0;
+}
+
+.pricing-card__desc {
+    margin: 0 0 2.4rem 0;
+}
+
+.pricing-card__cta {
+    display: block;
+    width: 100%;
+    margin-top: auto;
+    text-align: center;
+    font-size: 1.8rem;
+    padding: 1.2rem 1.6rem;
+}
+
+@media (max-width: 62em) {
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        gap: 2.5rem;
+        padding: 0 2rem;
+    }
 }
 
 @media(max-width: 48em) {
-
-    #hero .tradingview-widget-container,
     .hero-overlay {
         display: none;
     }
@@ -937,7 +978,7 @@ section .row span {
     margin-top: 2rem;
 }
 
-.footer__text + .footer__text {
+.footer__text+.footer__text {
     margin-top: .6rem;
 }
 
@@ -956,7 +997,6 @@ section .row span {
 @media(max-width: 45em) {
     .footer__text {
         margin-top: 3rem;
-        margin-bottom: -3rem;
     }
 }
 
@@ -1048,23 +1088,34 @@ section .row span {
 }
 
 #projects {
-    background-color: var(--bg-dark);
+    background-color: transparent;
     color: #00000000;
     margin-top: -12rem;
     padding-top: 15rem;
     margin-bottom: 9rem;
 }
 
+#projects .section-title {
+    color: var(--text-white);
+    text-align: center;
+    margin-bottom: 6rem;
+}
+
 @media(min-width: 75em) {
     #projects {
         padding-left: 9rem;
+    }
+
+    #projects .section-title {
+        margin-left: -9rem;
     }
 }
 
 @media(max-width: 45em) {
     #projects {
         margin-top: -6rem;
-        padding-top: 5rem
+        padding-top: 5rem;
+        margin-bottom: 0;
     }
 }
 
@@ -1091,7 +1142,7 @@ section .row span {
 
 @media(max-width: 37.5em) {
     #projects .project-wrapper .row {
-        margin-bottom: 4rem
+        margin-bottom: 0
     }
 }
 
@@ -1135,7 +1186,7 @@ section .row span {
 
 #projects .project-wrapper__text-info {
     color: var(--text-light-grey);
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
 }
 
 #projects .project-wrapper__text-btns {
@@ -1154,14 +1205,14 @@ section .row span {
     #projects .project-wrapper__image {
         width: 100%;
         margin-top: -4rem;
-        margin-bottom: 12rem;
+        margin-bottom: 6rem;
     }
 }
 
 #projects .project-wrapper__image .thumbnail {
     border: none;
     box-shadow: 12px 18px 42px -6px rgb(0, 0, 0);
-    border-radius: 54px;
+    border-radius: 28px;
     transition: box-shadow 0.6s ease;
 }
 
@@ -1173,7 +1224,7 @@ section .row span {
     width: 100%;
     height: auto;
     vertical-align: middle;
-    border-radius: 54px
+    border-radius: 28px
 }
 
 @media(max-width: 37.5em) {
@@ -1187,4 +1238,3 @@ section .row span {
 /* ==========================================================================
    11. ANIMATIONS
    ========================================================================== */
-

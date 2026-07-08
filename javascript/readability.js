@@ -97,9 +97,9 @@ if (window.innerWidth > 768) {
 
     function animateStyle(element, color, marginTop, lineHeight, colorDuration, colorDelay, marginTopDuration, marginTopDelay, lineHeightDuration, lineHeightDelay) {
         // element.style.transition = `color ${colorDuration}ms ${colorDelay}ms, margin-top ${marginTopDuration}ms ${marginTopDelay}ms, line-height ${lineHeightDuration}ms ${lineHeightDelay}ms`;
-        element.style.transition = `color ${colorDuration}ms ${colorDelay}ms, margin-top ${marginTopDuration}ms ${marginTopDelay}ms`;
+        element.style.transition = `color ${colorDuration}ms ${colorDelay}ms`;
         element.style.color = color;
-        element.style.marginTop = marginTop;
+        // element.style.marginTop = marginTop;
         // element.style.lineHeight = lineHeight;
     }
 }
