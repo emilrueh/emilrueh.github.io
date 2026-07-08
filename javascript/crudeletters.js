@@ -70,6 +70,6 @@ if (window.innerWidth > 768) {
         };
 
         title.onmouseover = scramble;
-        scramble();
+        document.fonts.ready.then(scramble);
     });
 }
