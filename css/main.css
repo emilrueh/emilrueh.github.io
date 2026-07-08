@@ -23,7 +23,6 @@
     --accent-middle: #002239;
     --text-white: #ffffff;
     --text-light-grey: #adb5bd;
-    --chart-opacity: 0.15;
 }
 
 /* ==========================================================================
@@ -574,17 +573,6 @@ section .row span {
     }
 }
 
-@keyframes widgetFadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: var(--chart-opacity);
-    }
-}
-
-
 @media(max-width: 75em) {
     #about {
         height: 100%;
@@ -970,45 +958,7 @@ section .row span {
     }
 }
 
-/* ==========================================================================
-   8b. TRADINGVIEW WIDGET & MOUSE ZONES
-   ========================================================================== */
-
-#hero .tradingview-widget-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    animation: widgetFadeIn 3s ease-out 1s backwards;
-    height: 100%;
-    z-index: 0;
-    opacity: var(--chart-opacity);
-    transition: opacity 1s ease;
-    -webkit-mask-image:
-        radial-gradient(ellipse at -5% 105%, transparent 12%, black 54%),
-        /* bottom-left */
-        radial-gradient(ellipse at 105% -5%, transparent 12%, black 54%),
-        /* top-right */
-        radial-gradient(ellipse at 105% 105%, transparent 21%, black 54%);
-    /* bottom-right */
-    mask-image:
-        radial-gradient(ellipse at -5% 105%, transparent 12%, black 54%),
-        /* bottom-left */
-        radial-gradient(ellipse at 105% -5%, transparent 12%, black 54%),
-        /* top-right */
-        radial-gradient(ellipse at 105% 105%, transparent 21%, black 54%);
-    /* bottom-right */
-    -webkit-mask-composite: source-in;
-    mask-composite: intersect;
-}
-
-#hero .tradingview-widget-container:hover {
-    opacity: 0.6;
-}
-
 @media(max-width: 48em) {
-
-    #hero .tradingview-widget-container,
     .hero-overlay {
         display: none;
     }
