@@ -1,33 +1,75 @@
 if (window.innerWidth > 768) {
-    const crudeLetters = "01̵͒͂1̷̳̱̙̀01̶̠̂͊̈́0̴͂͘̚";
-    // const crudeLetters = "011010";
-    const titles = document.querySelectorAll(".hero-title a");
+    // const crudeLetters = "01̵͒͂1̷̳̱̙̀01̶̠̂͊̈́0̴͂͘̚";
+    const crudeLetters = "01_ ";
+    const scrambleWindow = 3; // glitch chars ahead of the resolved text
+    const scrambleSpeed = 0.06; // letters resolved per tick
+    const scrambleRotate = 40; // ms between glitch char changes
+    const scrambleEvery = 9; // seconds between automatic replays (0 = off)
+    const titles = document.querySelectorAll(".hero-title .name");
 
     titles.forEach(title => {
         const originalText = title.textContent;
         const originalLength = originalText.length;
 
-        title.onmouseover = event => {
+        let autoTimer = null;
+
+        const scramble = () => {
+            if (title.dataset.scrambling) return;
+            title.dataset.scrambling = "true";
+
+            // any scramble pushes the next automatic one out by scrambleEvery
+            if (scrambleEvery > 0) {
+                clearTimeout(autoTimer);
+                autoTimer = setTimeout(scramble, scrambleEvery * 1000);
+            }
+
+            // lock the box so glitch glyphs don't shift surrounding layout
+            const rect = title.getBoundingClientRect();
+            title.style.display = "inline-block";
+            title.style.width = `${rect.width}px`;
+            title.style.height = `${rect.height}px`;
+            title.style.whiteSpace = "nowrap";
+
             let iterations = 0;
+            let lastRotate = 0;
+            let glitchCache = {};
 
             const interval = setInterval(() => {
+                if (performance.now() - lastRotate >= scrambleRotate) {
+                    lastRotate = performance.now();
+                    glitchCache = {};
+                }
+
                 const newText = originalText
                     .split("")
                     .map((char, index) => {
                         if (index < iterations) {
                             return char;
                         }
-                        return `<span style="opacity: 1;">${crudeLetters[Math.floor(Math.random() * crudeLetters.length)]}</span>`;
+                        if (index < iterations + scrambleWindow) {
+                            glitchCache[index] ??= crudeLetters[Math.floor(Math.random() * crudeLetters.length)];
+                            return `<span style="opacity: 1;">${glitchCache[index]}</span>`;
+                        }
+                        return "";
                     })
                     .join("");
 
-                event.target.innerHTML = newText;
+                title.innerHTML = newText;
 
                 if (iterations >= originalLength) {
                     clearInterval(interval);
+                    title.innerHTML = originalText;
+                    title.style.display = "";
+                    title.style.width = "";
+                    title.style.height = "";
+                    title.style.whiteSpace = "";
+                    delete title.dataset.scrambling;
                 }
-                iterations += 0.019;
+                iterations += scrambleSpeed;
             }, 1);
         };
+
+        title.onmouseover = scramble;
+        scramble();
     });
 }
