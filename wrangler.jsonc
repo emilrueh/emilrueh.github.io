@@ -1,6 +1,8 @@
 {
   "name": "ruehmland-dot-de",
   "compatibility_date": "2026-01-16",
+  "workers_dev": false,
+  "preview_urls": true,
   "assets": {
     "directory": "./"
   }
