@@ -1189,6 +1189,14 @@ section .row span {
     margin-bottom: 1.5rem;
 }
 
+#projects .project-wrapper__text-info a {
+    color: var(--text-white);
+}
+
+#projects .project-wrapper__text-info a:hover {
+    color: var(--accent-light-blue);
+}
+
 #projects .project-wrapper__text-btns {
     width: 100%;
     display: flex;

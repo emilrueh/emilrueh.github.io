@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preload" href="/assets/fonts/montserrat-var.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/css/fonts.css" />
+
+  <title>Transparent Backgrounds for AI Art from a White and a Black Render | Emil Rühmland</title>
+
+  <meta name="description"
+    content="Why background removers fail on AI art, the 1996 matting paper that fixed it, and where it still breaks." />
+  <meta name="author" content="Emil Rühmland" />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="canonical" href="https://ruehmland.com/blog/transparent-backgrounds-for-ai-art" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Transparent Backgrounds for AI Art from a White and a Black Render" />
+  <meta property="og:description"
+    content="Why background removers fail on AI art, the 1996 matting paper that fixed it, and where it still breaks." />
+  <meta property="og:url" content="https://ruehmland.com/blog/transparent-backgrounds-for-ai-art" />
+  <meta property="og:image" content="https://ruehmland.com/assets/blog/transparent-backgrounds-for-ai-art/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="Emil Rühmland" />
+  <meta property="article:published_time" content="2026-10-14" />
+  <meta property="article:author" content="https://ruehmland.com/" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Transparent Backgrounds for AI Art from a White and a Black Render" />
+  <meta name="twitter:description"
+    content="Why background removers fail on AI art, the 1996 matting paper that fixed it, and where it still breaks." />
+  <meta name="twitter:image" content="https://ruehmland.com/assets/blog/transparent-backgrounds-for-ai-art/og.jpg" />
+
+  <link rel="icon" type="image/webp" href="/assets/active/favicon.webp" />
+  <meta name="theme-color" content="#36d1dc" />
+
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/blog.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Transparent Backgrounds for AI Art from a White and a Black Render",
+    "description": "Why background removers fail on AI art, the 1996 matting paper that fixed it, and where it still breaks.",
+    "image": "https://ruehmland.com/assets/blog/transparent-backgrounds-for-ai-art/og.jpg",
+    "datePublished": "2026-10-14",
+    "mainEntityOfPage": "https://ruehmland.com/blog/transparent-backgrounds-for-ai-art",
+    "author": {
+      "@type": "Person",
+      "@id": "https://ruehmland.com/#emil",
+      "name": "Emil Rühmland",
+      "url": "https://ruehmland.com/"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <nav class="blog-nav">
+    <a href="/">Emil Rühmland</a>
+    <a href="/blog/">Blog</a>
+  </nav>
+
+  <main>
+    <article class="blog post">
+      <h1 class="blog__title">Transparent Backgrounds for AI Art from a White and a Black Render</h1>
+      <p class="blog__subtitle">Why background removers fail on AI art, the 1996 matting paper that fixed it, and where
+        it still breaks.</p>
+      <p class="blog__meta"><time datetime="2026-10-14">14 October 2026</time></p>
+
+      <h2 id="why-alpha-at-all">Why alpha at all</h2>
+      <p>I am building a 2D game and testing AI image generation for its art. Characters get drawn over scenes, so every asset needs a transparent background. The small open model I use, FLUX.2 klein 4B with a style LoRA, cannot generate with alpha, and all the background removal tools I tried fell short somewhere, like a white blur on the edges, the gap between an arm and the body left filled in, eyes cut out, etc.</p>
+      <p>Models with native alpha exist, but none of them fit. LayerDiffuse only runs on SD1.5 and SDXL. Getting real alpha out of FLUX means training an RGBA VAE and finetuning the transformer, around 8,000 samples even with AlphaVAE, which is a larger undertaking. GPT-Image-2 and Recraft output real transparency, but I cannot run my own LoRA on them. So the model renders RGB on white, and the alpha has to come afterwards.</p>
+
+      <h2 id="what-failed">What failed</h2>
+      <p>Keying out white took the eyes and any other white thing along with the background. Chroma green came out as several shades and left a green fringe on every edge, and would have restricted generation by not allowing a color which would be tough to teach the base model consistently.</p>
+      <p>Flood filling from the image border fixed the eyes, since they are not connected to the border. The outside came out right, but every enclosed gap stayed opaque, like the part between an arm on the hip and the body.</p>
+      <p>Then segmentation models like BiRefNet found all the cutouts, but their soft edges kept white background half visible as a white halo on any dark scene. InSPyReNet had the cleanest edges of all of them, and still punched out the eyes and missed the gap under a raised arm.</p>
+      <p>Every one of these looks at a single image and guesses which pixels are background. A white pixel next to the outline could be an eye or the backdrop, and a single image does not know.</p>
+      <figure>
+        <img src="/assets/blog/transparent-backgrounds-for-ai-art/02-whitekey-segmentation-pair.webp"
+          alt="Two failed cutouts of the same AI-generated character on a dark background" width="1536" height="1472"
+          loading="lazy" />
+        <figcaption>Same AI-generated frame, two failed cutouts on a dark scene. Left: keying out white takes the eyes, socks and most of the tunic. Right: a segmentation model (isnet) greys the tunic, drops the socks and leaves a glow around the hair.</figcaption>
+      </figure>
+
+      <h2 id="the-paper">The paper</h2>
+      <p>Smith and Blinn wrote this problem down for film compositing in 1996, in <em>Blue Screen Matting</em> (SIGGRAPH). Their solution is triangulation, where the same subject is filmed against two different known colors, in my case white and black:</p>
+      <p><code>alpha = 1 - (white - black) / 255</code></p>
+      <p>Whatever looks the same in both shots is the figure and therefore opaque. Whatever flips from white to black is background.</p>
+
+      <h2 id="my-version">My version</h2>
+      <p>To use this with a diffusion model, I generate an image prompted on white and then pass it as reference back into the model and prompt <code>the same subject, unchanged, on a solid black background</code>. The reference is what makes it work, as the pixels of the object itself must be the same, and since a diffusion model regenerates the whole image, the reference keeps the change down to a minimum, at least on klein 4B, the only model I verified so far.</p>
+      <figure>
+        <img src="/assets/blog/transparent-backgrounds-for-ai-art/01-pair-and-result.webp"
+          alt="The same AI-generated character on white, on black, and cut out on a dark background" width="1600"
+          height="1022" loading="lazy" />
+        <figcaption>AI-generated with FLUX.2 klein 4B and a style LoRA. The white render, the black render made from it, and the result placed on a dark scene: white hair, eyes, tunic and socks all stay.</figcaption>
+      </figure>
+      <p>I packed this into a small tool, which you can give an image on white and on black, and it returns the figure on a transparent background. Run it yourself and see how it works: <a href="https://github.com/emilrueh/ai-alpha-bg">ai-alpha-bg</a></p>
+      <p>It also checks the white and black image pair by measuring how much of the actual object changed between the two images. A good pair shows around 1.5%. Shifting the black image by a single pixel already gives 4.6%, and above 3% it will send a warning.</p>
+      <p>Problem here still is that the images never do match perfectly, so I added two small fixes on top: values that are almost opaque or almost transparent get rounded, and the colour is taken from the black image in order to remove any white halo, since black adds nothing to a soft edge.</p>
+
+      <h2 id="enclosed-gaps">Enclosed gaps</h2>
+      <p>An image model’s understanding of the world is limited, and it often won’t understand that the space between the legs, for example, is background too, so that gap stays white in the black image. The tool sees no change and keeps it opaque. Prompting the model to paint those gaps black did nothing.</p>
+      <p>So I brought back a segmentation model, allowed only to clear areas that are white in both images. But eye whites and teeth are enclosed white too, and it cut those as well, so it has to only clear an area if segmentation calls most of it background and it is larger than 0.1% of the image. It is an approximation though, as it stopped the wrong cuts, but a small real gap might get missed, so this is the part that might fail eventually.</p>
+      <figure>
+        <img src="/assets/blog/transparent-backgrounds-for-ai-art/03-veto-eye-holes.webp"
+          alt="Eye whites of an AI-generated character, cut out on the left and intact on the right" width="1160"
+          height="280" loading="lazy" />
+        <figcaption>AI-generated portrait, eyes over a checkerboard. Left: the unrestricted segmentation step cut the eye whites out. Right: with the size rule, untouched.</figcaption>
+      </figure>
+
+      <h2 id="what-it-is-good-at">What it is good at</h2>
+      <p>It works with any LoRA, on any model whose edit keeps the figure in place. Soft edges get exactly the right transparency without a halo, and white parts of the art stay.</p>
+
+      <h2 id="where-it-breaks">Where it breaks</h2>
+      <p>Every image has to be generated twice. If the black version moves the figure, those spots turn partly transparent, and editors that redraw the whole image, like most hosted ones, will likely do that. A strong LoRA on the black pass does the same, which is why mine stayed at 0.3. The rounding loses detail in things like smoke and glass. The gaps still depend on segmentation, so close-ups get no gap removal at all. And I have only tested one style: flat colours, thick outline.</p>
+      <p>Which other editing models keep the figure in place? And has anyone gotten rid of the enclosed gaps without a segmentation model?</p>
+
+      <aside class="author">
+        <a href="/" class="author__logo"><img src="/assets/active/logo-90.webp" alt="Emil Rühmland Software Resolution logo"
+            width="90" height="90" loading="lazy" /></a>
+        <p class="author__text">I connect AI to the tools your business already uses.</p>
+        <p class="author__links">
+          <a href="/#projects">Case studies</a>
+          <a href="/#contact" class="cta-btn cta-btn--contact">Work with me</a>
+        </p>
+      </aside>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer__text">
+        &copy; <span id="year"></span> Emil Rühmland Software Resolution
+      </p>
+      <p class="footer__text">
+        <a href="/legal">Legal Notice</a> and
+        <a href="/privacy">Privacy Policy</a>
+      </p>
+      <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+      </script>
+    </div>
+  </footer>
+</body>
+
+</html>
