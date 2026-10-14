@@ -1,0 +1,9 @@
+.git
+.gitignore
+.vscode
+.claude
+*.md
+LICENSE
+CNAME
+wrangler.jsonc
+.wrangler

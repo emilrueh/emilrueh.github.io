@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preload" href="/assets/fonts/montserrat-var.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/css/fonts.css" />
+
+  <title>Blog | Emil Rühmland</title>
+
+  <meta name="description"
+    content="Notes from building with AI: generative asset pipelines, LoRAs, and wiring AI into real tools." />
+  <meta name="author" content="Emil Rühmland" />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="canonical" href="https://ruehmland.com/blog/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Blog | Emil Rühmland" />
+  <meta property="og:description"
+    content="Notes from building with AI: generative asset pipelines, LoRAs, and wiring AI into real tools." />
+  <meta property="og:url" content="https://ruehmland.com/blog/" />
+  <meta property="og:image" content="https://ruehmland.com/assets/active/card.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="Emil Rühmland" />
+
+  <link rel="icon" type="image/webp" href="/assets/active/favicon.webp" />
+  <meta name="theme-color" content="#36d1dc" />
+
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/blog.css" />
+</head>
+
+<body>
+  <nav class="blog-nav">
+    <a href="/">Emil Rühmland</a>
+  </nav>
+
+  <main class="blog">
+    <h1 class="blog__title">Blog</h1>
+    <p class="blog__subtitle">Notes from building with AI.</p>
+
+    <ul class="post-list">
+      <li class="post-list__item">
+        <time datetime="2026-10-14">14 October 2026</time>
+        <a href="/blog/transparent-backgrounds-for-ai-art">Transparent Backgrounds for AI Art from a White and
+          a Black Render</a>
+        <p>Why background removers fail on AI art, the 1996 matting paper that fixed it, and where it still breaks.</p>
+      </li>
+    </ul>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer__text">
+        &copy; <span id="year"></span> Emil Rühmland Software Resolution
+      </p>
+      <p class="footer__text">
+        <a href="/legal">Legal Notice</a> and
+        <a href="/privacy">Privacy Policy</a>
+      </p>
+      <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+      </script>
+    </div>
+  </footer>
+</body>
+
+</html>
