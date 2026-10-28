@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preload" href="/assets/fonts/montserrat-var.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/css/fonts.css" />
+
+  <title>The Artist Back in AI Art | Emil Rühmland</title>
+
+  <meta name="description"
+    content="Base models blend millions of styles, so no artist inside them can be paid. A LoRA trained on one commissioned dataset can, but the royalty is still unsolved." />
+  <meta name="author" content="Emil Rühmland" />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="canonical" href="https://ruehmland.com/blog/the-artist-back-in-ai-art" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="The Artist Back in AI Art" />
+  <meta property="og:description"
+    content="Base models blend millions of styles, so no artist inside them can be paid. A LoRA trained on one commissioned dataset can, but the royalty is still unsolved." />
+  <meta property="og:url" content="https://ruehmland.com/blog/the-artist-back-in-ai-art" />
+  <meta property="og:image" content="https://ruehmland.com/assets/blog/the-artist-back-in-ai-art/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="Emil Rühmland" />
+  <meta property="article:published_time" content="2026-10-28" />
+  <meta property="article:author" content="https://ruehmland.com/" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Artist Back in AI Art" />
+  <meta name="twitter:description"
+    content="Base models blend millions of styles, so no artist inside them can be paid. A LoRA trained on one commissioned dataset can, but the royalty is still unsolved." />
+  <meta name="twitter:image" content="https://ruehmland.com/assets/blog/the-artist-back-in-ai-art/og.jpg" />
+
+  <link rel="icon" type="image/webp" href="/assets/active/favicon.webp" />
+  <meta name="theme-color" content="#36d1dc" />
+
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/blog.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "The Artist Back in AI Art",
+    "description": "Base models blend millions of styles, so no artist inside them can be paid. A LoRA trained on one commissioned dataset can, but the royalty is still unsolved.",
+    "image": "https://ruehmland.com/assets/blog/the-artist-back-in-ai-art/og.jpg",
+    "datePublished": "2026-10-28",
+    "mainEntityOfPage": "https://ruehmland.com/blog/the-artist-back-in-ai-art",
+    "author": {
+      "@type": "Person",
+      "@id": "https://ruehmland.com/#emil",
+      "name": "Emil Rühmland",
+      "url": "https://ruehmland.com/"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <nav class="blog-nav">
+    <a href="/">Emil Rühmland</a>
+    <a href="/blog/">Blog</a>
+  </nav>
+
+  <main>
+    <article class="blog post">
+      <h1 class="blog__title">The Artist Back in AI Art</h1>
+      <p class="blog__subtitle">Base models blend millions of styles, so no artist inside them can be paid. A LoRA trained on one commissioned dataset can, but the royalty is still unsolved.</p>
+      <p class="blog__meta"><time datetime="2026-10-28">28 October 2026</time></p>
+
+      <h2 id="the-complaint-is-correct">The complaint is correct</h2>
+      <p>Proprietary, for-profit image models have been trained on the styles of so many artists, and those artists are rightfully upset. They don’t see any of that money and even have to pay to use the models built on their art.</p>
+      <p>The standard defence is that weights are statistics, not copies, and nothing is stored. Sure, but when a model suddenly draws in the style of one specific artist, something is off. The objection is that the artists and their work took part in these statistical representations without consent.</p>
+      <figure>
+        <img src="/assets/blog/the-artist-back-in-ai-art/1-base-model.webp"
+          alt="Artists’ work goes straight into training data along a path labelled scraped, bypassing a dashed route through consent, credit and payment, then into a base model"
+          width="1600" height="417" loading="lazy" />
+        <figcaption>The route through consent, credit and payment existed. Training went around it.</figcaption>
+      </figure>
+      <p>Copyright exists partly so artists get paid for their work, the same way performers get paid for music. With these models there is no mechanism to pay anyone but the companies training them. Millions of styles are averaged into one model and no contributor can be located inside it, so even if the labs wanted to, they could not credit the artists behind any specific generated image. Every compensation approach runs into this wall, which is why none exists.</p>
+
+      <h2 id="loras-get-rejected-too-for-a-better-reason">LoRAs get rejected too, for a better reason</h2>
+      <p>Then there are LoRAs, Low-Rank Adaptations. Fine-tuning on a small scale: a small dataset trains an adapter on top of a base model, which for images can then reproduce one specific style.</p>
+      <p>Reception among artists is even worse than for base models, and for good reason. A LoRA isolates a single artist’s style with a few dozen images and minutes of compute, and puts that style into the hands of anyone who wants it, for free.</p>
+
+      <h2 id="the-same-property-pointed-the-other-way">The same property, pointed the other way</h2>
+      <p>However, I propose LoRAs as the way to put control over their styles back into the hands of the artists. A LoRA points at exactly one person, so it can be the compensation layer model providers don’t provide. A dataset can be commissioned from an artist under a contract that pays for creating it. Every image generated from the resulting LoRA traces back to that one dataset, so every generation can pay out royalties.</p>
+      <figure>
+        <img src="/assets/blog/the-artist-back-in-ai-art/2-lora-plug.webp"
+          alt="An artist’s dataset trains a small LoRA that plugs into a large frozen base model holding anatomy, light and composition, which together generate images in that one style"
+          width="1600" height="337" loading="lazy" />
+        <figcaption>The base model stays untouched. The LoRA adds one style on top.</figcaption>
+      </figure>
+      <p>This does not settle whether AI art or LoRAs are ethical. It makes them contractual, which lets artists who might otherwise get pushed out by AI keep control over their style.</p>
+
+      <h2 id="requirements-all-before-any-image-exists">Requirements, all before any image exists</h2>
+      <p>There are a few requirements for this to work. The art in the dataset must only ever train LoRAs for the agreed use and never reach any other model. Otherwise this is just a training data aggregation pipeline that feeds the AI rather than the humans, and it makes the problem from the start worse.</p>
+      <p>The base model needs to be permissively licensed, so ownership of the derivative weights is inherited from the base rather than borrowed. That rules out some of the strongest open models out there, whose generations cannot be used commercially without asking the vendor for permission.</p>
+      <p>The platform the LoRA is trained on and the generations run on must not train on customer data.</p>
+
+      <h2 id="the-part-i-cannot-argue-away">The part I cannot argue away</h2>
+      <p>This lets artists take part in AI generation again and stay economically viable against plain AI generation, since the LoRA keeps their style consistent across every image. But it still commissions fewer drawings than using no AI at all. Only a small dataset is commissioned, and the generations replace every commission that would have come after it.</p>
+      <p>On the other hand, it might open the door to real artists for smaller companies and projects that could never afford fully human art but can afford a human dataset plus generation from it.</p>
+      <p>It is the difference between a solo project getting all the art it needs at an affordable rate, and the artist getting paid for one batch instead of ongoing work that was never affordable in the first place.</p>
+      <figure>
+        <img src="/assets/blog/the-artist-back-in-ai-art/3-tradeoff.webp"
+          alt="Three rows of ten assets. Fully commissioned: every asset carries a payment to the artist. Dataset plus LoRA: one paid batch, then a small royalty on each asset. Plain AI: faded assets with no payment"
+          width="1600" height="671" loading="lazy" />
+        <figcaption>Fewer commissions than fully human art, more than plain AI.</figcaption>
+      </figure>
+      <p>The artist’s position moves from per-asset labour to rights holder, with a royalty on work they did not draw. Whether that is an improvement depends entirely on the royalty, and the royalty is unsolved.</p>
+
+      <h2 id="what-is-still-open">What is still open</h2>
+      <p>What counts as a use, though, and how can it be measured to structure royalties around it? Per generated image, per image actually used, per revenue period? In a game it should be easy: every generated image can be tracked by how often it showed on screen for paying users, and a cut calculated from that. Outside of games, one idea is an intermediary platform that rents out LoRAs to companies needing art, per agreed use case, and does the counting.</p>
+      <p>Who owns the style? Obviously the artist, but what about the dataset? And what about the LoRA? Training a LoRA is cheap, so the dataset is the real value. It could be licensed only for training LoRAs on this platform or for this use case and nothing else, binding both the artist and the platform.</p>
+      <p>Have you seen a royalty like this priced in a real agreement, or are you an artist who would never ever sign something like this? I would love to hear your take.</p>
+
+      <aside class="author">
+        <a href="/" class="author__logo"><img src="/assets/active/logo-90.webp" alt="Emil Rühmland Software Resolution logo"
+            width="90" height="90" loading="lazy" /></a>
+        <p class="author__text">I connect AI to the tools your business already uses.</p>
+        <p class="author__links">
+          <a href="/#projects">Case studies</a>
+          <a href="/#contact" class="cta-btn cta-btn--contact">Work with me</a>
+        </p>
+      </aside>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer__text">
+        &copy; <span id="year"></span> Emil Rühmland Software Resolution
+      </p>
+      <p class="footer__text">
+        <a href="/legal">Legal Notice</a> and
+        <a href="/privacy">Privacy Policy</a>
+      </p>
+      <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+      </script>
+    </div>
+  </footer>
+</body>
+
+</html>
