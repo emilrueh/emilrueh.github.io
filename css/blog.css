@@ -115,6 +115,7 @@
   text-decoration: underline;
   text-decoration-color: var(--accent-light-blue);
   text-underline-offset: 0.3rem;
+  transition: color .3s ease-in-out;
 }
 
 .post a:hover {

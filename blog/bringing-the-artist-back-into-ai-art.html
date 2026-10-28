@@ -7,22 +7,22 @@
   <link rel="preload" href="/assets/fonts/montserrat-var.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/css/fonts.css" />
 
-  <title>The Artist Back in AI Art | Emil Rühmland</title>
+  <title>Bringing the Artist Back into AI Art | Emil Rühmland</title>
 
   <meta name="description"
     content="Base models blend millions of styles, so no artist inside them can be paid. A LoRA trained on one commissioned dataset can, but the royalty is still unsolved." />
   <meta name="author" content="Emil Rühmland" />
   <meta name="robots" content="index, follow" />
 
-  <link rel="canonical" href="https://ruehmland.com/blog/the-artist-back-in-ai-art" />
+  <link rel="canonical" href="https://ruehmland.com/blog/bringing-the-artist-back-into-ai-art" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="The Artist Back in AI Art" />
+  <meta property="og:title" content="Bringing the Artist Back into AI Art" />
   <meta property="og:description"
     content="Base models blend millions of styles, so no artist inside them can be paid. A LoRA trained on one commissioned dataset can, but the royalty is still unsolved." />
-  <meta property="og:url" content="https://ruehmland.com/blog/the-artist-back-in-ai-art" />
-  <meta property="og:image" content="https://ruehmland.com/assets/blog/the-artist-back-in-ai-art/og.jpg" />
+  <meta property="og:url" content="https://ruehmland.com/blog/bringing-the-artist-back-into-ai-art" />
+  <meta property="og:image" content="https://ruehmland.com/assets/blog/bringing-the-artist-back-into-ai-art/og.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:locale" content="en_US" />
@@ -32,10 +32,10 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="The Artist Back in AI Art" />
+  <meta name="twitter:title" content="Bringing the Artist Back into AI Art" />
   <meta name="twitter:description"
     content="Base models blend millions of styles, so no artist inside them can be paid. A LoRA trained on one commissioned dataset can, but the royalty is still unsolved." />
-  <meta name="twitter:image" content="https://ruehmland.com/assets/blog/the-artist-back-in-ai-art/og.jpg" />
+  <meta name="twitter:image" content="https://ruehmland.com/assets/blog/bringing-the-artist-back-into-ai-art/og.jpg" />
 
   <link rel="icon" type="image/webp" href="/assets/active/favicon.webp" />
   <meta name="theme-color" content="#36d1dc" />
@@ -47,11 +47,11 @@
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "The Artist Back in AI Art",
+    "headline": "Bringing the Artist Back into AI Art",
     "description": "Base models blend millions of styles, so no artist inside them can be paid. A LoRA trained on one commissioned dataset can, but the royalty is still unsolved.",
-    "image": "https://ruehmland.com/assets/blog/the-artist-back-in-ai-art/og.jpg",
+    "image": "https://ruehmland.com/assets/blog/bringing-the-artist-back-into-ai-art/og.jpg",
     "datePublished": "2026-10-28",
-    "mainEntityOfPage": "https://ruehmland.com/blog/the-artist-back-in-ai-art",
+    "mainEntityOfPage": "https://ruehmland.com/blog/bringing-the-artist-back-into-ai-art",
     "author": {
       "@type": "Person",
       "@id": "https://ruehmland.com/#emil",
@@ -70,7 +70,7 @@
 
   <main>
     <article class="blog post">
-      <h1 class="blog__title">The Artist Back in AI Art</h1>
+      <h1 class="blog__title">Bringing the Artist Back into AI Art</h1>
       <p class="blog__subtitle">Base models blend millions of styles, so no artist inside them can be paid. A LoRA trained on one commissioned dataset can, but the royalty is still unsolved.</p>
       <p class="blog__meta"><time datetime="2026-10-28">28 October 2026</time></p>
 
@@ -78,7 +78,7 @@
       <p>Proprietary, for-profit image models have been trained on the styles of so many artists, and those artists are rightfully upset. They don’t see any of that money and even have to pay to use the models built on their art.</p>
       <p>The standard defence is that weights are statistics, not copies, and nothing is stored. Sure, but when a model suddenly draws in the style of one specific artist, something is off. The objection is that the artists and their work took part in these statistical representations without consent.</p>
       <figure>
-        <img src="/assets/blog/the-artist-back-in-ai-art/1-base-model.webp"
+        <img src="/assets/blog/bringing-the-artist-back-into-ai-art/1-base-model.webp"
           alt="Artists’ work goes straight into training data along a path labelled scraped, bypassing a dashed route through consent, credit and payment, then into a base model"
           width="1600" height="417" loading="lazy" />
         <figcaption>The route through consent, credit and payment existed. Training went around it.</figcaption>
@@ -92,7 +92,7 @@
       <h2 id="the-same-property-pointed-the-other-way">The same property, pointed the other way</h2>
       <p>However, I propose LoRAs as the way to put control over their styles back into the hands of the artists. A LoRA points at exactly one person, so it can be the compensation layer model providers don’t provide. A dataset can be commissioned from an artist under a contract that pays for creating it. Every image generated from the resulting LoRA traces back to that one dataset, so every generation can pay out royalties.</p>
       <figure>
-        <img src="/assets/blog/the-artist-back-in-ai-art/2-lora-plug.webp"
+        <img src="/assets/blog/bringing-the-artist-back-into-ai-art/2-lora-plug.webp"
           alt="An artist’s dataset trains a small LoRA that plugs into a large frozen base model holding anatomy, light and composition, which together generate images in that one style"
           width="1600" height="337" loading="lazy" />
         <figcaption>The base model stays untouched. The LoRA adds one style on top.</figcaption>
@@ -109,7 +109,7 @@
       <p>On the other hand, it might open the door to real artists for smaller companies and projects that could never afford fully human art but can afford a human dataset plus generation from it.</p>
       <p>It is the difference between a solo project getting all the art it needs at an affordable rate, and the artist getting paid for one batch instead of ongoing work that was never affordable in the first place.</p>
       <figure>
-        <img src="/assets/blog/the-artist-back-in-ai-art/3-tradeoff.webp"
+        <img src="/assets/blog/bringing-the-artist-back-into-ai-art/3-tradeoff.webp"
           alt="Three rows of ten assets. Fully commissioned: every asset carries a payment to the artist. Dataset plus LoRA: one paid batch, then a small royalty on each asset. Plain AI: faded assets with no payment"
           width="1600" height="671" loading="lazy" />
         <figcaption>Fewer commissions than fully human art, more than plain AI.</figcaption>
