@@ -168,6 +168,7 @@
   font-size: 1.4rem;
   line-height: 1.6;
   margin-top: 1.2rem;
+  text-align: center;
   color: color-mix(in srgb, var(--text-light-grey) 80%, transparent);
 }
 
