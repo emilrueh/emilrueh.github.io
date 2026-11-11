@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preload" href="/assets/fonts/montserrat-var.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/css/fonts.css" />
+
+  <title>How Not to Build an AI Art Pipeline | Emil Rühmland</title>
+
+  <meta name="description"
+    content="Characters worked for my game. Objects needed animation, placement and scale, and every fix felt like duct tape." />
+  <meta name="author" content="Emil Rühmland" />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="canonical" href="https://ruehmland.com/blog/ai-asset-pipeline" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="How Not to Build an AI Art Pipeline" />
+  <meta property="og:description"
+    content="Characters worked for my game. Objects needed animation, placement and scale, and every fix felt like duct tape." />
+  <meta property="og:url" content="https://ruehmland.com/blog/ai-asset-pipeline" />
+  <meta property="og:image" content="https://ruehmland.com/assets/blog/ai-asset-pipeline/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="Emil Rühmland" />
+  <meta property="article:published_time" content="2026-11-11" />
+  <meta property="article:author" content="https://ruehmland.com/" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="How Not to Build an AI Art Pipeline" />
+  <meta name="twitter:description"
+    content="Characters worked for my game. Objects needed animation, placement and scale, and every fix felt like duct tape." />
+  <meta name="twitter:image" content="https://ruehmland.com/assets/blog/ai-asset-pipeline/og.jpg" />
+
+  <link rel="icon" type="image/webp" href="/assets/active/favicon.webp" />
+  <meta name="theme-color" content="#36d1dc" />
+
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/blog.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "How Not to Build an AI Art Pipeline",
+    "description": "Characters worked for my game. Objects needed animation, placement and scale, and every fix felt like duct tape.",
+    "image": "https://ruehmland.com/assets/blog/ai-asset-pipeline/og.jpg",
+    "datePublished": "2026-11-11",
+    "mainEntityOfPage": "https://ruehmland.com/blog/ai-asset-pipeline",
+    "author": {
+      "@type": "Person",
+      "@id": "https://ruehmland.com/#emil",
+      "name": "Emil Rühmland",
+      "url": "https://ruehmland.com/"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <nav class="blog-nav">
+    <a href="/">Emil Rühmland</a>
+    <a href="/blog/">Blog</a>
+  </nav>
+
+  <main>
+    <article class="blog post">
+      <h1 class="blog__title">How Not to Build an AI Art Pipeline</h1>
+      <p class="blog__subtitle">Characters worked for my game. Objects needed animation, placement and scale, and every fix felt like duct tape.</p>
+      <p class="blog__meta"><time datetime="2026-11-11">11 November 2026</time></p>
+
+      <p>I am building a game that started out as digital D&amp;D with an AI game master, and turned more into an AI writing and animating a comic book as you play it. Every character, object and location in a scene has to be thought of, generated, placed, and animated.</p>
+      <p>My first plan was to commission assets directly from an illustrator whenever the game has nothing fitting in store, so the game would have mailed a commission and checked what was uploaded. Then it sank in that a continuously running game that generated assets on the fly even with a bucket of already existing assets to choose from will quickly be impossible to be satisfied by even a group of illustrators and already with a few commissions it is financially not viable.</p>
+      <figure>
+        <img src="/assets/blog/ai-asset-pipeline/01-originals.webp"
+          alt="Four hand-drawn character portraits: a bearded king with a crown, a knight in a helmet, an old priest with a cross and a woman with big white hair"
+          width="1600" height="465" loading="lazy" />
+      </figure>
+      <p>So just going for AI art seemed like the solution but it would lose the illustrator’s style and human involvement, so instead I thought to train a LoRA, a small add-on for an AI model, that learns a single art style from a commissioned dataset drawn to a spec, which the illustrator delivers through the same validation workflow. Now the game can generate as many assets as it needs, in that style, at a fraction of the cost of commissioning each one, and the artist <a href="/blog/bringing-the-artist-back-into-ai-art">earns royalties each time an asset is used</a>.</p>
+      <figure>
+        <img src="/assets/blog/bringing-the-artist-back-into-ai-art/2-lora-plug.webp"
+          alt="An artist’s dataset trains a small LoRA that plugs into a large frozen base model holding anatomy, light and composition, which together generate images in that one style"
+          width="1600" height="337" loading="lazy" />
+      </figure>
+      <p>That dataset is still a todo since commissioning it will be expensive, so everything in this post runs on a rudimentary set, as I decided to build the infrastructure first without worrying about art quality too much.</p>
+
+      <h2 id="characters">Characters</h2>
+      <p>For characters the pipeline runs like this: Using the trained LoRA the model draws a portrait and a standing figure from a prompt on white, animation frames are derived from those two bases by prompting for an arm on the hip etc., and every frame is rendered again on black so I can <a href="/blog/transparent-backgrounds-for-ai-art">solve its transparency from the difference</a>.</p>
+      <p>All this worked quite well. Every single character gets the same set of frames and the game puts them in fixed spots over the scene.</p>
+      <figure class="figure--small">
+        <img src="/assets/blog/ai-asset-pipeline/03-character.webp"
+          alt="Animated AI-generated character with black hair and a blue coat, as a portrait and a standing figure, cycling through blinking, talking and fidgeting frames"
+          width="690" height="500" loading="lazy" />
+      </figure>
+      <p>Next up are objects, things in the scene you can tap, and initially I thought of them as an extension of this. Once I started adjusting the workflow, it felt the other way around. Objects seem to need all the tough parts that characters never had to deal with:</p>
+      <ul>
+        <li>whatever the object is, it has to be animated</li>
+        <li>each is to be picked up and moved without the need to redraw a location</li>
+        <li>and an object must sit in a scene at the right size and ‘disappear’ in the backdrop</li>
+      </ul>
+
+      <h2 id="object-animation">Object animation</h2>
+      <p>Characters sit on one idle image, and the game has single action frames to swap in now and then. A bonfire has no idle state and therefore must cycle through frames constantly. Prompting became the problem two distinct motions have to be thought of so the model can follow it e.g. “flames leaning right” followed by “flames leaning left”, but it looked very unnatural when played in a loop as the model overdid it every time.</p>
+      <figure class="figure--tiny">
+        <img src="/assets/blog/ai-asset-pipeline/04-bonfire-described.webp"
+          alt="Animated bonfire on stones whose flames swing hard from side to side between frames"
+          width="348" height="450" loading="lazy" />
+      </figure>
+      <p>So I stopped describing the motion. Instead three bonfires are generated from the same prompt with different seeds, an LLM with vision points at the part that is meant to animate by outputting pixel coordinates, and a mask locks the rest of the image. Once all three cycle the mask lets only the flames through, which gives natural looking motion for cycling effects.</p>
+      <figure class="figure--tiny">
+        <img src="/assets/blog/ai-asset-pipeline/05-bonfire-masked.webp"
+          alt="Animated bonfire on a pile of logs where only the flames change between frames and the logs stay still"
+          width="545" height="662" loading="lazy" />
+      </figure>
+      <p>With animation working, the next step is to place the objects. In addition to the previously mentioned requirements, an object must also pick up the surroundings’ lighting and cast shadows, and potentially stand on other objects.</p>
+
+      <h2 id="composition">Composition</h2>
+      <p>All of that could come from the scene itself as long as the objects were to be generated inside of it but the model started repainting the scene more than generating a proper object and trying to animate it just made the location flicker so I scrapped this approach.</p>
+      <figure>
+        <img src="/assets/blog/ai-asset-pipeline/06-in-place.webp"
+          alt="Animated crop of a farmyard wall with a barrel and a small fire drawn into the scene, where the ground and wall around the fire shift between frames"
+          width="480" height="360" loading="lazy" />
+      </figure>
+      <p>Back to drawing on white, which left shadows, lighting and objects on objects open. The object also has got to match the scale the background is drawn at which changes with depth.</p>
+      <p>To solve size I gave each object a class, with a candle being tiny at 50 pixels, a torch small at 100, and a bonfire medium at 150, with large and huge being options as well. Also a location gets split into three planes, foreground, middle and background. An LLM sees the location and paints three colored areas over it. Therefore an object’s size is the object’s class times the plane’s factor of 1, 0.75 or 0.5, so a small torch at 100 pixels stands at 75 in the middle plane, and the drawing gets scaled to that.</p>
+      <figure>
+        <img src="/assets/blog/ai-asset-pipeline/07-torch-inn.webp"
+          alt="Animated torch with a flickering flame placed on a wooden post of an inn"
+          width="240" height="260" loading="lazy" />
+      </figure>
+      <p>Then the colored location gets passed with the object next to it as reference to an LLM which once again points at a pixel for the object to be placed and the color of the plane at that spot dictates the size at which the object is painted.</p>
+
+      <h2 id="the-whole-thing-end-to-end">The whole thing end to end</h2>
+      <p>When I ran everything together as a workflow with no human in the loop I got my wake-up call:</p>
+      <ul>
+        <li>object animation only works for effects like fire or smoke</li>
+        <li>composition puts objects in spots that make little sense</li>
+        <li>an object’s scale does not fit the scene around it once size was solved and that is the biggest issue</li>
+      </ul>
+      <figure>
+        <img src="/assets/blog/ai-asset-pipeline/08-scene-castle.webp"
+          alt="Animated castle courtyard with a chicken, a steaming pot and a lantern placed by the pipeline, each visibly smaller and thinner lined than the drawn scene around them"
+          width="1280" height="720" loading="lazy" />
+      </figure>
+
+      <h2 id="scale">Scale</h2>
+      <p>On white the object fills the canvas it is generated on at about 512 pixels. Then we scale it down during composition to let’s say 100 pixels, and now despite being at the right size, the perceived scale of it is completely off because it does not match the art style anymore. In my example it is visible best when looking at the line width of the outlines which once an object was composited were far thinner than the lines in the image of the location.</p>
+      <p>To try to force a size and get the scale correct during generation I made the initial canvas as small as the object should be when placed, so the model would have no room to draw it any bigger. Sadly a canvas below 512 pixels made the model collapse completely. A chicken turns nearly realistic, despite the LoRA still being on, and a candle completely swaps its body instead of just the flame, so the animation system fell apart.</p>
+      <figure class="figure--small">
+        <img src="/assets/blog/ai-asset-pipeline/09-small-canvas.webp"
+          alt="Animated candle and chicken generated on small canvases, the candle’s body changing between frames and the chicken drawn close to realistic"
+          width="597" height="384" loading="lazy" />
+      </figure>
+      <p>If we can’t go smaller with the canvas, my plan to fix it was to increase the size of the location image which should result in thinner lines when scaled down and I can use the minimum canvas for my smallest objects. However the location’s lines grew with its size while the objects’ lines stayed the same on any canvas.</p>
+      <p>Another approach to get scale right was to generate an object at normal size, scale it down to the size it is meant to be placed at and let the model redraw from this on big canvas, but the line weight was copied rather than redrawn.</p>
+
+      <h2 id="thoughts">Thoughts</h2>
+      <p>Every step so far felt more like patching something with duct tape rather than solving issues and moving forwards. Rendering twice for transparency, repainting behind a mask for animation, shrinking and redrawing for scale.</p>
+      <p>What actually works:</p>
+      <ul>
+        <li>character animations are great</li>
+        <li>generating objects on white in a style from a rudimentary LoRA came out right</li>
+        <li>a vision model pointing at an image by outputting pixels is a nice tool</li>
+        <li>fire and smoke animate well (at the cost of all other objects)</li>
+        <li>solving alpha from white and black gives very clean transparency (at the cost of generating everything twice)</li>
+      </ul>
+      <p>But the main issue of perceived scale during object composition remains unsolved.</p>
+
+      <h2 id="pivot">Pivot</h2>
+      <p>So I thought to pivot to pixel art. Because pixels can be counted I thought it would help with scaling, as assets would be generated and then scaled up and down to exactly the right size, while also lighting and shadows might get a little easier, as a shadow in pixel art can just be a few darker pixels under the object and relighting pixels should be easier to get to look right than crisp pictures.</p>
+      <p>This move to pixel art would once again be more of a workaround rather than a real fix, as I am just looking to simplify away the problem of scale. Would pixel art hold up at all? Is simplifying the problems away the right path here, or are there just far simpler existing options to solve all of it more efficiently?</p>
+      <figure>
+        <a href="/assets/blog/ai-asset-pipeline/11-workflow-full.webp"><img src="/assets/blog/ai-asset-pipeline/11-workflow.webp"
+            alt="Pipeline diagram. Characters: drawn on white, action frames, cut out, fixed spots. Location: drawn empty, split into foreground, middle and background by a vision model. Objects: named by the writer, drawn on white, vision model points at the moving part, masked redraw, cut out, vision model points at the spot, sized by class times plane, placed. Still open: line weight, light and shadow, objects on objects"
+            width="1600" height="884" loading="lazy" /></a>
+      </figure>
+
+      <h2 id="how-would-you-do-it">How Would You Do It?</h2>
+      <p>How to composite AI art at all? It means choosing a spot, keeping each object separate from the scene so it can be picked up, sizing it for its place in the backdrop, making it look drawn into the scene by adding light and shadow, and resting it on other objects. Again, for me the problem with all of this was scale, so what approaches already exist to handle this properly?</p>
+      <p>Forcing the model to draw small, so the lines would match once scaled up and redrawn, was my way of solving it, but why does a model collapse on small canvases? My best guess is that neither the LoRA nor the base model ever trained on small images. Do other models or methods get around it?</p>
+      <p>Would it be worth going back to drawing objects in the scene and keeping a detached version for the inventory, at the cost of redrawing part of the location every time an object gets picked up?</p>
+      <p>My animation system with idle poses from characters might translate to pixel art, but how to handle animating things that cycle constantly?</p>
+      <p>If you are building something like this, what are you doing differently, what existing tools should I check out, and do you think pixels will solve scale?</p>
+
+      <aside class="author">
+        <a href="/" class="author__logo"><img src="/assets/active/logo-90.webp" alt="Emil Rühmland Software Resolution logo"
+            width="90" height="90" loading="lazy" /></a>
+        <p class="author__text">I connect AI to the tools your business already uses.</p>
+        <p class="author__links">
+          <a href="/#projects">Case studies</a>
+          <a href="/#contact" class="cta-btn cta-btn--contact">Work with me</a>
+        </p>
+      </aside>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer__text">
+        &copy; <span id="year"></span> Emil Rühmland Software Resolution
+      </p>
+      <p class="footer__text">
+        <a href="/legal">Legal Notice</a> and
+        <a href="/privacy">Privacy Policy</a>
+      </p>
+      <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+      </script>
+    </div>
+  </footer>
+</body>
+
+</html>
