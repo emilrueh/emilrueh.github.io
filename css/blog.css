@@ -135,11 +135,33 @@
   margin: 4rem 0;
 }
 
+.post ul {
+  margin: 0 0 2rem;
+  padding-left: 2.4rem;
+  list-style: disc;
+}
+
+.post li {
+  font-size: 1.8rem;
+  line-height: 1.75;
+  margin-bottom: 0.6rem;
+}
+
 .post figure img {
   display: block;
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   height: auto;
+  margin: 0 auto;
   border-radius: 12px;
+}
+
+.post figure.figure--small img {
+  max-width: min(32rem, 100%);
+}
+
+.post figure.figure--tiny img {
+  max-width: min(24rem, 100%);
 }
 
 .post figcaption {
