@@ -18,6 +18,54 @@
   color: var(--text-white);
 }
 
+.blog-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
+}
+
+.blog-nav__feed {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.blog-nav__feed::after {
+  content: "Copied!";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+  white-space: nowrap;
+  color: var(--accent-light-blue);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease-in-out;
+}
+
+.blog-nav__feed.is-copied::after {
+  opacity: 1;
+}
+
+.blog-nav__feed svg {
+  width: 1.4rem;
+  height: 1.4rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.blog-nav__feed circle {
+  fill: currentColor;
+}
+
+.blog-nav__feed.is-copied {
+  pointer-events: none;
+}
+
 .blog {
   max-width: 72rem;
   margin: 0 auto;
