@@ -15,6 +15,7 @@
   <meta name="robots" content="index, follow" />
 
   <link rel="canonical" href="https://ruehmland.com/blog/bringing-the-artist-back-into-ai-art" />
+  <link rel="alternate" type="application/rss+xml" title="Emil Rühmland" href="/feed.xml" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="article" />
@@ -42,6 +43,7 @@
 
   <link rel="stylesheet" href="/css/main.css" />
   <link rel="stylesheet" href="/css/blog.css" />
+  <script src="/js/feed.js" defer></script>
 
   <script type="application/ld+json">
   {
@@ -65,7 +67,13 @@
 <body>
   <nav class="blog-nav">
     <a href="/">Emil Rühmland</a>
-    <a href="/blog/">Blog</a>
+    <div class="blog-nav__links">
+      <a href="/blog/">Blog</a>
+      <a class="blog-nav__feed" href="/feed.xml" title="Copy RSS feed URL">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11a9 9 0 0 1 9 9" /><path d="M4 4a16 16 0 0 1 16 16" /><circle cx="5" cy="19" r="1" /></svg>
+        <span>RSS</span>
+      </a>
+    </div>
   </nav>
 
   <main>

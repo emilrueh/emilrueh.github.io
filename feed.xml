@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Emil Rühmland</title>
+    <link>https://ruehmland.com/blog/</link>
+    <description>Notes from building with AI: generative asset pipelines, LoRAs, and wiring AI into real tools.</description>
+    <language>en</language>
+    <lastBuildDate>Wed, 11 Nov 2026 09:00:00 +0100</lastBuildDate>
+    <atom:link href="https://ruehmland.com/feed.xml" rel="self" type="application/rss+xml" />
+
+    <item>
+      <title>How Not to Build an AI Art Pipeline</title>
+      <link>https://ruehmland.com/blog/ai-asset-pipeline</link>
+      <guid>https://ruehmland.com/blog/ai-asset-pipeline</guid>
+      <pubDate>Wed, 11 Nov 2026 09:00:00 +0100</pubDate>
+      <description>Characters worked for my game. Objects needed animation, placement and scale, and every fix felt like duct tape.</description>
+    </item>
+
+    <item>
+      <title>Bringing the Artist Back into AI Art</title>
+      <link>https://ruehmland.com/blog/bringing-the-artist-back-into-ai-art</link>
+      <guid>https://ruehmland.com/blog/bringing-the-artist-back-into-ai-art</guid>
+      <pubDate>Wed, 28 Oct 2026 09:00:00 +0100</pubDate>
+      <description>Base models blend millions of styles, so no artist inside them can be paid. A LoRA trained on one commissioned dataset can, but the royalty is still unsolved.</description>
+    </item>
+
+    <item>
+      <title>Transparent Backgrounds for AI Art from a White and a Black Render</title>
+      <link>https://ruehmland.com/blog/transparent-backgrounds-for-ai-art</link>
+      <guid>https://ruehmland.com/blog/transparent-backgrounds-for-ai-art</guid>
+      <pubDate>Wed, 14 Oct 2026 09:00:00 +0200</pubDate>
+      <description>Why background removers fail on AI art, the 1996 matting paper that fixed it, and where it still breaks.</description>
+    </item>
+  </channel>
+</rss>
